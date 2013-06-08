@@ -13,6 +13,7 @@ return array(
     'import' => array(
         'application.models.*',
         'application.components.*',
+        'application.extensions.yii-mail.*',
     ),
     'modules' => array(
         'gii'=>array(
@@ -46,11 +47,11 @@ return array(
          */
         
         'db'=>array(
-        'connectionString' => 'mysql:host=localhost;dbname=fent_dev',
-        'emulatePrepare' => true,
-        'username' => 'root',
-        'password' => 'root',
-        'charset' => 'utf8',
+            'connectionString' => 'mysql:host=localhost;dbname=fent_dev',
+            'emulatePrepare' => true,
+            'username' => 'root',
+            'password' => 'root',
+            'charset' => 'utf8',
         ),
          
         'errorHandler' => array(
@@ -72,11 +73,25 @@ return array(
              */
             ),
         ),
+        'mail' => array(
+            'class' => 'application.extensions.yii-mail.YiiMail',
+            'transportType'=>'smtp', 
+            'transportOptions'=>array(
+                'host'=>'smtp.gmail.com',
+                'username'=>'framgia.email.tester@gmail.com',                
+                'password'=>'framgia345',
+                'port'=>'465',
+                'encryption'=>'ssl',
+                ),
+            'viewPath' => 'application.views.mail',
+            'logging' => true,
+            'dryRun' => false
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'webmaster@example.com',
+        'adminEmail' => 'admin@framgia.com',
     ),
 );
