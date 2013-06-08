@@ -1,0 +1,18 @@
+.none{
+    height:100px;
+}
+.row {
+    width:80%;
+    margin:0 auto;
+}
+.label-name-short{
+    width: 7em;
+}
+
+.label-name-normal{
+    width: 9.5em;
+}
+
+.label-name-long{
+    width: 12em;
+}
