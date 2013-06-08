@@ -115,5 +115,46 @@ class Profile extends CActiveRecord
             'criteria' => $criteria,
         ));
     }
-
+   
+    
+   
+    /**
+     * This method is invoked before saving a record (after validation, if any).
+     * @return boolean whether the saving should be executed. Defaults to true.
+ */
+    protected function beforeSave() 
+    {
+        if ($this->isNewRecord)
+            $this->secret_key = $this->generateKey(mt_rand(50,100));
+        return parent::beforeSave();
+    }
+    
+    private function generateKey($length)
+    {
+        $max = ceil($length / 40);
+        $random = '';
+        for ($i = 0; $i < $max; $i ++) {
+            $random .= sha1(microtime(true).mt_rand());
+        }
+        return substr($random, 0, $length);
+    }
+    
+    public function updateKey()
+    {        
+        $this->secret_key = $this->generateKey(mt_rand(50,100));
+        $this->save();
+    }
+    
+    public function generateSignUpLink()
+    {        
+        return Yii::app()->createUrl('user/signup', 
+                array('email'=>$this->email, 'key' => $this->secret_key));
+    }
+    
+    public function sendSignUpEmail()
+    {
+        $link = $this->generateSignUpLink();
+        $result = MailSender::sendMail($this->email, 'Sign Up Link', $link);
+        return $result;
+    }
 }

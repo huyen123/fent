@@ -19,7 +19,7 @@ class Controller extends CController
     public $breadcrumbs = array();
     
     public function beforeSave() {
-        if ($this->isNewRecord)
+        if ($this->isNewRecord || !$this->created_at)
             $this->created_at = time();        
         $this->modified_at = time();
         return parent::beforeSave();
