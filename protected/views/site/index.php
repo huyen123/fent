@@ -4,17 +4,33 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<div style="height:50px"></div>
+<div class="row">
+<div class="centered seven columns">
+    <div style="font-size: 3em; color:red; text-align:center">Welcome to our website</div></div></div>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<div class="none"></div>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+<div class="row">
+    <div class="centered six columns">
+      <form method='post'>        
+          <div class="row"> <div class="field"><label class="inline">Username</label><input class="wide text input" id="username_input" name="username" type="text" placeholder="Username" /></div></div>
+          <div class="row"> <div class="field"> <label class="inline">Password</label><input class="wide password input" id="password_input" name="password" type="password" placeholder="Password" /></div></div>
+          <div style="height:20px"></div>
+          <div class="row">
+              <label class="checkbox">
+                <input name="checkbox" type="checkbox">
+                 Log on automatically</label>
+          </div>
+          <div class="row"><a href="#">Forget your password ?</a></div>
+          <div style="height:40px"></div>
+      <div class="medium primary btn centered three columns"><input type="submit" value="Submit"></div>
+    </form>
+    </div>
+</div>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div class="none"></div>
+
+
+
+

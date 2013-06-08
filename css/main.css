@@ -34,7 +34,7 @@ body
 
 #footer
 {
-	padding: 10px;
+	padding-bottom: 0;
 	margin: 10px 20px;
 	font-size: 0.8em;
 	text-align: center;
