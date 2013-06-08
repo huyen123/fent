@@ -40,8 +40,10 @@ class User extends CActiveRecord
     {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
-        return array(
+        return array(            
             array('username, password, profile_id', 'required'),
+            array('username','unique'),
+            array('username','unique', 'className' => 'Profile', 'attributeName' => 'employee_code'),
             array('is_admin, updated_at, created_at, profile_id', 'numerical', 'integerOnly' => true),
             array('username', 'length', 'max' => 45),
             array('password', 'length', 'max' => 255),
@@ -59,7 +61,7 @@ class User extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'profile'=>array(self::HAS_ONE, 'Profile', 'profile_id'),
+            'profile'=>array(self::BELONGS_TO, 'Profile', 'profile_id'),
             'orders'=>array(self::HAS_MANY, 'Order', 'user_id'),
             'favarites'=>array(self::HAS_MANY, 'Favorite', 'user_id')
         );
@@ -104,5 +106,12 @@ class User extends CActiveRecord
             'criteria' => $criteria,
         ));
     }
-
+    
+    public function signUp($username, $password, $profile_id)
+    {
+        $this->username = $username;
+        $this->password = md5($password);
+        $this->profile_id = $profile_id;        
+        return $this->save();
+    }
 }
