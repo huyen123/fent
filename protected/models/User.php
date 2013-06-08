@@ -59,6 +59,9 @@ class User extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'profile'=>array(self::HAS_ONE, 'Profile', 'profile_id'),
+            'orders'=>array(self::HAS_MANY, 'Order', 'user_id'),
+            'favarites'=>array(self::HAS_MANY, 'Favorite', 'user_id')
         );
     }
 
