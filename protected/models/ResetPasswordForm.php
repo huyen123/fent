@@ -10,7 +10,7 @@ class ResetPasswordForm extends CFormModel
         return array(
             array('password', 'compare',
                 'compareAttribute' => 'passwordConfirm',
-                'message' => "Retype password is incorrect.")
+                'message' => 'Retype password is incorrect.')
         );
     }
 }

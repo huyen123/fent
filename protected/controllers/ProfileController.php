@@ -44,4 +44,12 @@ class ProfileController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+        
+        public function actionSendSignUpEmail($id) {
+            $profile = Profile::model()->findByPk($id);
+            if ($profile != null && $profile->sendSignUpEmail()) {
+                Yii::app()->user->setFlash('sucessful', 'Sign up email has been sent to '.$profile->email);
+            }
+            $this->redirect(array('profile/index'));
+        }
 }

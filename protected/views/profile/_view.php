@@ -34,7 +34,7 @@
 	<br />
         
 	<?php 
-        echo CHtml::button('Send sign up email', array('submit' => array('controller/action'))); 
+        echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id))); 
         /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('position')); ?>:</b>
 	<?php echo CHtml::encode($data->position); ?>

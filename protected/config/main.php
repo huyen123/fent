@@ -15,6 +15,7 @@ return array(
         'application.components.*',
         'application.extensions.yii-mail.*',
     ),
+    'defaultController' => 'user/signin',
     'modules' => array(
         'gii'=>array(
         'class'=>'system.gii.GiiModule',

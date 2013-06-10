@@ -147,19 +147,19 @@ class Profile extends CActiveRecord
     }
     
     public function generateSignUpLink()
-    {        
-        return Yii::app()->createUrl('user/signup', 
+    {           
+        return Yii::app()->createAbsoluteUrl('user/signup', 
                 array('email'=>$this->email, 'key' => $this->secret_key));
     }    
     
     public function generateResetPasswordLink()
-    {
-        return Yii::app()->createUrl('user/resetPassword', 
+    {        
+        return Yii::app()->createAbsoluteUrl('user/resetPassword', 
                 array('email'=>$this->email, 'key' => $this->secret_key));
     }
     
     public function sendSignUpEmail()
-    {
+    {   
         $link = $this->generateSignUpLink();
         $result = MailSender::sendMail($this->email, 'Sign Up Link', $link);
         return $result;
