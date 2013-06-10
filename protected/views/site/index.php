@@ -4,17 +4,32 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<div style="height:50px"></div>
+<div class="row">
+   <div class="centered seven columns">
+    <div style="font-size: 3em; color:red; text-align:center">Welcome to our website</div>
+   </div>
+</div>
+<div class="none"></div>
+<div class="row">
+    <div class="centered eight columns">
+      <form method='post'>        
+          <div class="row" style="color: blue; font-size: 1.3em"> <div class="field"><label class="inline label-name-short">Username</label><input class="wide text input" id="username_input" name='SignInForm["username"]' type="text" placeholder="Username" /></div></div>
+          <div class="row" style="color: blue; font-size: 1.3em"> <div class="field"> <label class="inline label-name-short">Password</label><input class="wide password input" id="password_input" name='SignInForm["password"]' type="password" placeholder="Password" /></div></div>
+          <div style="height:20px"></div>
+          <div class="row" style="color: blue; font-size: 8px">
+              <label class="checkbox">
+                <input name="checkbox" type="checkbox">
+                 Log on automatically</label>
+          </div>
+          <div class="row"><a href="#">Forget your password ?</a></div>
+          <div style="height:40px"></div>
+          <div class="medium primary btn centered three columns"><input type="submit" value="Sign in"></div>
+      </form>
+    </div>
+  </div>
+<div class="none"></div>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+
