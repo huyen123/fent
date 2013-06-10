@@ -2,14 +2,14 @@
 
 class SignUpForm extends User 
 {
-    public $verifyPassword;    
+    public $passwordConfirm;    
 
     public function rules() {
         $rules = parent::rules();               
-        $rules[] = array('verifyPassword', 'required');
+        $rules[] = array('passwordConfirm', 'required');
         $rules[] = array('password', 'compare',
             'compareAttribute' => 'verifyPassword',
-            'message' => "Retype password is incorrect.");        
+            'message' => 'Retype password is incorrect.');        
         return $rules;
     }
 }
