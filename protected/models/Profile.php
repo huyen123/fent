@@ -151,7 +151,7 @@ class Profile extends CActiveRecord
         if ($this->secret_key == null) {
             $this->updateKey();
         }
-        return Yii::app()->createUrl('user/signup', 
+        return Yii::app()->createAbsoluteUrl('user/signup', 
             array('email'=>$this->email, 'key' => $this->secret_key));
     }    
     

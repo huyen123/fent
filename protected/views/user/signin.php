@@ -24,7 +24,9 @@ $this->pageTitle=Yii::app()->name;
             <?php echo Yii::app()->user->getFlash('fail'); ?>
         </div>
      <?php endif; ?>
+              
       <form method='post'>        
+          <?php echo CHtml::errorSummary($form); ?>    
           <div class="row" style="color: blue; font-size: 1.3em">
               <div class="field">
                   <?php echo CHtml::activeTextField($form, 'username', array('class' => 'text input', 'placeholder' => 'Username')); ?>
