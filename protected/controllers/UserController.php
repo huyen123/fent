@@ -5,9 +5,9 @@ class UserController extends Controller
     public function actionSignIn()
     {               
         $form = new SigninForm;        
-        if (isset($_POST['SignInForm']))
+        if (isset($_POST['SigninForm']))
         {            
-            $form->attributes = $_POST['SignInForm'];                        
+            $form->attributes = $_POST['SigninForm'];                        
             if ($form->validate() && $form->login()) {                                     
                 $this->redirect(Yii::app()->user->returnUrl);
             } 
@@ -75,9 +75,8 @@ class UserController extends Controller
                     Yii::app()->user->setFlash('sucessful', 'Your password has been changed !');
                     $this->redirect(Yii::app()->homeUrl);
                 }
-            } else {
-                $this->render('reset_password', array('form' => $form));
             }
+            $this->render('reset_password', array('form' => $form));            
         } else {
             Yii::app()->user->setFlash('fail', 'Invalid URL !');
             $this->redirect(Yii::app()->homeUrl);

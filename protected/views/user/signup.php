@@ -16,6 +16,7 @@
 <div class="row">
     <div class="centered seven columns" style="color: blue; font-size: 1.3em">      
       <form method='post'> 
+          <?php echo CHtml::errorSummary($form); ?>    
           <div class="row">
               <div class="field">
                   <?php echo CHtml::activeTextField($form, 'username', array('class' => 'text input', 'placeholder' => 'Username')); ?>
