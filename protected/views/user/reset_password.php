@@ -15,16 +15,15 @@
       <div  style="color: blue; font-size: 1.3em">
           <ul>
             <li class="field">                
-                <input class="text input" name='ResetPasswordForm[password]' type="password" placeholder="New password" />
+              <?php echo CHtml::activePasswordField($form, 'password', array('class' => 'password input', 'placeholder' => 'New Password')); ?>
             </li>
             <li class="field">              
-              <input class="text input" name='ResetPasswordForm[passwordConfirm]' type="password" placeholder="New password Confirmation" />
+              <?php echo CHtml::activePasswordField($form, 'passwordConfirm', array('class' => 'password input', 'placeholder' => 'New Password Confirmation')); ?>
             </li>
             <div style="height:50px"></div>
             <li>
-             <div class="medium primary btn centered three columns"><input type="submit" value="Submit"></div>
-            </li>
-      
+             <div class="medium primary btn centered three columns"><?php echo CHtml::submitButton('Submit'); ?></div>
+            </li>     
           </ul>
       </div>
       </fieldset>

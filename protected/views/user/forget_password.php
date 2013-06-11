@@ -23,10 +23,10 @@
             </div>
          <?php endif; ?>
           <div class="field">
-            <input class="text input" id="email" name='ForgetPasswordForm[arg]' type="text" placeholder="Username or Email or Employee code" />
+            <?php echo CHtml::textField('ForgetPasswordForm[arg]', null, array('class'=>'text input','placeholder'=>'Username or Email or Employee code')); ?>
           </div>
           <div style="height:50px"></div>
-          <div class="medium primary btn centered three columns"><input type="submit" value="Submit"></div>
+          <div class="medium primary btn centered three columns"><?php echo CHtml::submitButton('Submit'); ?></div>
        </fieldset>
     </form>
 </div>

@@ -1,4 +1,4 @@
-<?php
+ <?php
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name;
@@ -25,22 +25,26 @@ $this->pageTitle=Yii::app()->name;
         </div>
      <?php endif; ?>
       <form method='post'>        
-          <div class="row" style="color: blue; font-size: 1.3em"> <div class="field"><input class="text input" id="username_input" name='SignInForm[username]' type="text" placeholder="Username" /></div></div>
-          <div class="row" style="color: blue; font-size: 1.3em"> <div class="field"><input class="password input" id="password_input" name='SignInForm[password]' type="password" placeholder="Password" /></div></div>
+          <div class="row" style="color: blue; font-size: 1.3em">
+              <div class="field">
+                  <?php echo CHtml::activeTextField($form, 'username', array('class' => 'text input', 'placeholder' => 'Username')); ?>
+              </div>
+          </div>          
+          <div class="row" style="color: blue; font-size: 1.3em">
+              <div class="field">
+                  <?php echo CHtml::activePasswordField($form, 'password', array('class' => 'password input', 'placeholder' => 'Password')); ?>
+              </div>
+          </div>      
           <div style="height:20px"></div>
           <div class="row" style="color: blue; font-size: 8px">
               <label class="checkbox">
                 <input name='SignInForm[rememberMe]' type="checkbox">
                  Log on automatically</label>
           </div>
-          <div class="row"><a href="<?php echo Yii::app()->createUrl('user/forgetPassword'); ?>">Forget your password ?</a></div>
+          <div class="row"><?php echo CHtml::link('Forget your password ?', array('user/forgetPassword')); ?></div>
           <div style="height:40px"></div>
-          <div class="medium primary btn centered three columns"><input type="submit" value="Sign in"></div>
+          <div class="medium primary btn centered three columns"><?php echo CHtml::submitButton('Sign in');?></div>
       </form>
     </div>
   </div>
 <div class="none"></div>
-
-
-
-
