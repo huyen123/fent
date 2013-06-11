@@ -61,9 +61,9 @@ class UserController extends Controller
     {        
         $profile = Profile::model()->findByAttributes(
             array('email' => $email, 'secret_key' => $key));
-        if ($profile != null) {            
-            if (isset($_POST['ResetPasswordForm'])) {
-                $form = new ResetPasswordForm;                
+        if ($profile != null) {   
+            $form = new ResetPasswordForm;   
+            if (isset($_POST['ResetPasswordForm'])) {             
                 $form->password = $_POST['ResetPasswordForm']['password'];
                 $form->passwordConfirm = $_POST['ResetPasswordForm']['passwordConfirm'];
                 $form->validate();                                                
@@ -76,7 +76,7 @@ class UserController extends Controller
                     $this->redirect(Yii::app()->homeUrl);
                 }
             } else {
-                $this->render('reset_password');
+                $this->render('reset_password', array('form' => $form));
             }
         } else {
             Yii::app()->user->setFlash('fail', 'Invalid URL !');
