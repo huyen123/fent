@@ -10,10 +10,20 @@
 
 <div class="row">
     <form method="Post">
-       <fieldset class="six centered columns">
+       <fieldset class="seven centered columns">           
          <div style="height:50px"></div>
+         <?php if(Yii::app()->user->hasFlash('sucessful')): ?>
+            <div class="success alert">
+                <?php echo Yii::app()->user->getFlash('sucessful'); ?>
+            </div>
+         <?php endif; ?>
+         <?php if(Yii::app()->user->hasFlash('fail')): ?>
+            <div class="danger alert">
+                <?php echo Yii::app()->user->getFlash('fail'); ?>
+            </div>
+         <?php endif; ?>
           <div class="field">
-            <input class="text input" id="email" name='ForgetPasswordForm["arg"]' type="text" placeholder="Enter your Username or Email or Employee code" />
+            <input class="text input" id="email" name='ForgetPasswordForm[arg]' type="text" placeholder="Username or Email or Employee code" />
           </div>
           <div style="height:50px"></div>
           <div class="medium primary btn centered three columns"><input type="submit" value="Submit"></div>
