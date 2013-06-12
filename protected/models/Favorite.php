@@ -10,7 +10,7 @@
  * @property integer $user_id
  * @property integer $device_id
  */
-class Favorite extends CActiveRecord 
+class Favorite extends ActiveRecord 
 {
 
     /**
@@ -55,8 +55,8 @@ class Favorite extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
-            'device'=>array(self::BELONG_TO, 'Device', 'device_id')
+            'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+            'device' => array(self::BELONGS_TO, 'Device', 'device_id')
         );
     }
 

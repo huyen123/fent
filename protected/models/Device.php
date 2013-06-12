@@ -13,7 +13,7 @@
  * @property integer $created_at
  * @property integer $category_id
  */
-class Device extends CActiveRecord 
+class Device extends ActiveRecord 
 {
 
     /**

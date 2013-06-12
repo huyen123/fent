@@ -16,13 +16,5 @@ class Controller extends CController
      * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
      * for more details on how to specify this property.
      */
-    public $breadcrumbs = array();
-    
-    public function beforeSave() {
-        if ($this->isNewRecord || !$this->created_at)
-            $this->created_at = time();        
-        $this->modified_at = time();
-        return parent::beforeSave();
-    }
-
+    public $breadcrumbs = array();    
 }
