@@ -20,21 +20,20 @@ class ProfileController extends Controller
      */
     public function accessRules()
     {
-        return array(
-            array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view'),
-                'users'=>array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'controllers' => array('profile'),
-                'actions'=>array('create', 'update', 'delete', 'sendSignUpEmail'),
-                //'users'=>array('admin'),
-                'expression' => '$user->isAdmin === "true"'
-            ),
-            array('deny',  // deny all users
-                'users'=>array('*'),
-            ),
-        );
+    return array(
+        array('allow',  // allow all users to perform 'index' and 'view' actions
+            'actions'=>array('index','view'),
+            'users'=>array('@'),
+        ),
+        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+            'controllers' => array('profile'),
+            'actions'=>array('create', 'update', 'delete', 'sendSignUpEmail'),
+            'expression' => '$user->isAdmin'
+        ),
+        array('deny',  // deny all users
+            'users'=>array('*'),
+        ),
+    );
     }
 
     /**

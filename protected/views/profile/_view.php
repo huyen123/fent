@@ -33,7 +33,7 @@
 	<?php echo CHtml::encode($data->secret_key); ?>
 	<br />
         <?php
-            if (Yii::app()->user->isAdmin === 'true'){
+            if (Yii::app()->user->isAdmin){
                 echo '<span class="small primary btn">';
                 echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id)));
                 echo '</span>&nbsp';
