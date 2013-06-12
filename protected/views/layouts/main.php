@@ -15,7 +15,6 @@
     </head>
 
     <body>
-
         <div class="container" id="page">
             
             <?php echo $content; ?>
