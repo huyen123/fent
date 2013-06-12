@@ -34,9 +34,9 @@ class UserIdentity extends CUserIdentity
             } else {
                 $this->_id = $user->id;
                 if ($user->is_admin) {
-                    $this->setState('isAdmin', 'true');
+                    $this->setState('isAdmin', true);
                 } else {
-                    $this->setState('isAdmin', 'false');
+                    $this->setState('isAdmin', false);
                 }
                 $this->errorCode = self::ERROR_NONE;
             }

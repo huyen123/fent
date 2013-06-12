@@ -11,56 +11,67 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+        <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+        <?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'name'); ?>
+                <?php echo $form->textField($model,'name',array('class' => 'text input', 'placeholder' => 'Name')); ?>
+                <?php echo $form->error($model,'name'); ?>
+            </div>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'serial'); ?>
-		<?php echo $form->textField($model,'serial',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'serial'); ?>
-	</div>
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'description'); ?>
+                <?php echo $form->textArea($model,'description',array('class' => 'textarea input', 'placeholder' => 'Description')); ?>
+                <?php echo $form->error($model,'description'); ?>
+            </div>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'status'); ?>
-	</div>
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'serial'); ?>
+                <?php echo $form->textField($model,'serial',array('class' => 'text input', 'placeholder' => 'Serial')); ?>
+                <?php echo $form->error($model,'serial'); ?>
+            </div>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated_at'); ?>
-		<?php echo $form->textField($model,'updated_at'); ?>
-		<?php echo $form->error($model,'updated_at'); ?>
-	</div>
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'status'); ?>
+                <?php echo '<div class="picker">'; ?>
+                <?php echo CHtml::activeDropDownList($model,'status',array('free' => 'free', 'busy' => 'busy')); ?>
+                <?php echo '</div>'; ?>
+                <?php echo $form->error($model,'status'); ?>
+            </div>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'created_at'); ?>
-		<?php echo $form->textField($model,'created_at'); ?>
-		<?php echo $form->error($model,'created_at'); ?>
-	</div>
+        <div class="row">
+            <div class="field">
+                <?php
+                    echo $form->labelEx($model,'category_id');
+                    echo '<div class="picker">';
+                    $categories = Category::model()->findAll();
+                    $list = CHtml::listData($categories, 'id', 'name');
+                    echo CHtml::activeDropDownList($model, 'category_id', $list);
+                    echo '</div>';
+                    echo $form->error($model,'category_id');
+                ?>
+            </div>
+        </div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'category_id'); ?>
-		<?php echo $form->textField($model,'category_id'); ?>
-		<?php echo $form->error($model,'category_id'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
+        <div class="row buttons">
+                <?php
+                    echo "<div class='medium primary btn'>";
+                    echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save');
+                    echo '</div>';
+                ?>
+        </div>
+        
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
