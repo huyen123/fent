@@ -33,6 +33,7 @@ class UserIdentity extends CUserIdentity
                 $this->errorCode = self::ERROR_PASSWORD_INVALID;
             } else {
                 $this->_id = $user->id;
+                $this->setState('username', $user->username);
                 if ($user->is_admin) {
                     $this->setState('isAdmin', true);
                 } else {

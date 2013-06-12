@@ -105,5 +105,10 @@ class UserController extends Controller
         }
         $this->render('change_password', array('form' => $form));
     }
+    
+    public function actionSignout() {
+        Yii::app()->user->logout();
+        $this->redirect(Yii::app()->homeUrl);
+    }
 }
 ?>
