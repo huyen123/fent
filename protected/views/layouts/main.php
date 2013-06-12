@@ -3,28 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="en" />
-
-        <!-- Use Gumby CSS framework -->	
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/gumby.css" />			
-        
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+        <meta name="language" content="en" />        	       
+        <?php
+            Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/gumby.css');            
+            Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/style.css');
+            Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/form.css');
+        ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
 
     <body>
         <div class="container" id="page">
+            <div id="header">                  
+                <div class="valign row" style="margin-left: 50px;">
+                    <div class="logo">
+                        <?php echo CHtml::image(Yii::app()->baseUrl.'/images/framgia.png', null, array('width' => '70')); ?>
+                    </div>
+                    <div>
+                        <h2><?php echo Yii::app()->name; ?></h2>                      
+                    </div>
+                </div>                 
+            </div> 
             
-            <?php echo $content; ?>
+            <div id="content">
+                <?php echo $content; ?>
+            </div>                        
 
-            <div class="clear"></div>
-
-            <div id="footer">
+            <div id="footer">                
                 Copyright &copy; <?php echo date('Y'); ?> by Framgia.<br/>
-                All Rights Reserved.<br/>
-                <?php echo Yii::powered(); ?>
+                All Rights Reserved.<br/>                        
+                <?php echo Yii::powered(); ?>                   
             </div><!-- footer -->
 
         </div><!-- page -->

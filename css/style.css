@@ -1,18 +1,47 @@
-.none{
+.none {
     height:100px;
 }
 .row {
     width:80%;
     margin:0 auto;
 }
-.label-name-short{
+.label-name-short {
     width: 7em;
 }
 
-.label-name-normal{
+.label-name-normal {
     width: 9.5em;
 }
 
-.label-name-long{
+.label-name-long {
     width: 12em;
 }
+
+#header {        
+    background-color:  rgb(74, 77, 80);    
+    padding: 10px 0px;
+}
+
+#header h2 {
+    padding-left: 50px;
+    color: white;
+}
+
+.logo {
+    margin-left: -50px;
+}
+
+#content {
+    min-height: 600px;
+    background-color: rgb(200, 200, 200);
+}
+
+#footer {    
+    text-align: center;
+    font-size: 0.8em;
+    color: white;
+    background-color:  rgb(74, 77, 80);
+    margin: 0px;
+    padding: 10px 0px;
+}
+
