@@ -32,9 +32,20 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('secret_key')); ?>:</b>
 	<?php echo CHtml::encode($data->secret_key); ?>
 	<br />
-        
-	<?php 
-        echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id))); 
+        <?php
+            if (Yii::app()->user->isAdmin === 'true'){
+                echo '<span class="small primary btn">';
+                echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id)));
+                echo '</span>&nbsp';
+                echo '<span class="small secondary btn">';
+                echo CHtml::button('Update this profile', array('submit' => array('profile/update', 'id' => $data->id)));
+                echo '</span>&nbsp';
+                echo '<span class="small danger btn">';
+                echo CHtml::button('Delete this profile', array('submit' => array('profile/delete', 'id' => $data->id), 'confirm'=>'Do you want to delete this profile permanently?'));
+                echo '</span>';
+            }
+        ?>
+        <?php
         /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('position')); ?>:</b>
 	<?php echo CHtml::encode($data->position); ?>
@@ -53,5 +64,5 @@
 	<br />
 
 	*/ ?>
-
+        
 </div>
