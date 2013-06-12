@@ -66,7 +66,7 @@ class UserController extends Controller
             if (isset($_POST['ResetPasswordForm'])) {             
                 $form->password = $_POST['ResetPasswordForm']['password'];
                 $form->passwordConfirm = $_POST['ResetPasswordForm']['passwordConfirm'];
-                $form->validate();                                                
+                $form->validate();
                 if (!$form->hasErrors()) {
                     $user = $profile->user;
                     $user->password = md5($form->password);
@@ -76,11 +76,34 @@ class UserController extends Controller
                     $this->redirect(Yii::app()->homeUrl);
                 }
             }
-            $this->render('reset_password', array('form' => $form));            
+            $this->render('reset_password', array('form' => $form));
         } else {
             Yii::app()->user->setFlash('fail', 'Invalid URL !');
             $this->redirect(Yii::app()->homeUrl);
         }
+    }
+    
+    public function actionChangePassword() {
+        $form = new ChangePasswordForm;
+        if (isset($_POST['ChangePasswordForm'])){
+            $form->oldPass = $_POST['ChangePasswordForm']['oldPass'];
+            $form->newPass = $_POST['ChangePasswordForm']['newPass'];
+            $form->passConfirm = $_POST['ChangePasswordForm']['passConfirm'];
+            $form->validate();
+            if (!$form->hasErrors()){
+                $user = User::model()->findByPk(Yii::app()->user->id);
+                if ($user->password != md5($form->oldPass)){
+                    Yii::app()->user->setFlash('fail', 'Old password is incorrect!');
+                    $this->refresh();
+                } else {
+                    $user->password = md5($form->newPass);
+                    $user->save();
+                    Yii::app()->user->setFlash('sucessful', 'Your password has been changed !');
+                    $this->redirect(Yii::app()->homeUrl);
+                }
+            }
+        }
+        $this->render('change_password', array('form' => $form));
     }
 }
 ?>
