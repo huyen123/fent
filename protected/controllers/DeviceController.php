@@ -38,8 +38,9 @@ class DeviceController extends Controller
      */
     public function actionView($id)
     {
+        $device = Device::model()->findByPk($id);
         $this->render('view', array(
-            'model' => $this->loadModel($id),
+            'device' => $device,
         ));
     }
 

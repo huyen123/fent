@@ -6,7 +6,7 @@
 
 <div class="row">
 <div class="four columns image photo">
-    <?php echo CHtml::image(Yii::app()->baseUrl.'/images/no-image.jpg'); ?>
+    <?php echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/no-image.jpg'), array('view', 'id'=>$data->id)); ?>
 </div>
 <div class="seven columns push_one">
     <div class="row">
