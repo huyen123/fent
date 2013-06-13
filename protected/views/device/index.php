@@ -3,6 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 ?>
 
+<div class="row centered">
 <h1>Devices</h1>
 
 <?php
@@ -13,13 +14,32 @@
         echo '</div>';
     }
 ?>
-<?php
-    foreach ($devices as $device) {
-    $this->renderPartial('_view',array('data' => $device));
-    echo '</br>';
-};
+
+
+<?php 
+    for ($i = 0; $i < sizeof($devices); $i = $i + $columns)
+    {   
+        echo '<div class="row device">';
+        for ($t = 0; $t < $columns; $t++)
+        {
+            if ($columns == 3)
+            {
+                echo '<fieldset class="four columns">';
+            } else {
+                echo '<fieldset class="six columns">';
+            }
+            if (isset($devices[$i + $t]))
+            {
+                $this->renderPartial('_view',array('data' => $devices[$i + $t]));
+            }
+            echo '</fieldset>';
+        }
+        echo '</div>';
+    }
 ?>
 
 <?php $this->widget('CLinkPager', array(
     'pages' => $pages,
 )) ?>
+
+</div>
