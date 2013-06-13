@@ -118,12 +118,13 @@ class DeviceController extends Controller
         $criteria = new CDbCriteria();
         $count = Device::model()->count($criteria);
         $pages = new CPagination($count);
-        $pages->pageSize = 10;
+        $pages->pageSize = 12;
         $pages->applyLimit($criteria);
         $devices = Device::model()->findAll($criteria);
         $this->render('index', array(
             'devices' => $devices,
-            'pages' => $pages
+            'pages' => $pages,
+            'columns' => 3,
         ));
     }
 

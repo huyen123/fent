@@ -55,3 +55,12 @@
     color:red; 
     text-align:center;
 }
+
+.row {
+    width: 100% !important;
+}
+
+.row.device {
+    width: 100%;
+    margin: 20px 0px;
+}
