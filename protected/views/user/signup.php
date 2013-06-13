@@ -8,8 +8,10 @@
 ?>
 <div style="height:50px"></div>
 <div class="row">
-<div class="centered seven columns">
-    <div style="font-size: 3em; color:red; text-align:center">Welcome to our website</div></div></div>
+    <div class="centered ten columns">
+        <h1 class="page-title">Sign Up</h1>
+    </div>
+</div>
 
 <div class="none"></div>
 

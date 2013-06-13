@@ -7,7 +7,7 @@ $this->pageTitle=Yii::app()->name;
 <div style="height:50px"></div>
 <div class="row">
    <div class="centered seven columns">
-    <div style="font-size: 3em; color:red; text-align:center">Welcome to our website</div>
+       <h1 class="page-title">Sign In</h1>
    </div>
 </div>
 <div class="none"></div>

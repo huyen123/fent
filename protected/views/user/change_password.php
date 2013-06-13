@@ -7,10 +7,14 @@
 ?>
 
 <div class="none"></div>
-<div style="font-size: 3em; color:red; text-align: center">Change Password</div>
+<div class="row">
+    <div class="centered ten columns">
+        <h1 class="page-title">Change Password</h1>
+    </div>
+</div>
 <div class="row" >
     <form method="Post">      
-        <fieldset class="eight centered columns">
+        <div class="eight centered columns">
             <div style="height:50px"></div>
             <?php if (Yii::app()->user->hasFlash('fail')): ?>
               <div class="danger alert">
@@ -35,7 +39,7 @@
             </div>
             <div style="height:50px"></div>            
             <div class="medium primary btn centered three columns"><?php echo CHtml::submitButton('Submit'); ?></div>                            
-        </fieldset>
+        </div>
     </form>
 </div>
 <div class="none"></div>

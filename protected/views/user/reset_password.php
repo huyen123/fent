@@ -7,10 +7,14 @@
 ?>
 
 <div class="none"></div>
-<div style="font-size: 2em; color:red; text-align: center">Reset Password</div>
+<div class="row">
+    <div class="centered ten columns">
+        <h1 class="page-title">Reset Password</h1>
+    </div>
+</div>
 <div class="row" >
     <form method="Post">      
-        <fieldset class="seven centered columns">          
+        <div class="seven centered columns">          
             <div style="height:50px"></div>
             <?php echo CHtml::errorSummary($form); ?>      
             <div class="row">
@@ -25,7 +29,7 @@
             </div>
             <div style="height:50px"></div>            
             <div class="medium primary btn centered three columns"><?php echo CHtml::submitButton('Submit'); ?></div>                            
-        </fieldset>
+        </div>
     </form>
 </div>
 <div class="none"></div>
