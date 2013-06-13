@@ -9,6 +9,7 @@
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/style.css');
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/form.css');
         ?>
+        <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min');?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
 
@@ -22,20 +23,21 @@
                     <div>
                         <h2><?php echo Yii::app()->name; ?></h2>                      
                     </div>
-                </div>                 
+                </div>
             </div> 
-            
+             <?php if (!Yii::app()->user->isGuest) {
+                          $this->renderPartial('/layouts/_deviceNavigation'); 
+                    }?>
             <div id="content">
                 <?php echo $content; ?>
             </div>                        
 
-            <div id="footer">                
+            <div class="clear"></div>
+            <div id="footer">
                 Copyright &copy; <?php echo date('Y'); ?> by Framgia.<br/>
                 All Rights Reserved.<br/>                        
                 <?php echo Yii::powered(); ?>                   
             </div><!-- footer -->
-
         </div><!-- page -->
-
     </body>
 </html>
