@@ -60,7 +60,7 @@ class Device extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            "categories"=>array(self::BELONGS_TO, 'Category', 'category_id'),
+            "category"=>array(self::BELONGS_TO, 'Category', 'category_id'),
             'orders'=>array(self::HAS_MANY, 'Order', 'device_id'),
             'favarites'=>array(self::HAS_MANY, 'Favorite', 'user_id')
         );
