@@ -9,6 +9,6 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<div class="row"><h1>Update Profile <?php echo $model->id; ?></h1></div>
+<div class="row"><h2>Update Profile <?php echo $model->id; ?></h2></div>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

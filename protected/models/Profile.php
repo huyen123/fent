@@ -15,6 +15,7 @@
  * @property integer $date_of_birth
  * @property integer $updated_at
  * @property integer $created_at
+ * @property string $image
  */
 class Profile extends CActiveRecord 
 {
@@ -54,6 +55,7 @@ class Profile extends CActiveRecord
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, email, name, phone, address, employee_code, secret_key, position, date_of_birth, updated_at, created_at', 'safe', 'on' => 'search'),
+            array('image', 'file','types' => 'jpg, gif, png', 'allowEmpty'=>true),
         );
     }
 

@@ -60,7 +60,8 @@ class ProfileController extends Controller
         $profiles = Profile::model()->findAll($criteria);
         $this->render('index',array(
                 'profiles' => $profiles,
-                'pages' => $pages
+                'pages' => $pages,
+                'colunms' => 2,
         ));
     }
 
@@ -74,8 +75,14 @@ class ProfileController extends Controller
         if(isset($_POST['Profile']))
         {
             $model->attributes = $_POST['Profile'];
-            if($model->save())
+            $rnd = rand(0,9999);  // generate random number between 0-9999
+            $uploadedFile = CUploadedFile::getInstance($model,'image');
+            $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
+            $model->image = $fileName;
+            if($model->save()){
+                $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$fileName); // image will upload to rootDirectory/images/
                 $this->redirect(array('view','id' => $model->id));
+            }
         }
         $this->render('create',array(
             'model' => $model,
@@ -92,9 +99,16 @@ class ProfileController extends Controller
         $model = $this->loadModel($id);
         if(isset($_POST['Profile']))
         {
+            $rnd = rand(0,9999);
             $model->attributes = $_POST['Profile'];
-            if($model->save())
+            $uploadedFile = CUploadedFile::getInstance($model,'image');
+            $model->image = "{$rnd}-{$uploadedFile}";
+            if($model->save()){
+                if (!empty($uploadedFile)){
+                $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$model->image);
+                }
                 $this->redirect(array('view','id' => $model->id));
+            }
         }
         $this->render('update',array(
             'model' => $model,

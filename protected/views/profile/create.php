@@ -8,6 +8,6 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<div class="row"><h1>Create Profile</h1></div>
+<div class="row"><h2>Create Profile</h2></div>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>

@@ -7,26 +7,36 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1>Profiles</h1>
-<?php if (Yii::app()->user->isAdmin) { ?>
-    <span class="medium primary btn">
-        <?php echo CHtml::button('Create profile', array('submit' => array('profile/create'))); ?>
-    </span>
-<?php } ?>
+<div class="row">
+    <h2>Profiles</h2>
+    <?php if (Yii::app()->user->isAdmin) { ?>
+        <span class="medium primary btn">
+            <?php echo CHtml::button('Create profile', array('submit' => array('profile/create'))); ?>
+        </span>
+    <?php } ?>
 
-<?php if(Yii::app()->user->hasFlash('sucessful')): ?>
-    <div class="success alert">
-        <?php echo Yii::app()->user->getFlash('sucessful'); ?>
-    </div>
- <?php endif; ?>
-
-<?php
-foreach ($profiles as $profile) {
-    $this->renderPartial('_view',array('data' => $profile));
-    echo '</br>';
-};
-?>
-
-<?php $this->widget('CLinkPager', array(
-    'pages' => $pages,
-)) ?>
+    <?php if(Yii::app()->user->hasFlash('sucessful')): ?>
+        <div class="success alert">
+            <?php echo Yii::app()->user->getFlash('sucessful'); ?>
+        </div>
+     <?php endif; ?>
+</div>
+    <?php
+    for ($i = 0; $i <sizeof($profiles); $i += 2) {
+        echo '<div class="row">';
+        echo '<div class="six columns">';
+        $this->renderPartial('_view',array('data' => $profiles[$i]));
+        echo '</div>';
+        echo '<div class="six columns">';
+        if ($profiles[$i+1]){
+            $this->renderPartial('_view',array('data' => $profiles[$i+1]));
+        }
+        echo '</div></div>';
+        echo '</br>';
+    };
+    ?>
+<div class="row">
+    <?php $this->widget('CLinkPager', array(
+        'pages' => $pages,
+    )) ?>
+</div>
