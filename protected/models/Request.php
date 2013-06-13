@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "order".
+ * This is the model class for table "request".
  *
- * The followings are the available columns in table 'order':
+ * The followings are the available columns in table 'request':
  * @property integer $id
  * @property string $status
  * @property integer $request_time
@@ -14,13 +14,13 @@
  * @property integer $user_id
  * @property integer $device_id
  */
-class Order extends CActiveRecord 
+class Request extends CActiveRecord 
 {
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
-     * @return Order the static model class
+     * @return Request the static model class
      */
     public static function model($className = __CLASS__) 
     {
@@ -32,7 +32,7 @@ class Order extends CActiveRecord
      */
     public function tableName() 
     {
-        return 'order';
+        return 'request';
     }
 
     /**
@@ -44,11 +44,11 @@ class Order extends CActiveRecord
         // will receive user inputs.
         return array(
             array('status, user_id, device_id', 'required'),
-            array('request_time, start_time, end_time, update_at, created_at, user_id, device_id', 'numerical', 'integerOnly' => true),
+            array('request_start_time, request_end_time, start_time, end_time, update_at, created_at, user_id, device_id', 'numerical', 'integerOnly'=>true),
             array('status', 'length', 'max' => 45),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, status, request_time, start_time, end_time, update_at, created_at, user_id, device_id', 'safe', 'on' => 'search'),
+            array('id, status, request_start_time, request_end_time, start_time, end_time, update_at, created_at, user_id, device_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -60,8 +60,8 @@ class Order extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
-            'device'=>array(self::BELONG_TO, 'Device', 'device_id')
+            'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+            'device' => array(self::BELONG_TO, 'Device', 'device_id')
         );
     }
 
@@ -73,7 +73,8 @@ class Order extends CActiveRecord
         return array(
             'id' => 'ID',
             'status' => 'Status',
-            'request_time' => 'Request Time',
+            'request_start_time' => 'Request Start Time',
+            'request_end_time' => 'Request End Time',
             'start_time' => 'Start Time',
             'end_time' => 'End Time',
             'update_at' => 'Update At',
@@ -96,7 +97,8 @@ class Order extends CActiveRecord
 
         $criteria->compare('id', $this->id);
         $criteria->compare('status', $this->status, true);
-        $criteria->compare('request_time', $this->request_time);
+        $criteria->compare('request_start_time', $this->request_start_time);
+        $criteria->compare('request_end_time', $this->request_end_time);
         $criteria->compare('start_time', $this->start_time);
         $criteria->compare('end_time', $this->end_time);
         $criteria->compare('update_at', $this->update_at);
