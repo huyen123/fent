@@ -14,7 +14,7 @@
 
         <b><?php echo CHtml::encode('User'); ?>:</b>
             <?php
-                if ($data->user->username){
+                if (isset($data->user->username)) {
                     echo CHtml::encode($data->user->username);
                 } else {
                     echo CHtml::encode('No user');;

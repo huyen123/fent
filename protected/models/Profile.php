@@ -25,6 +25,7 @@ class Profile extends ActiveRecord
      * @param string $className active record class name.
      * @return Profile the static model class
      */
+    public $image;
     public static function model($className = __CLASS__) 
     {
         return parent::model($className);
@@ -125,7 +126,7 @@ class Profile extends ActiveRecord
      * This method is invoked before saving a record (after validation, if any).
      * @return boolean whether the saving should be executed. Defaults to true.
  */
-    protected function beforeSave() 
+    public function beforeSave() 
     {
         if ($this->isNewRecord)
             $this->secret_key = $this->generateKey(mt_rand(50,100));
