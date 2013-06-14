@@ -114,4 +114,13 @@ class User extends ActiveRecord
         $this->profile_id = $profile_id;        
         return $this->save();
     }
+    
+    public function getCurrentRequests()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'user_id=:user_id AND status=:status';
+        $criteria->params = array(':user_id'=> $this->id, ':status' => Constant::$REQUEST_ACCEPTED);
+        $requests = Request::model()->findAll($criteria);
+        return $requests;
+    }
 }
