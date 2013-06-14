@@ -8,7 +8,7 @@ class UserController extends Controller
         if (isset($_POST['SigninForm']))
         {            
             $form->attributes = $_POST['SigninForm'];                        
-            if ($form->validate() && $form->login()) {                                     
+            if ($form->validate() && $form->login()) { 
                 $this->redirect(Yii::app()->user->returnUrl);
             } 
         }

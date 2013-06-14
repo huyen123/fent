@@ -107,5 +107,14 @@ class Device extends ActiveRecord
             'criteria' => $criteria,
         ));
     }
-
+    
+    public function scopes()
+    {
+        return array(
+            'newest'=>array(
+                'order' => 'created_at DESC',
+                'limit' => 6,
+            ),
+        );
+    }
 }
