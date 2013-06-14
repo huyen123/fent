@@ -8,12 +8,12 @@
     <li><?php echo CHtml::link('Introduction', '#'); ?></li>
     <li><?php echo CHtml::link('Support', '#' ); ?></li>
     <li>
-      <?php echo CHtml::link('Devices', '#' ); ?>
+      <?php echo CHtml::link('Devices', 'index.php?r=device'); ?>
       <div class="dropdown">
         <ul>
-          <li><?php echo CHtml::link('Mac', '#' ); ?></li>
-          <li><?php echo CHtml::link('Dell', '#' ); ?></li>
-          <li><?php echo CHtml::link('Ipad', '#' ); ?></li>
+          <li><?php echo CHtml::link('Mac', Yii::app()->createUrl('/category/view', array('id' => 1))); ?></li>
+          <li><?php echo CHtml::link('Dell', Yii::app()->createUrl('/category/view', array('id' => 2))); ?></li>
+          <li><?php echo CHtml::link('Ipad', Yii::app()->createUrl('/category/view', array('id' => 3))); ?></li>
           <li><?php echo CHtml::link('Other Devices', '#' ); ?></li>
         </ul>
       </div>
