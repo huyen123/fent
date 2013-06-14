@@ -5,20 +5,6 @@
  * and open the template in the editor.
  */
 ?>
-
-<div class="row centered">
-    
-<h1><?php echo $category->name; ?></h1>
-
-<?php
-    if (Yii::app()->user->isAdmin)
-    {
-        echo "<div class='medium primary btn'>";
-        echo CHtml::button('Create', array('submit' => array('device/create')));
-        echo '</div>';
-    }
-?>
-
 <?php 
     for ($i = 0; $i < sizeof($devices); $i = $i + $columns)
     {   
@@ -41,8 +27,5 @@
     }
 ?>
 
-<?php $this->widget('CLinkPager', array(
-    'pages' => $pages,
-)) ?>
-</div>
+
 

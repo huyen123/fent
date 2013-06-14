@@ -17,9 +17,6 @@ $this->breadcrumbs=array(
 
 <h3>List newest devices</h3>
 <?php
-    foreach ($devices as $device) {
-        $this->renderPartial('/device/_view',array('data' => $device));
-        echo '</br>';
-    };
+    $this->renderPartial('/device/_list_device',array('devices' => $devices, 'columns' => 2));
 ?>
 </div>
