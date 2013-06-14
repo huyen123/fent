@@ -3,13 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="en" />        	       
-        <?php
+        <meta name="language" content="en" />            
+        <?php            
+            Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/jquery-ui.css');            
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/gumby.css');            
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/style.css');
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/form.css');
         ?>
-        <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min');?>
+        <?php 
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min.js');            
+            Yii::app()->clientScript->registerCoreScript('jquery');
+        ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
 
@@ -25,13 +29,14 @@
                     </div>
                 </div>
             </div> 
+                        
              <?php if (!Yii::app()->user->isGuest) {
                           $this->renderPartial('/layouts/_deviceNavigation'); 
                     }?>
             <div id="content">
                 <?php echo $content; ?>
             </div>                        
-
+                    
             <div class="clear"></div>
             <div id="footer">
                 Copyright &copy; <?php echo date('Y'); ?> by Framgia.<br/>
@@ -39,5 +44,7 @@
                 <?php echo Yii::powered(); ?>                   
             </div><!-- footer -->
         </div><!-- page -->
+        
+        <script src='<?php echo Yii::app()->baseUrl; ?>/js/gumby.min.js'></script>  
     </body>
 </html>
