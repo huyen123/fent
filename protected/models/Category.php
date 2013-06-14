@@ -9,7 +9,7 @@
  * @property integer $updated_at
  * @property integer $created_at
  */
-class Category extends CActiveRecord 
+class Category extends ActiveRecord 
 {
 
     /**

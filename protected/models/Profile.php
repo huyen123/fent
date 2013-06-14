@@ -17,7 +17,7 @@
  * @property integer $created_at
  * @property string $image
  */
-class Profile extends CActiveRecord 
+class Profile extends ActiveRecord 
 {
 
     /**

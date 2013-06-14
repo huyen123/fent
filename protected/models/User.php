@@ -12,7 +12,7 @@
  * @property integer $created_at
  * @property integer $profile_id
  */
-class User extends CActiveRecord 
+class User extends ActiveRecord 
 {
 
     /**
