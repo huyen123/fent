@@ -11,6 +11,7 @@
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/form.css');
         ?>
         <?php 
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/constant.js');            
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min.js');            
             Yii::app()->clientScript->registerCoreScript('jquery');
         ?>

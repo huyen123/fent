@@ -7,7 +7,7 @@ CREATE  TABLE IF NOT EXISTS `request` (
   `request_end_time` INT NULL ,
   `start_time` INT NULL ,
   `end_time` INT NULL ,
-  `update_at` INT NULL ,
+  `updated_at` INT NULL ,
   `created_at` INT NULL ,
   `user_id` INT(11) NOT NULL ,
   `device_id` INT NOT NULL ,
