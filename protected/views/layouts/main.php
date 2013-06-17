@@ -31,8 +31,8 @@
             </div> 
                         
              <?php if (!Yii::app()->user->isGuest) {
-                          $this->renderPartial('/layouts/_deviceNavigation'); 
-                    }?>
+                    $this->renderPartial('/layouts/_deviceNavigation'); 
+            }?>
             <div id="content">
                 <?php echo $content; ?>
             </div>                        

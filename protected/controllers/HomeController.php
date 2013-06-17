@@ -4,12 +4,15 @@ class HomeController extends Controller
 {
 	public function actionIndex()
 	{
-            $user = User::model()->findByPk(Yii::app()->user->getId());
-            $requests = $user->getCurrentRequests();
-            $devices = Device::model()->newest()->findAll();
-            $this->render('index',array(
-                'devices' => $devices, 'requests' => $requests,
-            ));
+            if (!Yii::app()->user->isAdmin){
+                $user = User::model()->findByPk(Yii::app()->user->getId());
+                $requests = $user->getCurrentRequests();
+                $devices = Device::model()->newest()->findAll();
+                $this->render('index',array(
+                    'devices' => $devices, 'requests' => $requests,
+                ));
+            }
+            
 	}
         
         // Uncomment the following methods and override them if needed
@@ -39,3 +42,4 @@ class HomeController extends Controller
 	}
 	*/
 }
+?>
