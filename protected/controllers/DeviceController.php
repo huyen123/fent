@@ -18,7 +18,7 @@ class DeviceController extends Controller
     {
         return array(
             array('allow',
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'createRequest'),
                 'users' => array('@'),
             ),
             array('allow',
@@ -38,9 +38,11 @@ class DeviceController extends Controller
      */
     public function actionView($id)
     {
+        $existed = Validator::checkRequestExistence(Yii::app()->user->getId(), $id);
         $device = Device::model()->findByPk($id);
         $this->render('view', array(
             'device' => $device,
+            'existed' => $existed
         ));
     }
 
@@ -156,6 +158,40 @@ class DeviceController extends Controller
         {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+    
+    public function actionCreateRequest()
+    {
+        if (!Yii::app()->request->isAjaxRequest) {
+            $this->render('/site/error', array('code' => 403, 'message' => 'Forbidden'));            
+            Yii::app()->end();
+        }        
+        if (isset($_POST['device_id']))
+        {   
+            $existed = Validator::checkRequestExistence(Yii::app()->user->getId(), $_POST['device_id']);
+            if (!$existed) {                            
+                $request = new Request;
+                $request->device_id = $_POST['device_id'];
+                $request->user_id = Yii::app()->user->getId();
+                if ($_POST['date_from'] != null) {
+                    $request->request_start_time = strtotime($_POST['date_from']);
+                }
+                if ($_POST['date_to'] !=null) {
+                    $request->request_end_time = strtotime($_POST['date_to']);
+                }
+                $request->status = Constant::$REQUEST_BEING_CONSIDERED;
+                $result = $request->save();
+                if ($result) {
+                    echo header('HTTP/1.1 201 Created');
+                } else {
+                    echo header('HTTP/1.1 424 Method Failure');
+                }
+            } else {                
+                echo header('HTTP/1.1 406 Not Acceptable');
+            }
+        } else {
+            echo header('HTTP/1.1 405 Method Not Allowed');
         }
     }
 }

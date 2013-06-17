@@ -9,7 +9,7 @@
  * @property integer $request_time
  * @property integer $start_time
  * @property integer $end_time
- * @property integer $update_at
+ * @property integer $updated_at
  * @property integer $created_at
  * @property integer $user_id
  * @property integer $device_id
@@ -43,12 +43,11 @@ class Request extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('status, user_id, device_id', 'required'),
-            array('request_start_time, request_end_time, start_time, end_time, update_at, created_at, user_id, device_id', 'numerical', 'integerOnly'=>true),
-            array('status', 'length', 'max' => 45),
+            array('user_id, device_id', 'required'),
+            array('request_start_time, request_end_time, start_time, end_time, updated_at, created_at, user_id, device_id', 'numerical', 'integerOnly'=>true),            
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, status, request_start_time, request_end_time, start_time, end_time, update_at, created_at, user_id, device_id', 'safe', 'on'=>'search'),
+            array('id, status, request_start_time, request_end_time, start_time, end_time, updated_at, created_at, user_id, device_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -77,7 +76,7 @@ class Request extends ActiveRecord
             'request_end_time' => 'Request End Time',
             'start_time' => 'Start Time',
             'end_time' => 'End Time',
-            'update_at' => 'Update At',
+            'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'user_id' => 'User',
             'device_id' => 'Device',
@@ -101,7 +100,7 @@ class Request extends ActiveRecord
         $criteria->compare('request_end_time', $this->request_end_time);
         $criteria->compare('start_time', $this->start_time);
         $criteria->compare('end_time', $this->end_time);
-        $criteria->compare('update_at', $this->update_at);
+        $criteria->compare('updated_at', $this->updated_at);
         $criteria->compare('created_at', $this->created_at);
         $criteria->compare('user_id', $this->user_id);
         $criteria->compare('device_id', $this->device_id);
@@ -109,6 +108,5 @@ class Request extends ActiveRecord
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
-    }
-
+    }        
 }

@@ -25,7 +25,7 @@
 </div>
 
 <div class="row">
-    <fieldset class="ten centered columns">
+    <fieldset class="ten centered columns" id="request_form" request_existed="<?php echo $existed; ?>">
         <legend>Borrow Request</legend>    
         <div class="field seven columns">        
             <?php echo CHtml::textArea('reason', null, array('id' => 'reason-textarea',
@@ -40,7 +40,34 @@
                 'placeholder' => 'To', 'readonly' => 'readonly')); ?>        
         </div>
         <div class="small primary btn two columns">
-            <?php echo CHtml::button('Send request', array('id' => 'reason-button'));?>
+            <?php echo CHtml::button('Send request', array('id' => 'request-button'));?>
         </div>
     </fieldset>
 </div>
+
+<div class="modal" id="modal-success">
+    <div class="content">
+      <a class="close switch" gumby-trigger="|#modal-success"><i class="icon-cancel" /></i></a>
+      <div class="row">
+        <div class="ten columns centered center-text">
+          <h2>Successful </h2>
+          <p>You have successfully create new request!</p>
+          <p>Please wait until it is accepted by admin!</p>
+          <p class="btn primary medium"><a href="#" class="switch" gumby-trigger="|#modal-success">Close</a></p>
+        </div>
+      </div>
+    </div>
+ </div>
+
+<div class="modal" id="modal-fail">
+    <div class="content">
+      <a class="close switch" gumby-trigger="|#modal-fail"><i class="icon-cancel" /></i></a>
+      <div class="row">
+        <div class="ten columns centered center-text">
+          <h2>Fail</h2>
+          <p>Your request can not be created!</p>          
+          <p class="btn primary medium"><a href="#" class="switch" gumby-trigger="|#modal-fail">Close</a></p>
+        </div>
+      </div>
+    </div>
+ </div>
