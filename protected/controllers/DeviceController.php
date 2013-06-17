@@ -18,7 +18,7 @@ class DeviceController extends Controller
     {
         return array(
             array('allow',
-                'actions' => array('index', 'view', 'createRequest'),
+                'actions' => array('index', 'view', 'createRequest', 'like'),
                 'users' => array('@'),
             ),
             array('allow',
@@ -39,10 +39,13 @@ class DeviceController extends Controller
     public function actionView($id)
     {
         $existed = Validator::checkRequestExistence(Yii::app()->user->getId(), $id);
+        $liked = Favorite::model()->exists('user_id=:user_id AND device_id=:device_id', 
+                array(':user_id' => Yii::app()->user->getId(), ':device_id' => $id));
         $device = Device::model()->findByPk($id);
         $this->render('view', array(
             'device' => $device,
-            'existed' => $existed
+            'existed' => $existed,
+            'liked' => $liked
         ));
     }
 
@@ -189,6 +192,36 @@ class DeviceController extends Controller
                 }
             } else {                
                 echo header('HTTP/1.1 406 Not Acceptable');
+            }
+        } else {
+            echo header('HTTP/1.1 405 Method Not Allowed');
+        }
+    }
+    
+    public function actionLike()
+    {
+        if (!Yii::app()->request->isAjaxRequest) {
+            $this->render('/site/error', array('code' => 403, 'message' => 'Forbidden'));                        
+            Yii::app()->end();
+        }        
+        if (isset($_POST['device_id'])) {
+            $device_id = $_POST['device_id'];
+            $user_id = Yii::app()->user->getId();
+            $like = Favorite::model()->find('user_id=:user_id AND device_id=:device_id', 
+                array(':user_id' => $user_id, ':device_id' => $device_id));
+            if ($like != null) {
+                $like->delete();
+                echo header('HTTP/1.1 200 OK');
+            } else {
+                $like = new Favorite;
+                $like->device_id = $device_id;
+                $like->user_id = $user_id;
+                $result = $like->save();
+                if ($result) {
+                    echo header('HTTP/1.1 200 OK');
+                } else {
+                    echo header('HTTP/1.1 424 Method Failure');
+                }
             }
         } else {
             echo header('HTTP/1.1 405 Method Not Allowed');

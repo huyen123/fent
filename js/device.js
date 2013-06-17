@@ -1,4 +1,8 @@
 $(function(){ 
+    $('#like-button').click(function(){
+        var device_id = $('#reason-textarea').attr('device_id');
+        sendLikeOrUnlikeRequest(device_id);
+    });
     var existed = $('#request_form').attr('request_existed');    
     if (existed === '1') {
         disableForm();
@@ -65,4 +69,29 @@ function afterFail() {
 function disableForm() {
     $('#reason-textarea').attr('placeholder', 'You have already has a being considered reuqest. Delete it or wait for reply from admin before creating a new one.');
     $('#reason-textarea, #from, #to, #request-button').prop('disabled', true);
+}
+
+function sendLikeOrUnlikeRequest(device_id) {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=device/like';                
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {             
+            device_id: device_id            
+        }
+    }).success(function() {               
+            changeLikeButton();
+        }).fail(function() {            
+            alert('Fail !');
+        });
+}
+
+function changeLikeButton() {
+    if ($('#like-button').val() === 'Like') {
+        $('#like-button').parent().removeClass('primary').addClass('danger');
+        $('#like-button').val('Unlike');
+    } else {
+        $('#like-button').parent().removeClass('danger').addClass('primary');
+        $('#like-button').val('Like');
+    }
 }

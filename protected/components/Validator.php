@@ -2,8 +2,8 @@
 
 class Validator
 {
-    public function checkRequestExistence($user_id, $device_id)
-    {
+    public static function checkRequestExistence($user_id, $device_id)
+    {        
         return Request::model()->exists(
             'user_id=:user_id AND device_id=:device_id AND status=:status',
             array(

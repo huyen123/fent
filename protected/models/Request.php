@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'request':
  * @property integer $id
- * @property string $status
+ * @property integer $status
  * @property integer $request_time
  * @property integer $start_time
  * @property integer $end_time
@@ -43,8 +43,8 @@ class Request extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('user_id, device_id', 'required'),
-            array('request_start_time, request_end_time, start_time, end_time, updated_at, created_at, user_id, device_id', 'numerical', 'integerOnly'=>true),            
+            array('user_id, device_id, status', 'required'),
+            array('status, request_start_time, request_end_time, start_time, end_time, updated_at, created_at, user_id, device_id', 'numerical', 'integerOnly'=>true),            
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, status, request_start_time, request_end_time, start_time, end_time, updated_at, created_at, user_id, device_id', 'safe', 'on'=>'search'),
@@ -95,7 +95,7 @@ class Request extends ActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('status', $this->status, true);
+        $criteria->compare('status', $this->status);
         $criteria->compare('request_start_time', $this->request_start_time);
         $criteria->compare('request_end_time', $this->request_end_time);
         $criteria->compare('start_time', $this->start_time);

@@ -113,7 +113,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `favorite` ;
 
 CREATE  TABLE IF NOT EXISTS `favorite` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `updated_at` INT NULL ,
   `created_at` INT NULL ,
   `user_id` INT(11) NOT NULL ,

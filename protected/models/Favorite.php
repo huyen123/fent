@@ -39,11 +39,11 @@ class Favorite extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id, user_id, device_id', 'required'),
-            array('id, updated_at, created_at, user_id, device_id', 'numerical', 'integerOnly' => true),
+            array('user_id, device_id', 'required'),
+            array('updated_at, created_at, user_id, device_id', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, updated_at, created_at, user_id, device_id', 'safe', 'on' => 'search'),
+            array('updated_at, created_at, user_id, device_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -65,8 +65,7 @@ class Favorite extends ActiveRecord
      */
     public function attributeLabels() 
     {
-        return array(
-            'id' => 'ID',
+        return array(            
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'user_id' => 'User',
@@ -84,8 +83,7 @@ class Favorite extends ActiveRecord
         // should not be searched.
 
         $criteria = new CDbCriteria;
-
-        $criteria->compare('id', $this->id);
+        
         $criteria->compare('updated_at', $this->updated_at);
         $criteria->compare('created_at', $this->created_at);
         $criteria->compare('user_id', $this->user_id);

@@ -20,6 +20,17 @@
             <p><?php echo 'Add: '.$device->created_at; ?></p>
             <p><?php echo 'Update: '.$device->updated_at; ?></p>
             <p><?php echo 'Category: '.$device->category->name; ?></p>
+            <?php
+                if ($liked) {
+                    echo '<div class="small danger btn">';
+                    echo CHtml::button('Unlike', array('id' => 'like-button'));
+                    echo '</div>';
+                } else {
+                    echo '<div class="small primary btn">';
+                    echo CHtml::button('Like', array('id' => 'like-button'));
+                    echo '</div>';
+                }
+            ?>
         </div>
     </div>
 </div>
