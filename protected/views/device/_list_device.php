@@ -6,6 +6,9 @@
  */
 ?>
 <?php 
+    if (!isset($columns)) {
+        $columns = 2;
+    }
     for ($i = 0; $i < sizeof($devices); $i = $i + $columns)
     {   
         echo '<div class="row device">';

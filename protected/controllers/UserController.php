@@ -110,5 +110,15 @@ class UserController extends Controller
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
+    
+    public function actionHistory(){
+        $this->render('history');
+    }
+    
+    public function actionFavorite(){
+        $user = User::model()->findByPk(Yii::app()->user->getId());
+        $favorite_devices = $user->favorite_devices;
+        $this->render('favorite', array('favorite_devices' => $favorite_devices));
+    }
 }
 ?>

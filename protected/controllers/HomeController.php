@@ -6,11 +6,12 @@ class HomeController extends Controller
 	{
 
             if (!Yii::app()->user->isAdmin){
+                $timestamp = time();
                 $user = User::model()->findByPk(Yii::app()->user->getId());
                 $requests = $user->getCurrentRequests();
                 $devices = Device::model()->newest()->findAll();
                 $this->render('index',array(
-                    'devices' => $devices, 'requests' => $requests,
+                    'devices' => $devices, 'requests' => $requests, 'timestamp' => $timestamp
                 ));
             } else {
                 $timestamp = time();

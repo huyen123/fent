@@ -19,7 +19,7 @@ $this->breadcrumbs = array(
         <div class="six column push_one">
             <b><?php echo CHtml::encode('User'); ?>:</b>
                 <?php
-                    if ($model->user->username)
+                    if (isset($model->user->username))
                         echo CHtml::encode($model->user->username);
                     else
                         echo CHtml::encode('No user');;

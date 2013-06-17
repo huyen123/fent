@@ -2,13 +2,13 @@
 <div class="navbar" gumby-fixed="top" id="nav1">
   <!-- Toggle for mobile navigation, targeting the <ul> -->
   <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
-  <ul class="sixteen columns">
+  <ul class="row">
       <li><?php echo CHtml::link('Home', Yii::app()->homeUrl); ?></li>
 
     <li><?php echo CHtml::link('Introduction', '#'); ?></li>
     <li><?php echo CHtml::link('Support', '#' ); ?></li>
     <li>
-      <?php echo CHtml::link('Devices', 'index.php?r=device'); ?>
+      <?php echo CHtml::link('Devices', Yii::app()->createUrl('device/index' )); ?>
       <div class="dropdown">
         <ul>
           <li><?php echo CHtml::link('Mac', Yii::app()->createUrl('/category/view', array('id' => 1))); ?></li>
@@ -39,6 +39,14 @@
     </li>
     <li>
 	<?php echo CHtml::link(Yii::app()->user->username, '#'); ?>
+        <div class="dropdown">
+          <ul>
+            <li><?php echo CHtml::link('Favorite', Yii::app()->createUrl('user/favorite') ); ?></li>
+            <li><?php echo CHtml::link('History', Yii::app()->createUrl('user/history' ) ); ?></li>
+            <li><?php echo CHtml::link('Profile', Yii::app()->createUrl('profile/view', array('id' => Yii::app()->user->profileId))); ?></li>
+            <li><?php echo CHtml::link('Change password', Yii::app()->createUrl('user/changepassword' ) ); ?></li>
+          </ul>
+        </div>
     </li>
     <li><?php echo CHtml::link('Logout', array('user/signout')); ?></li>
     <li class='field'>

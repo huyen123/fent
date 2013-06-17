@@ -8,10 +8,18 @@ $this->breadcrumbs=array(
 ?>
     
 <h3>List current borrowing devices </h3>
+<div class="row">
+    <div class="two columns"> <h4>Device</h4> </div>
+    <div class="two columns"> <h4>Start time</h4> </div>
+    <div class="two columns"> <h4>End time</h4> </div>
+    <div class="two columns"> <h4>Time left</h4> </div>
+    <div class="two columns"> <h4>Time expired</h4> </div>
+</div>
 <?php 
    foreach ($requests as $request) {
-       $this->renderPartial('/request/_a_request', array('request' => $request));
+       $this->renderPartial('/request/_a_request', array('request' => $request, 'timestamp' => $timestamp));
    }
+   echo '</br>';
    echo '</br>';
 ?>
 
