@@ -38,13 +38,13 @@
 <div class="row">
     <?php
         if (Yii::app()->user->isAdmin){
-            echo '<span class="small primary btn">';
+            echo '<span class="small pretty primary btn">';
             echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id)));
             echo '</span>&nbsp';
-            echo '<span class="small secondary btn">';
+            echo '<span class="small pretty secondary btn">';
             echo CHtml::button('Update profile', array('submit' => array('profile/update', 'id' => $data->id)));
             echo '</span>&nbsp';
-            echo '<span class="small danger btn">';
+            echo '<span class="small pretty danger btn">';
             echo CHtml::button('Delete profile', array('submit' => array('profile/delete', 'id' => $data->id), 'confirm'=>'Do you want to delete this profile permanently?'));
             echo '</span>';
         }

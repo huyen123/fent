@@ -80,7 +80,9 @@ class ProfileController extends Controller
             $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
             $model->image = $fileName;
             if($model->save()){
-                $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$fileName); // image will upload to rootDirectory/images/
+                if (!empty($uploadedFile)){
+                    $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$fileName); // image will upload to rootDirectory/images/
+                }
                 $this->redirect(array('view','id' => $model->id));
             }
         }
