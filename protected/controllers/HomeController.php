@@ -4,6 +4,7 @@ class HomeController extends Controller
 {
 	public function actionIndex()
 	{
+
             if (!Yii::app()->user->isAdmin){
                 $user = User::model()->findByPk(Yii::app()->user->getId());
                 $requests = $user->getCurrentRequests();
@@ -11,8 +12,28 @@ class HomeController extends Controller
                 $this->render('index',array(
                     'devices' => $devices, 'requests' => $requests,
                 ));
+            } else {
+                $timestamp = time();
+                $criteria = new CDbCriteria;
+                $criteria->order = 'created_at DESC';
+                $criteria->condition = 'status = 0';
+                $new_requests = Request::model()->findAll($criteria);
+
+                $criteria->order = 'end_time ASC';
+                $criteria->condition = "status = 1 AND request_end_time > {$timestamp}";
+                $unexpired_requests = Request::model()->findAll($criteria);
+
+                $criteria->order = 'end_time ASC';
+                $criteria->condition = "status = 1 AND request_end_time <= {$timestamp}";
+                $expired_requests = Request::model()->findAll($criteria);
+
+                $this->render('admin_page', 
+                    array('new_requests' => $new_requests, 
+                        'unexpired_requests' => $unexpired_requests,
+                        'expired_requests' => $expired_requests,
+                        'timestamp' => $timestamp)
+                    );
             }
-            
 	}
         
         // Uncomment the following methods and override them if needed
