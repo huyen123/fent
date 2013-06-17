@@ -2,9 +2,9 @@
 <div class="navbar" gumby-fixed="top" id="nav1">
   <!-- Toggle for mobile navigation, targeting the <ul> -->
   <a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>
-  
-  <ul class="row">
-    <li><?php echo CHtml::link('Home', '#'); ?></li>
+  <ul class="sixteen columns">
+      <li><?php echo CHtml::link('Home', Yii::app()->homeUrl); ?></li>
+
     <li><?php echo CHtml::link('Introduction', '#'); ?></li>
     <li><?php echo CHtml::link('Support', '#' ); ?></li>
     <li>
@@ -19,11 +19,11 @@
       </div>
     </li>
     <li><?php if (Yii::app()->user->isAdmin){
-        echo CHtml::link('User', '#' ) ; 
+        echo CHtml::link('User', Yii::app()->createUrl('profile/index' )) ; 
        } ?>
     </li>
     <li><?php if (Yii::app()->user->isAdmin){ ?>
-        <?php echo CHtml::link('Order', '#' ); ?>
+        <?php echo CHtml::link('Request', '#' ); ?>
          <div class="dropdown">
           <ul>
             <li><?php echo CHtml::link('Expired', '#' ); ?></li>
