@@ -11,7 +11,8 @@
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/form.css');
         ?>
         <?php             
-            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min.js');            
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min.js');
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/request.js');
             Yii::app()->clientScript->registerCoreScript('jquery');
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>

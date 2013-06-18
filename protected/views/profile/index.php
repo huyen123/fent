@@ -22,7 +22,7 @@ $this->breadcrumbs = array(
      <?php endif; ?>
 </div>
     <?php
-    for ($i = 0; $i <sizeof($profiles); $i += 2) {
+    for ($i = 0; $i < sizeof($profiles); $i += 2) {
         echo '<div class="row">';
         echo '<div class="six columns">';
         $this->renderPartial('_view', array('data' => $profiles[$i]));

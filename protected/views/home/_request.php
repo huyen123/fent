@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="two columns crop">
+<div class="row" id="request_<?php echo $data->id; ?>">
+    <div class="two columns">
         <?php echo CHtml::link(CHtml::encode($data->user->username), array('profile/view', 'id' => $data->user->profile->id)); ?>
     </div>
     <div class="two columns crop">
@@ -43,7 +43,7 @@
             echo '</div>';
             echo '<div class="one columns">';
             echo '<span class="small pretty danger btn">';
-            echo CHtml::button('Reject', array('submit' => '#'));
+            echo CHtml::button('Reject', array('class' => 'reject_request', 'request_id' => $data->id));
             echo '</span>';
             echo '</div>';
         }
