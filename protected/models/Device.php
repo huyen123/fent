@@ -65,7 +65,14 @@ class Device extends ActiveRecord
             'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id')
         );
     }
-
+    
+    public function behaviors()
+    {
+        return array(
+            'ImageBehavior'=>array(
+                'class'=>'application.components.ImageBehavior',
+        ));
+    }
     /**
      * @return array customized attribute labels (name=>label)
      */

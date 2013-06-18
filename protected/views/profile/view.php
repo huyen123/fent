@@ -12,11 +12,11 @@ $this->breadcrumbs = array(
     <h2>View Profile #<?php echo $model->id; ?></h2>
     </br>
     <div class="row">
-        <div class="four column image photo">
-            <?php echo CHtml::image(Yii::app()->baseUrl.'/images/'.$model->image,'No image', array('width' => 250)); ?>
+        <div class="four columns image photo">
+            <?php echo CHtml::image($model->getMainImage()); ?>
         </div>
         
-        <div class="six column push_one">
+        <div class="six columns push_one">
             <b><?php echo CHtml::encode('User'); ?>:</b>
                 <?php
                     if (isset($model->user->username))

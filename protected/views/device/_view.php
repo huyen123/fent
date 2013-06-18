@@ -6,12 +6,12 @@
 
 <div class="row">
 <div class="four columns image photo">
-    <?php echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/no-image.jpg'), array('view', 'id'=>$data->id)); ?>
+    <?php echo CHtml::link(CHtml::image($data->getMainImage()), array('device/view', 'id'=>$data->id)); ?>
 </div>
 <div class="seven columns push_one">
     <div class="row">
     <p style="display: inline-block; float: left"><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:
-    <?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id'=>$data->id)); ?></p>
+    <?php echo CHtml::link(CHtml::encode($data->name), array('device/view', 'id'=>$data->id)); ?></p>
     </div>
     
     <div class="row">
