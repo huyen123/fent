@@ -83,6 +83,11 @@ class RequestController extends Controller {
         }
     }
     
+    public function actionView($id){
+        $request = Request::model()->findByPk($id);
+        $this->render('/request/view', array(
+            'request' => $request 
+        ));
+    }
 }
-
 ?>

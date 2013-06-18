@@ -15,7 +15,7 @@
                 </div>
                 <?php
                     foreach($new_requests as $request){
-                        $this->renderPartial('_request', array('data' => $request, 'timestamp' => $timestamp));
+                        $this->renderPartial('_request', array('request' => $request, 'timestamp' => $timestamp));
                     }
                 ?>
             </div>
@@ -29,7 +29,7 @@
                 </div>
                 <?php
                     foreach($unexpired_requests as $request){
-                        $this->renderPartial('_request', array('data' => $request, 'timestamp' => $timestamp));
+                        $this->renderPartial('_request', array('request' => $request, 'timestamp' => $timestamp));
                     }
                 ?>
             </div>
@@ -43,7 +43,7 @@
                 </div>
                 <?php
                     foreach($expired_requests as $request){
-                        $this->renderPartial('_request', array('data' => $request, 'timestamp' => $timestamp));
+                        $this->renderPartial('_request', array('request' => $request, 'timestamp' => $timestamp));
                     }
                 ?>
             </div>
