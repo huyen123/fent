@@ -28,7 +28,7 @@ $this->breadcrumbs = array(
         $this->renderPartial('_view', array('data' => $profiles[$i]));
         echo '</div>';
         echo '<div class="six columns">';
-        if ($profiles[$i+1]){
+        if (isset($profiles[$i+1])){
             $this->renderPartial('_view', array('data' => $profiles[$i+1]));
         }
         echo '</div></div>';

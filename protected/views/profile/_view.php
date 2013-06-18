@@ -1,7 +1,3 @@
-<?php
-/* @var $this ProfileController */
-/* @var $data Profile */
-?>
 <div class="row">
     <div class="four column image photo">
         <?php echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/'.$data->image, 'No image', array('width' => 100)), array('view', 'id' => $data->id)); ?>

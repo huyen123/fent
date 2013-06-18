@@ -1,12 +1,18 @@
 <div class="row">
-    <div class="two columns">
+    <div class="two columns crop">
         <?php echo CHtml::link(CHtml::encode($data->user->username), array('profile/view', 'id' => $data->user->profile->id)); ?>
     </div>
-    <div class="two columns">
+    <div class="two columns crop">
         <?php echo CHtml::link(CHtml::encode($data->device->name), array('device/view', 'id' => $data->device->id)); ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($data->request_start_time, 'd/m/Y'); ?>
+        <?php
+            if ($data->status == 0){
+                echo DateAndTime::returnTime($data->request_start_time, 'd/m/Y');
+            } else {
+                echo DateAndTime::returnTime($data->start_time, 'd/m/Y');
+            }
+        ?>
     </div>
     <div class="two columns">
         <?php echo DateAndTime::returnTime($data->request_end_time, 'd/m/Y'); ?>
@@ -17,7 +23,7 @@
             $date1 = new DateTime(DateAndTime::returnTime($data->request_end_time, 'Y/m/d'));
             $date2 = new DateTime(DateAndTime::returnTime($timestamp, 'Y/m/d'));
             $interval = date_diff($date1, $date2);
-            echo $interval->format('%d days');
+            echo $interval->days.' days';
             echo '</div>';
             echo '<div class="two columns">';
             echo '<span class="small pretty primary btn">';
