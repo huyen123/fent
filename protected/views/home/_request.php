@@ -38,7 +38,7 @@
             echo '</div>';
             echo '<div class="one columns">';
             echo '<span class="small pretty success btn">';
-            echo CHtml::button('Accept', array('submit' => '#'));
+            echo CHtml::button('Accept', array('class' => 'reject_request', 'request_id' => $data->id));
             echo '</span>';
             echo '</div>';
             echo '<div class="one columns">';

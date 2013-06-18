@@ -21,7 +21,7 @@ class RequestController extends Controller {
     public function accessRules() {
     return array(
         array('allow', // allow admin user to perform 'index' actions
-            'controllers' => array('request', 'reject'),
+            'controllers' => array('request', 'rejectOrAccept'),
             'actions' => array('index'),
             'expression' => '$user->isAdmin'
         ),
@@ -47,17 +47,29 @@ class RequestController extends Controller {
         ));
     }
     
-    public function actionReject() {
+    public function actionRejectOrAccept() {
         if (!Yii::app()->request->isAjaxRequest) {
             $this->render('/site/error', array('code' => 403, 'message' => 'Forbidden'));                        
             Yii::app()->end();
         } 
-        if (isset($_POST['request_id'])) {
+        if (isset($_POST['request_id']) && isset($_POST['value'])) {
+            $value = $_POST['value'];
             $request_id = $_POST['request_id'];
             $request = Request::model()->findByPk($request_id);
             if ($request != null) {
-                $request->status = Constant::$REQUEST_REJECTED;
-                $result = $request->save();
+                if ($value == 'Reject') {
+                    $request->status = Constant::$REQUEST_REJECTED;
+                    $result = $request->save();
+                } else {                    
+                    $available = Validator::checkDeviceAvailable($request->device_id);
+                    if ($available) {
+                        $request->status = Constant::$REQUEST_ACCEPTED;
+                        $result = $request->save();
+                    } else {
+                        echo header('HTTP/1.1 424 Method Failure');
+                        Yii::app()->end();
+                    }
+                }
                 if ($result){
                     echo header('HTTP/1.1 200 OK');
                 } else {
@@ -69,8 +81,8 @@ class RequestController extends Controller {
         } else {
             echo header('HTTP/1.1 405 Method Not Allowed');
         }
-
     }
+    
 }
 
 ?>
