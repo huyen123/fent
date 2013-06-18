@@ -71,6 +71,14 @@ class Profile extends ActiveRecord
             'user'=>array(self::HAS_ONE, 'User', 'profile_id')
         );
     }
+    
+    public function behaviors()
+    {
+        return array(
+            'ImageBehavior'=>array(
+                'class'=>'application.components.ImageBehavior',
+        ));
+    }
 
     /**
      * @return array customized attribute labels (name=>label)

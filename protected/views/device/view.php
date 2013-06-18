@@ -10,10 +10,10 @@
 <div class="row centered">
     <h1><?php echo $device->name; ?></h1>
     <div class="row">
-        <div class="four column image photo">
-            <?php echo CHtml::image(Yii::app()->baseUrl.'/images/no-image.jpg'); ?>
+        <div class="four columns image photo">
+            <?php echo CHtml::image($device->getMainImage()); ?>
         </div>
-        <div class="six column push_one">
+        <div class="six columns push_one">
             <p><?php echo 'Status: '.$device->status; ?></p>
             <p><?php echo 'Serial: '.$device->serial; ?></p>
             <p><?php echo 'Description: '.$device->description; ?></p>    
