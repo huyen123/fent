@@ -62,7 +62,11 @@ class Device extends ActiveRecord
         return array(
             'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
             'requests' => array(self::HAS_MANY, 'Request', 'device_id'),
-            'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id')
+            'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id'),
+            'accepted_request' => array(self::HAS_ONE, 'Request', 'device_id',
+                'on' => 'accepted_request.status=1'),
+            'borrower' => array(self::HAS_ONE, 'User', array('user_id' => 'id'), 
+                'through' => 'accepted_request')
         );
     }
     

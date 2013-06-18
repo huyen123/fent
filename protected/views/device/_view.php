@@ -12,25 +12,24 @@
     <div class="row">
     <p style="display: inline-block; float: left"><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:
     <?php echo CHtml::link(CHtml::encode($data->name), array('device/view', 'id'=>$data->id)); ?></p>
-    </div>
-    
-    <div class="row">
-    <p><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:
-    <?php echo CHtml::encode($data->description); ?></p>
-    </div>
+    </div>        
     
     <p><?php echo CHtml::encode($data->getAttributeLabel('serial')); ?>:
     <?php echo CHtml::encode($data->serial); ?></p>
 
     <p><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:
     <?php echo CHtml::encode($data->status); ?></p>
+    
+    <?php                                                 
+        $borrower = $data->borrower;
+        if ($borrower != null) {
+            echo '<p>Being borrowed by: ';
+            echo CHtml::link($borrower->username, Yii::app()->createUrl('profile/view', 
+                    array('id' => $borrower->profile_id)));
+            echo '</p>';                       
+        } 
+    ?>
 
-    <?php /*
-    <b><?php echo CHtml::encode($data->getAttributeLabel('category_id')); ?>:</b>
-    <?php echo CHtml::encode($data->category_id); ?>
-    <br />
-
-    */ ?>
     <?php
         if (Yii::app()->user->isAdmin)
         {

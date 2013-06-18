@@ -15,6 +15,18 @@
         </div>
         <div class="six columns push_one">
             <p><?php echo 'Status: '.$device->status; ?></p>
+            <?php                                                 
+                $request = $device->accepted_request;
+                if ($request != null) {
+                    echo '<p>Being borrowed by: ';
+                    echo CHtml::link($request->user->username, Yii::app()->createUrl('profile/view', 
+                            array('id' => $request->user->profile_id)));
+                    echo '</p>';
+                    echo '<p>Expected end time: ';
+                    echo CHtml::link(DateAndTime::returnTime($request->request_end_time, 'd/m/Y'), 
+                            Yii::app()->createUrl('request/view', array('id' => $request->id)));
+                }                
+            ?>
             <p><?php echo 'Serial: '.$device->serial; ?></p>
             <p><?php echo 'Description: '.$device->description; ?></p>    
             <p><?php echo 'Add: '.$device->created_at; ?></p>

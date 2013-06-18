@@ -130,7 +130,7 @@ class DeviceController extends Controller
         $this->render('index', array(
             'devices' => $devices,
             'pages' => $pages,
-            'columns' => 3,
+            'columns' => 2,
         ));
     }
 
@@ -177,6 +177,7 @@ class DeviceController extends Controller
                 $request = new Request;
                 $request->device_id = $_POST['device_id'];
                 $request->user_id = Yii::app()->user->getId();
+                $request->reason = $_POST['reason'];
                 if ($_POST['date_from'] != null) {
                     $request->request_start_time = strtotime($_POST['date_from']);
                 }
