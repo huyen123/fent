@@ -19,7 +19,7 @@
       </div>
     </li>
     <li><?php if (Yii::app()->user->isAdmin){
-        echo CHtml::link('User', Yii::app()->createUrl('profile/index' )) ; 
+        echo CHtml::link('Profile', Yii::app()->createUrl('profile/index' )) ; 
        } ?>
     </li>
     <li><?php if (Yii::app()->user->isAdmin){ ?>
@@ -32,8 +32,9 @@
 	<?php echo CHtml::link(Yii::app()->user->username, '#'); ?>
         <div class="dropdown">
           <ul>
+            <?php if (!Yii::app()->user->isAdmin){ ?>
             <li><?php echo CHtml::link('Favorite', Yii::app()->createUrl('user/favorite') ); ?></li>
-            <li><?php echo CHtml::link('History', Yii::app()->createUrl('user/history' ) ); ?></li>
+            <li><?php echo CHtml::link('History', Yii::app()->createUrl('user/history' ) ); } ?></li> 
             <li><?php echo CHtml::link('Profile', Yii::app()->createUrl('profile/view', array('id' => Yii::app()->user->profileId))); ?></li>
             <li><?php echo CHtml::link('Change password', Yii::app()->createUrl('user/changepassword' ) ); ?></li>
           </ul>

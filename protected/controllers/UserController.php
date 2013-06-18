@@ -112,7 +112,9 @@ class UserController extends Controller
     }
     
     public function actionHistory(){
-        $this->render('history');
+        $user = User::model()->findByPk(Yii::app()->user->getId());
+        $requests = $user->requests;
+        $this->render('/request/index', array('requests' => $requests));
     }
     
     public function actionFavorite(){

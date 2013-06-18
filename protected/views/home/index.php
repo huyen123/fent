@@ -9,11 +9,12 @@ $this->breadcrumbs=array(
     
 <h3>List current borrowing devices </h3>
 <div class="row">
-    <div class="two columns"> <h4>Device</h4> </div>
-    <div class="two columns"> <h4>Start time</h4> </div>
-    <div class="two columns"> <h4>End time</h4> </div>
-    <div class="two columns"> <h4>Time left</h4> </div>
-    <div class="two columns"> <h4>Time expired</h4> </div>
+    <div class="two columns"> <h5>Device</h5> </div>
+    <div class="two columns"> <h5>Start time</h5> </div>
+    <div class="two columns"> <h5>Request end time</h5> </div>
+    <div class="two columns"> <h5>Time left</h5> </div>
+    <div class="two columns"> <h5>Time expired</h5> </div>
+    <HR/>
 </div>
 <?php 
    foreach ($requests as $request) {
