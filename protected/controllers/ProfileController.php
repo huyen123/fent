@@ -22,16 +22,16 @@ class ProfileController extends Controller
     {
     return array(
         array('allow',  // allow all users to perform 'index' and 'view' actions
-            'actions'=>array('index','view'),
-            'users'=>array('@'),
+            'actions' => array('index','view'),
+            'users' => array('@'),
         ),
-        array('allow', // allow admin user to perform 'admin' and 'delete' actions
+        array('allow', // allow admin user to perform actions
             'controllers' => array('profile'),
-            'actions'=>array('create', 'update', 'delete', 'sendSignUpEmail'),
+            'actions' => array('create', 'update', 'delete', 'sendSignUpEmail'),
             'expression' => '$user->isAdmin'
         ),
         array('deny',  // deny all users
-            'users'=>array('*'),
+            'users' => array('*'),
         ),
     );
     }

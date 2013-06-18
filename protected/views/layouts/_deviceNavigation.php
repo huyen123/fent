@@ -23,17 +23,8 @@
        } ?>
     </li>
     <li><?php if (Yii::app()->user->isAdmin){ ?>
-        <?php echo CHtml::link('Request', '#' ); ?>
-         <div class="dropdown">
-          <ul>
-            <li><?php echo CHtml::link('Expired', '#' ); ?></li>
-            <li><?php echo CHtml::link('Unexpired', '#' ); ?></li>
-            <li><?php echo CHtml::link('Request', '#' ); ?></li>
-            <li><?php echo CHtml::link('History', '#' );  ?></li>
-          </ul>
-        </div>
-            
-    
+        <?php echo CHtml::link('All Requests', Yii::app()->createUrl('request/index')); ?>
+
     <?php } ?>
         
     </li>

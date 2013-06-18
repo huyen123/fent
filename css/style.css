@@ -64,3 +64,8 @@
     width: 100%;
     margin: 20px 0px;
 }
+
+.crop {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
