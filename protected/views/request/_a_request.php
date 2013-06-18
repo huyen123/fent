@@ -7,11 +7,11 @@
         <?php echo DateAndTime::returnTime($request->start_time, 'd/m/Y'); ?>
     </div>
     <div class="two columns" >
-        <?php echo DateAndTime::returnTime($request->end_time, 'd/m/Y'); ?>
+        <?php echo DateAndTime::returnTime($request->request_end_time, 'd/m/Y'); ?>
     </div>
     <div class="two columns">
         <?php 
-            $date1 = new DateTime(DateAndTime::returnTime($request->end_time, 'Y/m/d'));
+            $date1 = new DateTime(DateAndTime::returnTime($request->request_end_time, 'Y/m/d'));
             $date2 = new DateTime(DateAndTime::returnTime($timestamp, 'Y/m/d'));
             $interval = date_diff($date1, $date2);
             if ($date1 >= $date2){

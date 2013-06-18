@@ -62,7 +62,7 @@ class User extends ActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'profile' => array(self::BELONGS_TO, 'Profile', 'profile_id'),
-            'request' => array(self::HAS_MANY, 'Request', 'user_id'),
+            'requests' => array(self::HAS_MANY, 'Request', 'user_id'),
             'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id'),
             'favorite_devices' => array(self::HAS_MANY, 'Device', array('device_id' => 'id'), 'through' => 'favorites')
         );

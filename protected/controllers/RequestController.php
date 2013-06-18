@@ -34,8 +34,14 @@ class RequestController extends Controller {
         $pages = new CPagination($count);
         $pages->pageSize=10;
         $pages->applyLimit($criteria);
-        $requests = Request::model()->findAll($criteria);
-        $this->render('index',array(
+        if (Yii::app()->user->isAdmin){
+            $requests = Request::model()->findAll($criteria);
+        }
+        else{
+            $user = User::model()->findByPk(Yii::app()->user->getId());
+            $requests = $user->requests;
+        }
+            $this->render('index',array(
                 'requests' => $requests,
                 'pages' => $pages,
         ));
