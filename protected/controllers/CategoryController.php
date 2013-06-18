@@ -14,7 +14,7 @@ class CategoryController extends Controller
         $pages->applyLimit($criteria);
         $devices = Device::model()->findAll($criteria);
         $this->render('index', array('category' => $category, 'devices' => $devices,
-            'id' => $id, 'pages' => $pages, 'columns' => 3));
+            'id' => $id, 'pages' => $pages, 'columns' => 2));
     }
 }
 ?>

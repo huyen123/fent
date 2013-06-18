@@ -72,7 +72,7 @@ function disableForm() {
 }
 
 function sendLikeOrUnlikeRequest(device_id) {
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=admin/reject_request';                
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=device/like';                
     $.ajax({
         type: 'POST',
         url: url,
