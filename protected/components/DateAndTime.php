@@ -13,5 +13,20 @@ class DateAndTime
         }
         return date($format, $timestamp);
     }
+    
+    public static function getIntervalDays($request_end_time, $timestamp) {
+        if ($request_end_time == null) {
+            return null;
+        } else {
+            $date1 = new DateTime(DateAndTime::returnTime($request_end_time, 'Y/m/d'));
+            $date2 = new DateTime(DateAndTime::returnTime($timestamp, 'Y/m/d'));
+            $interval = date_diff($date1, $date2);
+            if ($request_end_time >= $timestamp) {
+                return $interval->days;
+            } else {
+                return -1 * $interval->days;
+            }
+        }
+    }
 }
 ?>
