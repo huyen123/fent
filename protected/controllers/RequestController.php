@@ -89,5 +89,29 @@ class RequestController extends Controller {
             'request' => $request 
         ));
     }
+    
+    public function actionFinish() {
+        if (!Yii::app()->request->isAjaxRequest) {
+            $this->render('/site/error', array('code' => 403, 'message' => 'Forbidden'));                        
+            Yii::app()->end();
+        }
+        if (isset($_POST['request_id'])) {
+            $request_id = $_POST['request_id'];
+            $request = Request::model()->findByPk($request_id);
+            if ($request != null) {
+                $request->status = Constant::$REQUEST_FINISH;
+                $request->end_time = time();
+                if ($request->save()) {
+                    echo header('HTTP/1.1 200 OK');
+                } else {
+                    echo header('HTTP/1.1 424 Method Failure');
+                }
+            } else {
+                echo header('HTTP/1.1 424 Method Failure');
+            }
+        } else {
+            echo header('HTTP/1.1 405 Method Not Allowed');
+        }
+    }
 }
 ?>

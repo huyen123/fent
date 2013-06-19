@@ -19,15 +19,22 @@
     </div>
     <?php
         if ($request->status == 1){
-            echo '<div class="two columns">';
+            echo '<div class="one columns">';
             $date1 = new DateTime(DateAndTime::returnTime($request->request_end_time, 'Y/m/d'));
             $date2 = new DateTime(DateAndTime::returnTime($timestamp, 'Y/m/d'));
             $interval = date_diff($date1, $date2);
             echo $interval->days.' days';
             echo '</div>';
+            
             echo '<div class="two columns">';
             echo '<span class="small pretty primary btn">';
             echo CHtml::button('View more', array('submit' => Yii::app()->createUrl('request/view', array('id' => $request->id))));
+            echo '</span>';
+            echo '</div>';
+            
+            echo '<div class="one columns">';
+            echo '<span class="small pretty warning btn">';
+            echo CHtml::button('Finish', array('class' => 'finish_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
         } else {
@@ -36,11 +43,13 @@
             echo CHtml::button('View more', array('submit' => Yii::app()->createUrl('request/view', array('id' => $request->id))));
             echo '</span>';
             echo '</div>';
+            
             echo '<div class="one columns">';
             echo '<span class="small pretty success btn">';
             echo CHtml::button('Accept', array('class' => 'reject_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
+            
             echo '<div class="one columns">';
             echo '<span class="small pretty danger btn">';
             echo CHtml::button('Reject', array('class' => 'reject_request', 'request_id' => $request->id));
