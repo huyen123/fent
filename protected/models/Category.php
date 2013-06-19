@@ -58,7 +58,16 @@ class Category extends ActiveRecord
             "devices"=>array(self::HAS_MANY, 'Device', 'category_id')
         );
     }
-
+    
+    public function behaviors()
+    {
+        return array(            
+            'ViewLinkBehavior' => array(
+                'class' => 'application.components.ViewLinkBehavior',     
+                'display_attribute' => 'name'
+            )
+        );
+    }
     /**
      * @return array customized attribute labels (name=>label)
      */

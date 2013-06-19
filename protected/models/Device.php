@@ -65,6 +65,8 @@ class Device extends ActiveRecord
             'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id'),
             'accepted_request' => array(self::HAS_ONE, 'Request', 'device_id',
                 'on' => 'accepted_request.status=1'),
+            'being_considered_requests' => array(self::HAS_MANY, 'Request', 'device_id',
+                'on' => 'being_considered_requests.status=0'),
             'borrower' => array(self::HAS_ONE, 'User', array('user_id' => 'id'), 
                 'through' => 'accepted_request')
         );
@@ -73,9 +75,13 @@ class Device extends ActiveRecord
     public function behaviors()
     {
         return array(
-            'ImageBehavior'=>array(
-                'class'=>'application.components.ImageBehavior',
-        ));
+            'ImageBehavior' => array(
+                'class' => 'application.components.ImageBehavior'),
+            'ViewLinkBehavior' => array(
+                'class' => 'application.components.ViewLinkBehavior',
+                'display_attribute' => 'name',                
+            )
+        );
     }
     /**
      * @return array customized attribute labels (name=>label)

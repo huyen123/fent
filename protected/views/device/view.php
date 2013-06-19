@@ -25,20 +25,15 @@
             <?php                                                 
                 $request = $device->accepted_request;
                 if ($request != null) {
-                    echo '<p>Being borrowed by: ';
-                    echo CHtml::link($request->user->username, Yii::app()->createUrl('profile/view', 
-                            array('id' => $request->user->profile_id)));
-                    echo '</p>';
-                    echo '<p>Expected end time: ';
-                    echo CHtml::link(DateAndTime::returnTime($request->request_end_time, 'd/m/Y'), 
-                            Yii::app()->createUrl('request/view', array('id' => $request->id)));
+                    echo '<p>Being borrowed by: '.$request->user->createViewLink().'</p>';
+                    echo '<p>Expected end time: '.$request->createViewLink(DateAndTime::returnTime($request->request_end_time)).'</p>';
                 }                
             ?>
             <p><?php echo 'Serial: '.$device->serial; ?></p>
             <p><?php echo 'Description: '.$device->description; ?></p>    
             <p><?php echo 'Add: '.$device->created_at; ?></p>
             <p><?php echo 'Update: '.$device->updated_at; ?></p>
-            <p><?php echo 'Category: '.$device->category->name; ?></p>
+            <p><?php echo 'Category: '.$device->category->createViewLink(); ?></p>
             <?php
                 if ($liked) {
                     echo '<div class="small danger btn">';
@@ -52,6 +47,32 @@
             ?>
         </div>
     </div>
+</div>
+
+<div class="row">
+    <div class="medium info btn">
+        <?php echo CHtml::button('Show being considered requests', array('id' => 'being_considered_requests_button')); ?>
+    </div>
+</div>
+
+<div class="row" id ="being_considered_requests" hidden="hidden">
+<?php
+    foreach ($device->being_considered_requests as $request) {
+        echo '<div class="row">';
+        echo '<p>';                        
+        echo $request->user->createViewLink();
+        echo ' sent a request to borrow this device';
+        if ($request->request_start_time != null) {
+            echo ' from '.DateAndTime::returnTime($request->request_start_time);
+        }
+        if ($request->request_end_time != null) {
+            echo ' to '.DateAndTime::returnTime($request->request_end_time);
+        }
+        echo '. Request created at '.DateAndTime::returnTime($request->created_at);
+        echo ' '.$request->createViewLink('View more');    
+        echo '</div>';
+    }
+?>
 </div>
 
 <div class="row">
