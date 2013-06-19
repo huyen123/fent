@@ -27,7 +27,7 @@
             echo '</div>';
             echo '<div class="two columns">';
             echo '<span class="small pretty primary btn">';
-            echo CHtml::button('View more', array('submit' => '#'));
+            echo CHtml::button('View more', array('submit' => Yii::app()->createUrl('request/view', array('id' => $request->id))));
             echo '</span>';
             echo '</div>';
         } else {
@@ -38,7 +38,7 @@
             echo '</div>';
             echo '<div class="one columns">';
             echo '<span class="small pretty success btn">';
-            echo CHtml::button('Accept', array('class' => 'reject_request', 'request_id' => $data->id));
+            echo CHtml::button('Accept', array('class' => 'reject_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
             echo '<div class="one columns">';

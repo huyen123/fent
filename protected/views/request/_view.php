@@ -38,7 +38,7 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
     </div>
     <div class="two columns">
         <?php           
-            echo CHtml::link(CHtml::encode($status), Yii::app()->createUrl('request/view', array('id' => $request->id)));
+            echo $request->createViewLink($status);
         ?>
     </div>
 </div>
