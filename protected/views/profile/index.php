@@ -10,17 +10,17 @@ $this->breadcrumbs = array(
 <div class="row">
     <h2>Profiles</h2>
     <?php if (Yii::app()->user->isAdmin) { ?>
-        <span class="medium pretty primary btn">
+        <div class="medium pretty primary btn">
             <?php echo CHtml::button('Create profile', array('submit' => array('profile/create'))); ?>
-        </span>
+        </div>
     <?php } ?>
 
     <?php if(Yii::app()->user->hasFlash('sucessful')): ?>
         <div class="success alert">
             <?php echo Yii::app()->user->getFlash('sucessful'); ?>
         </div>
-     <?php endif; ?>
-</div>
+    <?php endif; ?>
+    <HR>
     <?php
     for ($i = 0; $i < sizeof($profiles); $i += 2) {
         echo '<div class="row">';
@@ -35,6 +35,7 @@ $this->breadcrumbs = array(
         echo '</br>';
     };
     ?>
+</div>
 <div class="row">
     <?php $this->widget('CLinkPager', array(
         'pages' => $pages,

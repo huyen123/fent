@@ -9,6 +9,9 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'device-form',
 	'enableAjaxValidation'=>false,
+    'htmlOptions' => array(
+        'enctype' => 'multipart/form-data',
+    ),
 )); ?>
 
         <p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -63,7 +66,17 @@
                 ?>
             </div>
         </div>
-
+        
+        <div class="row">
+            <?php echo $form->labelEx($model,'image'); ?>
+            <?php echo CHtml::activeFileField($model, 'image'); ?>
+            <?php echo $form->error($model,'image'); ?>
+        </div>
+        <?php if(!$model->isNewRecord){ ?>
+            <div class="row">
+                <?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/devices/'.$model->image,'image', array('width' => 200));} ?>
+            </div>
+        
         <div class="row buttons">
                 <?php
                     echo "<div class='medium primary btn'>";

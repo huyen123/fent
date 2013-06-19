@@ -95,6 +95,7 @@ class Profile extends ActiveRecord
             'secret_key' => 'Secret Key',
             'position' => 'Position',
             'date_of_birth' => 'Date Of Birth',
+            'image' => 'Image',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
         );

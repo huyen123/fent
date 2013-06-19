@@ -1,6 +1,13 @@
 <div class="row">
-    <div class="four columns image photo">
-        <?php echo CHtml::link(CHtml::image($data->getMainImage()), array('profile/view', 'id' => $data->id)); ?>
+    <div class="four column image photo">
+        <?php
+            if ($data->image != null && file_exists(Yii::getPathOfAlias('webroot').'/images/'.$data->image)) {
+                $filename = $data->image;
+            } else {
+                $filename = 'no-image.jpg';
+            }
+            echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/'.$filename, 'No image', array('width' => 100)), array('view', 'id' => $data->id));
+        ?>
     </div>
     
     <div class="seven columns">
