@@ -25,7 +25,7 @@
                     <div class="two columns"> <h4>Device</h4> </div>
                     <div class="two columns"> <h4>Borrowing start time</h4> </div>
                     <div class="two columns"> <h4>Request end time</h4> </div>
-                    <div class="two columns"> <h4>Time left</h4> </div>
+                    <div class="one columns"> <h4>Time left</h4> </div>
                 </div>
                 <?php
                     foreach($unexpired_requests as $request){
@@ -39,7 +39,7 @@
                     <div class="two columns"> <h4>Device</h4> </div>
                     <div class="two columns"> <h4>Borrowing start time</h4> </div>
                     <div class="two columns"> <h4>Request end time</h4> </div>
-                    <div class="two columns"> <h4>Expired time</h4> </div>
+                    <div class="one columns"> <h4>Expired time</h4> </div>
                 </div>
                 <?php
                     foreach($expired_requests as $request){
