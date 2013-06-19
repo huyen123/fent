@@ -25,21 +25,20 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
         <?php echo CHtml::encode($request->reason); ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($request->request_start_time, 'd/m/Y'); ?>
+        <?php echo DateAndTime::returnTime($request->request_start_time); ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($request->request_end_time, 'd/m/Y'); ?>
+        <?php echo DateAndTime::returnTime($request->request_end_time); ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($request->start_time, 'd/m/Y'); ?>
+        <?php echo DateAndTime::returnTime($request->start_time); ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($request->end_time, 'd/m/Y'); ?>
+        <?php echo DateAndTime::returnTime($request->end_time); ?>
     </div>
     <div class="two columns">
-        <?php
-            
-            echo CHtml::link(CHtml::encode($status), array('#'));
+        <?php           
+            echo CHtml::link(CHtml::encode($status), Yii::app()->createUrl('request/view', array('id' => $request->id)));
         ?>
     </div>
 </div>

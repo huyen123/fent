@@ -9,7 +9,7 @@ class DateAndTime
             return 'No time given';
         }
         if ($format == null) {
-            $format = 'H:i d/m/Y';
+            $format = 'd/m/Y';
         }
         return date($format, $timestamp);
     }

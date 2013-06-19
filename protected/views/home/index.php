@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 <div class="row">
     <div class="two columns"> <h5>Device</h5> </div>
     <div class="two columns"> <h5>Start time</h5> </div>
-    <div class="two columns"> <h5>Request end time</h5> </div>
+    <div class="three columns"> <h5>Request end time</h5> </div>
     <div class="two columns"> <h5>Time left</h5> </div>
     <div class="two columns"> <h5>Time expired</h5> </div>
     <HR/>
