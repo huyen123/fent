@@ -4,24 +4,23 @@
         </p>
     </div>
     <div class="two columns" >
-        <?php echo DateAndTime::returnTime($request->start_time, 'd/m/Y'); ?>
+        <?php echo DateAndTime::returnTime($request->start_time); ?>
     </div>
-    <div class="three columns" >
-        <?php echo DateAndTime::returnTime($request->request_end_time, 'd/m/Y'); ?>
+    <div class="two columns" >
+        <?php echo DateAndTime::returnTime($request->request_end_time); ?>
     </div>
     <div class="two columns">
         <?php 
-            $date1 = new DateTime(DateAndTime::returnTime($request->request_end_time, 'Y/m/d'));
-            $date2 = new DateTime(DateAndTime::returnTime($timestamp, 'Y/m/d'));
-            $interval = date_diff($date1, $date2);
-            if ($date1 >= $date2){
-               echo $interval->days; 
-            }else{
+            $expired = DateAndTime::getIntervalDays($request->request_end_time, $timestamp);
+            if ($expired > 0){
+               echo $expired;
+            }
         ?>
     </div>
     <div class="two columns">
-        <?php 
-               echo $interval->days; 
+        <?php
+            if ($expired < 0) {
+               echo -1 * $expired;
             }
         ?>
     </div>
