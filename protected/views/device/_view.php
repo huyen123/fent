@@ -6,13 +6,8 @@
 
 <div class="row">
     <div class="four columns image photo">
-        <?php
-            if ($data->image != null && file_exists(Yii::getPathOfAlias('webroot').'/images/devices/'.$data->image)) {
-                $filename = $data->image;
-            } else {
-                $filename = 'no-image.jpg';
-            }
-            echo CHtml::link(CHtml::image(Yii::app()->baseUrl.'/images/devices/'.$filename), array('device/view', 'id' => $data->id));
+        <?php            
+            echo CHtml::link(CHtml::image($data->getMainImage()), array('device/view', 'id' => $data->id));
         ?>
     </div>
     <div class="seven columns push_one">

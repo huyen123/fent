@@ -12,15 +12,10 @@ $this->breadcrumbs = array(
     <h2>View Profile #<?php echo $model->id; ?></h2>
     </br>
     <div class="row">
-        <div class="four column image photo">
-            <?php
-                if ($model->image != null && file_exists(Yii::getPathOfAlias('webroot').'/images/'.$model->image)) {
-                    $filename = $model->image;
-                } else {
-                    $filename = 'no-image.jpg';
-                }
-                echo CHtml::image(Yii::app()->baseUrl.'/images/'.$filename,'No image', array('width' => 250));
-            ?>
+        <div class="four columns image photo">
+        <?php            
+            echo CHtml::image($model->getMainImage());
+        ?>
         </div>
         
         <div class="six columns push_one">

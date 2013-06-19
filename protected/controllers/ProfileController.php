@@ -78,10 +78,9 @@ class ProfileController extends Controller
             $timestamp = time();  //get unix timestamp
             $uploadedFile = CUploadedFile::getInstance($model,'image');
             $fileName = "{$timestamp}-{$uploadedFile}";  // timestamp + file name
-            $model->image = $fileName;
             if($model->save()){
                 if (!empty($uploadedFile)){
-                    $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$fileName); // image will upload to rootDirectory/images/
+                    $uploadedFile->saveAs($model->createDirectoryIfNotExists().$fileName); // image will upload to rootDirectory/images/
                 }
                 $this->redirect(array('view','id' => $model->id));
             }
@@ -104,10 +103,11 @@ class ProfileController extends Controller
             $timestamp = time();
             $model->attributes = $_POST['Profile'];
             $uploadedFile = CUploadedFile::getInstance($model,'image');
-            $model->image = "{$timestamp}-{$uploadedFile}";
+            $filename = "{$timestamp}-{$uploadedFile}";
             if($model->save()){
                 if (!empty($uploadedFile)){
-                $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$model->image);
+                    $model->removeMainImage();
+                    $uploadedFile->saveAs($model->createDirectoryIfNotExists().$filename);
                 }
                 $this->redirect(array('view','id' => $model->id));
             }

@@ -76,7 +76,9 @@ class Profile extends ActiveRecord
     {
         return array(
             'ImageBehavior' => array(
-                'class'=>'application.components.ImageBehavior'),
+                'class'=>'application.components.ImageBehavior',
+                'attr' => 'employee_code'
+            ),
             'ViewLinkBehavior' => array(
                 'class' => 'application.components.ViewLinkBehavior',
                 'display_attribute' => 'employee_code',                
