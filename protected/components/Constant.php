@@ -11,5 +11,7 @@ class Constant
     public static $REQUEST_FINISH = 3;        
     public static $REQUEST_VALID = 4;
     public static $REQUEST_INVALID_EXISTED = 5;
+    
+    public static $DEVICE_UNAVALABLE = '0';
 }
 ?>
