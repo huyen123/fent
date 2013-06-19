@@ -63,8 +63,15 @@ class DeviceController extends Controller
         if(isset($_POST['Device']))
         {
             $model->attributes = $_POST['Device'];
+            $timestamp = time();  // get unix tamestamp
+            $uploadedFile = CUploadedFile::getInstance($model,'image');
+            $fileName = "{$timestamp}-{$uploadedFile}";  // timestamp + file name
+            $model->image = $fileName;
             if($model->save())
             {
+                if (!empty($uploadedFile)){
+                    $uploadedFile->saveAs(Yii::app()->basePath.'/../images/devices/'.$fileName); // image will upload to rootDirectory/images/
+                }
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -89,8 +96,14 @@ class DeviceController extends Controller
         if(isset($_POST['Device']))
         {
             $model->attributes = $_POST['Device'];
+            $timestamp = time();
+            $uploadedFile = CUploadedFile::getInstance($model,'image');
+            $model->image = "{$timestamp}-{$uploadedFile}";
             if($model->save())
             {
+                if (!empty($uploadedFile)){
+                $uploadedFile->saveAs(Yii::app()->basePath.'/../images/devices/'.$model->image);
+                }
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -176,6 +189,7 @@ class DeviceController extends Controller
             if (!$existed) {                            
                 $request = new Request;
                 $request->device_id = $_POST['device_id'];
+                $request->reason = $_POST['reason'];
                 $request->user_id = Yii::app()->user->getId();
                 $request->reason = $_POST['reason'];
                 if ($_POST['date_from'] != null) {

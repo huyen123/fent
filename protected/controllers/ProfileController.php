@@ -75,9 +75,9 @@ class ProfileController extends Controller
         if(isset($_POST['Profile']))
         {
             $model->attributes = $_POST['Profile'];
-            $rnd = rand(0,9999);  // generate random number between 0-9999
+            $timestamp = time();  //get unix timestamp
             $uploadedFile = CUploadedFile::getInstance($model,'image');
-            $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
+            $fileName = "{$timestamp}-{$uploadedFile}";  // timestamp + file name
             $model->image = $fileName;
             if($model->save()){
                 if (!empty($uploadedFile)){
@@ -101,10 +101,10 @@ class ProfileController extends Controller
         $model = $this->loadModel($id);
         if(isset($_POST['Profile']))
         {
-            $rnd = rand(0,9999);
+            $timestamp = time();
             $model->attributes = $_POST['Profile'];
             $uploadedFile = CUploadedFile::getInstance($model,'image');
-            $model->image = "{$rnd}-{$uploadedFile}";
+            $model->image = "{$timestamp}-{$uploadedFile}";
             if($model->save()){
                 if (!empty($uploadedFile)){
                 $uploadedFile->saveAs(Yii::app()->basePath.'/../images/'.$model->image);

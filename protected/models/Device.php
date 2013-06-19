@@ -91,6 +91,7 @@ class Device extends ActiveRecord
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'category_id' => 'Category',
+            'image' => 'Image',
         );
     }
 

@@ -96,7 +96,7 @@
     </div>
     <?php if(!$model->isNewRecord){ ?>
         <div class="row">
-        <?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/'.$model->image,'image', array('width' => 200));} ?>
+            <?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/'.$model->image,'image', array('width' => 200));} ?>
         </div>
     
 	<div class="row">
