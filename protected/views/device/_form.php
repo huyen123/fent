@@ -74,7 +74,9 @@
         </div>
         <?php if(!$model->isNewRecord){ ?>
             <div class="row">
-                <?php echo CHtml::image(Yii::app()->request->baseUrl.'/images/devices/'.$model->image,'image', array('width' => 200));} ?>
+                <div class="four columns image photo">
+                    <?php echo CHtml::image($model->getMainImage());} ?>
+                </div>
             </div>
         
         <div class="row buttons">

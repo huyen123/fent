@@ -10,14 +10,9 @@
 <div class="row centered">
     <h1><?php echo $device->name; ?></h1>
     <div class="row">
-        <div class="four column image photo">
-            <?php
-                if ($device->image != null && file_exists(Yii::getPathOfAlias('webroot').'/images/devices/'.$device->image)) {
-                    $filename = $device->image;
-                } else {
-                    $filename = 'no-image.jpg';
-                }
-                echo CHtml::image(Yii::app()->baseUrl.'/images/devices/'.$filename, 'No image', array('width' => 300));
+        <div class="four columns image photo">
+            <?php            
+                echo CHtml::image($device->getMainImage());
             ?>
         </div>
         <div class="six columns push_one">
