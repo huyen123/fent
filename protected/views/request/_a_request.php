@@ -1,6 +1,6 @@
 <div class="row">
     <div class="two columns">
-        <?php echo CHtml:: link($request->device->name, Yii::app()->createUrl('device/view', array('id' => $request->device->id))); ?>
+        <?php echo $request->device->createViewLink(); ?>
         </p>
     </div>
     <div class="two columns" >
