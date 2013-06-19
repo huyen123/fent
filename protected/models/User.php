@@ -83,7 +83,18 @@ class User extends ActiveRecord
             'profile_id' => 'Profile',
         );
     }
-
+    
+    public function behaviors()
+    {
+        return array(
+            'ViewLinkBehavior' => array(
+                'class' => 'application.components.ViewLinkBehavior',
+                'display_attribute' => 'username',
+                'view_model' => 'profile'
+            )
+        );
+    }
+    
     /**
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

@@ -75,9 +75,13 @@ class Profile extends ActiveRecord
     public function behaviors()
     {
         return array(
-            'ImageBehavior'=>array(
-                'class'=>'application.components.ImageBehavior',
-        ));
+            'ImageBehavior' => array(
+                'class'=>'application.components.ImageBehavior'),
+            'ViewLinkBehavior' => array(
+                'class' => 'application.components.ViewLinkBehavior',
+                'display_attribute' => 'employee_code',                
+            )
+        );
     }
 
     /**

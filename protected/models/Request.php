@@ -63,7 +63,16 @@ class Request extends ActiveRecord
             'device' => array(self::BELONGS_TO, 'Device', 'device_id')
         );
     }
-
+    
+    public function behaviors()
+    {
+        return array(            
+            'ViewLinkBehavior' => array(
+                'class' => 'application.components.ViewLinkBehavior',                
+            )
+        );
+    }
+    
     /**
      * @return array customized attribute labels (name=>label)
      */
