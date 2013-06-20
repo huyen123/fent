@@ -6,7 +6,7 @@
     <div class="two columns" >
         <?php echo DateAndTime::returnTime($request->start_time); ?>
     </div>
-    <div class="two columns" >
+    <div class="three columns" >
         <?php echo DateAndTime::returnTime($request->request_end_time); ?>
     </div>
     <div class="two columns">
