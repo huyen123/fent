@@ -9,6 +9,8 @@ $(function(){
         var value = $(this).attr('value');
         acceptRequest(request_id, value);
     });
+    
+    initDatePiker();
 });
 
 function acceptRequest(request_id, value) {
@@ -58,10 +60,10 @@ function getDate() {
     var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
     if(dd < 10){
-        dd = '0' + dd
+        dd = '0' + dd;
     } 
     if(mm<10){
-        mm='0'+mm
+        mm='0'+mm;
     } 
     return dd+'/'+mm+'/'+yyyy;
 }
@@ -90,5 +92,39 @@ function finishRequest(request_id) {
             $('#finish_button').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
+        });
+}
+            
+function initDatePiker() {    
+    var dateToday = new Date();
+    var dates = $("#end").datepicker({
+        defaultDate: "+1w",
+        dateFormat: 'dd/mm/yy',
+        changeMonth: true,        
+        minDate: dateToday,
+        onSelect: function(selectedDate) {
+            var option = "minDate",
+                instance = $(this).data("datepicker"),
+                date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+            dates.not(this).datepicker("option", option, date);
+            var date_end = $('#end').datepicker('getDate');
+            editRequest(date_end);
+        }
+    });
+}
+
+function editRequest(date_end) {
+    var request_id = $('#end').attr('request_id');
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/editEndTime';
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            date_end: date_end,
+            request_id: request_id
+        }
+    }).success(function() {               
+        }).fail(function() {            
+            alert('No');
         });
 }
