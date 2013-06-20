@@ -135,4 +135,14 @@ class Device extends ActiveRecord
             ),
         );
     }
+    
+    
+     protected function afterDelete()
+    {
+        $requests = Request::model()->findAllByAttributes(array('device_id'=>$this->id));
+        foreach ($requests as $request){
+            $request->delete() ;
+        }
+        return parent::afterDelete();
+    }
 }

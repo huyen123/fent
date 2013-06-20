@@ -127,7 +127,6 @@ class DeviceController extends Controller
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         }
     }
-
     /**
      * Lists all models.
      */
