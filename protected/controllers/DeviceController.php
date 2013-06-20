@@ -23,7 +23,7 @@ class DeviceController extends Controller
             ),
             array('allow',
                 'controllers' => array('device'),
-                'actions' => array('create', 'update', 'delete'),
+                'actions' => array('create', 'update', 'delete', 'uploadImage', 'deleteImage'),
                 'expression' => '$user->isAdmin'
             ),
             array('deny',
@@ -42,13 +42,44 @@ class DeviceController extends Controller
         $liked = Favorite::model()->exists('user_id=:user_id AND device_id=:device_id', 
                 array(':user_id' => Yii::app()->user->getId(), ':device_id' => $id));
         $device = Device::model()->findByPk($id);
+        Yii::import( "xupload.models.XUploadForm" );
+        $imageModel = new XUploadForm;
         $this->render('view', array(
             'device' => $device,
             'existed' => $existed,
-            'liked' => $liked
+            'liked' => $liked,
+            'imageModel' => $imageModel
         ));
     }
-
+    
+    public function actionUploadImage($id)
+    {
+        $device = Device::model()->findByPk($id);
+        if ($device == null) {
+            Yii::app()->end();
+        }
+        Yii::import('xupload.models.XUploadForm');               
+        $model = new XUploadForm;
+        $model->file = CUploadedFile::getInstance($model, 'file');
+        if ($model->file !== null) {
+            echo $device->saveImage($model);
+        } else {
+            throw new CHttpException(500, 'Could not upload file');
+        }
+        
+    }
+    
+    public function actionDeleteImage()
+    {
+        if (isset($_GET['_method']) && isset($_GET['id']) && isset($_GET['file'])) {
+            if ($_GET['_method'] === 'delete' && $_GET['file'][0] !== '.') {                                                
+                $file = Yii::app()->getBasePath().'/../images/device/'.$_GET['id'].'/'.$_GET['file'];
+                if (is_file($file)) {
+                    unlink($file);                                                 
+                }                
+            }
+        }
+    }
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
