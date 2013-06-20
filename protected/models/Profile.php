@@ -148,11 +148,19 @@ class Profile extends ActiveRecord
         return parent::beforeSave();
     }
     
-    public function beforeDelete()
+    public function afterDelete()
     {
+        $this->removeImageAndDirecroty();
         $user = User::model()->findByAttributes(array('profile_id'=>$this->id));
-        $user->delete();
-        return parent::beforeDelete();
+        if (isset($user)) {
+            if (isset($user->requests)) {
+                foreach ($user->requests as $request) {
+                    $request->delete();
+                }
+            }
+            $user->delete();
+        }
+        return parent::afterDelete();
     }
     
     private function generateKey($length)

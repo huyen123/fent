@@ -67,7 +67,7 @@ class ImageBehavior extends CBehavior
             closedir($handle);
         }
     }
-   
+
     public function saveImage($image)
     {
         $owner = $this->getOwner();
@@ -100,7 +100,22 @@ class ImageBehavior extends CBehavior
         } else {                    
             return json_encode(array(
                 array('error' => $image->getErrors('file'),
-           )));                   
+           )));
+        }
+    }
+    
+    public function removeImageAndDirecroty() {
+        $this->removeMainImage();
+        $dir = $this->getDirectory();
+        $absoluted_dir = __DIR__.'/../..'.$dir;
+        if (file_exists($absoluted_dir) && is_dir($absoluted_dir)) {
+            $files = glob($absoluted_dir.'*');
+            foreach($files as $file) {
+               if (is_file($file)) {
+                   unlink($file);
+               }
+            }
+            rmdir($absoluted_dir);
         }
     }
 }
