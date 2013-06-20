@@ -90,4 +90,13 @@
             </div>
         </div>
     </div>
+    <HR/>
+    <?php
+        if (!Yii::app()->user->isAdmin){
+            echo "<div class='small danger btn'>";
+            echo CHtml::button('Delete', array('submit' => array('request/delete', 'id' => $request->id),
+                'confirm'=>'Are you sure you want to delete this device?'));
+            echo '</div>';
+        }
+    ?>
 </div>
