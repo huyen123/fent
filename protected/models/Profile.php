@@ -141,11 +141,18 @@ class Profile extends ActiveRecord
      * This method is invoked before saving a record (after validation, if any).
      * @return boolean whether the saving should be executed. Defaults to true.
  */
-    public function beforeSave() 
+    public function beforeSave()
     {
         if ($this->isNewRecord)
             $this->secret_key = $this->generateKey(mt_rand(50,100));
         return parent::beforeSave();
+    }
+    
+    public function beforeDelete()
+    {
+        $user = User::model()->findByAttributes(array('profile_id'=>$this->id));
+        $user->delete();
+        return parent::beforeDelete();
     }
     
     private function generateKey($length)
