@@ -21,12 +21,12 @@ function acceptRequest(request_id, value) {
             value: value
         }
     }).success(function() {     
-            $('#status').fadeOut(500, function(){
+            $('#status').fadeOut(window.FADING_DURATION, function(){
                 $('#status').html('Un-expired');
-                $('#status').fadeIn(500);
+                $('#status').fadeIn(window.FADING_DURATION);
             });
             $('#start_time').html(getDate());
-            $('#button_group').hide(500);
+            $('#button_group').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
         });
@@ -42,11 +42,11 @@ function rejectRequest(request_id, value) {
             value: value
         }
     }).success(function() { 
-            $('#status').fadeOut(500, function(){
+            $('#status').fadeOut(window.FADING_DURATION, function(){
                 $('#status').html('Rejected');
-                $('#status').fadeIn(500);
+                $('#status').fadeIn(window.FADING_DURATION);
             });
-            $('#button_group').hide(500);
+            $('#button_group').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
         });
@@ -64,4 +64,31 @@ function getDate() {
         mm='0'+mm
     } 
     return dd+'/'+mm+'/'+yyyy;
+}
+
+$(function(){
+    $('.finish_request_btn').click(function(){
+        var request_id = $(this).attr('request_id');
+        finishRequest(request_id);
+    });
+});
+
+function finishRequest(request_id) {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/finish';                
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {             
+            request_id: request_id,
+        }
+    }).success(function() {               
+            $('#status').fadeOut(window.FADING_DURATION, function(){
+                $('#status').html('Finished');
+                $('#status').fadeIn(window.FADING_DURATION);
+            });
+            $('#end_time').html(getDate());
+            $('#finish_button').hide(window.FADING_DURATION);
+        }).fail(function() {            
+            alert('Fail !');
+        });
 }

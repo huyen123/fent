@@ -6,10 +6,10 @@ $(function(){
     $('#being_considered_requests_button').click(function(){
         if ($('#being_considered_requests').is(':hidden')) {
             $('#being_considered_requests_button').val('Hide being considered Requests');
-            $('#being_considered_requests').show(500);
+            $('#being_considered_requests').show(window.FADING_DURATION);
         } else {
             $('#being_considered_requests_button').val('Show being considered Requests');
-            $('#being_considered_requests').hide(500);
+            $('#being_considered_requests').hide(window.FADING_DURATION);
         }
     });
     var existed = $('#request_form').attr('request_existed');    

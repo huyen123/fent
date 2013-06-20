@@ -24,7 +24,7 @@ function rejectRequest(request_id, value) {
             value: value
         }
     }).success(function() {               
-            $('#request_' + request_id).hide(400);
+            $('#request_' + request_id).hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
         });
@@ -62,7 +62,7 @@ function finishRequest(request_id) {
             request_id: request_id,
         }
     }).success(function() {               
-            $('#request_' + request_id).hide(400);
+            $('#request_' + request_id).hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
         });
