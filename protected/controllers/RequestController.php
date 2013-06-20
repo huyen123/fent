@@ -64,6 +64,7 @@ class RequestController extends Controller {
                     $available = Validator::checkDeviceAvailable($request->device_id);
                     if ($available) {
                         $request->status = Constant::$REQUEST_ACCEPTED;
+                        $request->start_time = time();
                         $result = $request->save();
                     } else {
                         echo header('HTTP/1.1 424 Method Failure');
