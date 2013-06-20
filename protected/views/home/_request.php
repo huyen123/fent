@@ -7,20 +7,20 @@
     </div>
     <div class="two columns">
         <?php
-            if ($data->status == 0){
-                echo DateAndTime::returnTime($data->request_start_time);
+            if ($request->status == 0){
+                echo DateAndTime::returnTime($request->request_start_time);
             } else {
-                echo DateAndTime::returnTime($data->start_time);
+                echo DateAndTime::returnTime($request->start_time);
             }
         ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($data->request_end_time); ?>
+        <?php echo DateAndTime::returnTime($request->request_end_time); ?>
     </div>
     <?php
         if ($request->status == 1){
             echo '<div class="two columns">';
-            $expired = DateAndTime::getIntervalDays($data->request_end_time, $timestamp);
+            $expired = DateAndTime::getIntervalDays($request->request_end_time, $timestamp);
             echo -1*$expired.' days';
             echo '</div>';
             
@@ -44,7 +44,7 @@
             
             echo '<div class="one columns">';
             echo '<span class="small pretty success btn">';
-            echo CHtml::button('Accept', array('class' => 'reject_request', 'request_id' => $request->id));
+            echo CHtml::button('Accept', array('class' => 'accept_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
             
