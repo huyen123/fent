@@ -10,12 +10,16 @@
 <div class="row centered">
     <h1><?php echo $device->name; ?></h1>
     <div class="row">
-        <div class="four columns image photo">
-            <?php            
-                echo CHtml::image($device->getMainImage());
+        <div class="eight columns image photo">
+            <?php
+                $this->beginWidget('Galleria');
+                foreach ($device->getAllImages() as $image) {
+                    echo CHtml::image($image);
+                }
+                $this->endWidget();
             ?>
         </div>
-        <div class="six columns push_one">
+        <div class="four columns">
             <p><?php echo 'Status: '.$device->status; ?></p>
             <?php                                                 
                 $request = $device->accepted_request;
@@ -43,6 +47,11 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="six columns">
+
+    </div></div>
 
 <div class="row">
     <div class="medium info btn">
