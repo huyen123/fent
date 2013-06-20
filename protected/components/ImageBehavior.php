@@ -53,7 +53,8 @@ class ImageBehavior extends CBehavior
         return $absoluted_dir;
     }
     
-    public function removeMainImage() {
+    public function removeMainImage() 
+    {
         $dir = $this->getDirectory();
         $absoluted_dir = __DIR__.'/../..'.$dir;
         if (file_exists($absoluted_dir) && $handle = opendir($absoluted_dir)) {                        
@@ -67,5 +68,40 @@ class ImageBehavior extends CBehavior
         }
     }
    
+    public function saveImage($image)
+    {
+        $owner = $this->getOwner();
+        $path = $this->createDirectoryIfNotExists();  
+        $publicPath = Yii::app( )->getBaseUrl( )."/images/{$owner->tableName()}/{$owner->id}/"; 
+        $image->mime_type = $image->file->getType();
+        $image->size = $image->file->getSize();
+        $image->name = $image->file->getName();            
+        $filename = time().'_'.$image->name;                
+        if ($image->validate()) {
+            $image->file->saveAs($path.$filename);
+            chmod($path.$filename, 0777);                 
+            return json_encode(
+                array(
+                    array(
+                        'name' => $image->name,
+                        'type' => $image->mime_type,
+                        'size' => $image->size,    
+                        'url' => $publicPath.$filename,
+                        'thumbnail_url' => $publicPath.$filename,
+                        'delete_url' => Yii::app()->createUrl('deleteImage', array(
+                            'id' => $owner->id,
+                            '_method' => 'delete',
+                            'file' => $filename)
+                        ),
+                        'delete_type' => 'POST'
+                    )
+                )
+            );
+        } else {                    
+            return json_encode(array(
+                array('error' => $image->getErrors('file'),
+           )));                   
+        }
+    }
 }
 ?>

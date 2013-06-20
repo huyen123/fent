@@ -49,6 +49,21 @@
 </div>
 
 <div class="row">
+<?php
+    if (Yii::app()->user->isAdmin) {
+        $this->widget('xupload.XUpload', array(
+            'url' => Yii::app( )->createUrl('/device/uploadImage', array('id' => $device->id)),        
+            'model' => $imageModel,        
+            'htmlOptions' => array('id'=>'somemodel-form'),
+            'attribute' => 'file',
+            'multiple' => true,        
+            )    
+        );
+    }
+?>
+</div>
+
+<div class="row">
     <div class="six columns">
 
     </div></div>

@@ -15,6 +15,10 @@ return array(
         'application.components.*',
         'application.extensions.yii-mail.*',
         'application.extensions.galleria.*',
+        'application.extensions.xupload.*'
+    ),
+    'aliases' => array(        
+        'xupload' => 'ext.xupload'
     ),
     'defaultController' => 'home/index',
     'modules' => array(
