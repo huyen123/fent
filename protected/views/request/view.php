@@ -54,6 +54,13 @@
                         echo '</span>';
                         echo '</div>';
                         echo '</div>';
+                    } elseif (Yii::app()->user->isAdmin && $request->status == Constant::$REQUEST_ACCEPTED) {
+                        echo '<div class="row" id="finish_button">';
+                        echo '<div class="two columns">';
+                        echo '<span class="small pretty warning btn">';
+                        echo CHtml::button('Finish', array('class' => 'finish_request_btn', 'request_id' => $request->id));
+                        echo '</span>';
+                        echo '</div>';
                     }
                     ?>
             </div>
@@ -79,7 +86,7 @@
             </div>
             <div class="five columns">
                 <?php echo CHtml::label('End:', null); ?>
-                <?php echo DateAndTime::returnTime($request->end_time); ?>
+                <span id="end_time"><?php echo DateAndTime::returnTime($request->end_time); ?></span>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
-<div class="row" id="request_<?php echo $request->id; ?>">
+<div class="row" id="request_<?php echo $request->id; ?>">    
     <div class="two columns">
-        <?php echo CHtml::link(CHtml::encode($request->user->username), array('profile/view', 'id' => $request->user->profile->id)); ?>
+        <?php if ($request) echo CHtml::link(CHtml::encode($request->user->username), array('profile/view', 'id' => $request->user->profile->id)); ?>
     </div>
     <div class="two columns crop">
         <?php echo CHtml::link(CHtml::encode($request->device->name), array('device/view', 'id' => $request->device->id)); ?>
@@ -19,9 +19,13 @@
     </div>
     <?php
         if ($request->status == 1){
-            echo '<div class="two columns">';
+            echo '<div class="one columns">';
             $expired = DateAndTime::getIntervalDays($request->request_end_time, $timestamp);
-            echo -1*$expired.' days';
+            if ($expired < 0) {
+                echo -1*$expired.' days';
+            } else {
+                echo $expired.' days';
+            }
             echo '</div>';
             
             echo '<div class="two columns">';
