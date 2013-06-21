@@ -9,7 +9,6 @@ $(function(){
         var value = $(this).attr('value');
         acceptRequest(request_id, value);
     });
-    
     initDatePiker();
 });
 
@@ -96,25 +95,23 @@ function finishRequest(request_id) {
 }
             
 function initDatePiker() {    
-    var dateToday = new Date();
-    var dates = $("#end").datepicker({
-        defaultDate: "+1w",
-        dateFormat: 'dd/mm/yy',
-        changeMonth: true,        
-        minDate: dateToday,
-        onSelect: function(selectedDate) {
-            var option = "minDate",
-                instance = $(this).data("datepicker"),
-                date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-            dates.not(this).datepicker("option", option, date);
-            var date_end = $('#end').datepicker('getDate');
-            editRequest(date_end);
-        }
+    $('.date_end').each(function(){
+        var time = $(this).attr('request_start_time');
+        $(this).datepicker({
+            defaultDate: "+1w",
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,        
+            minDate: time,
+            onSelect: function() {
+                var date_end = $(this).datepicker('getDate');
+                var request_id = $(this).attr('request_id');
+                editRequest(date_end, request_id);
+            }
+        });
     });
 }
 
-function editRequest(date_end) {
-    var request_id = $('#end').attr('request_id');
+function editRequest(date_end, request_id) {
     var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/editEndTime';
     $.ajax({
         type: 'POST',
@@ -123,7 +120,8 @@ function editRequest(date_end) {
             date_end: date_end,
             request_id: request_id
         }
-    }).success(function() {               
+    }).success(function() {
+        location.reload();
         }).fail(function() {            
             alert('No');
         });

@@ -68,7 +68,6 @@ class RequestController extends Controller {
                         $result = $request->save();
                     } else {
                         echo header('HTTP/1.1 424 Method Failure');
-                        Yii::app()->end();
                     }
                 }
                 if ($result){
@@ -141,7 +140,7 @@ class RequestController extends Controller {
             $request_id = $_POST['request_id'];
             $request_end_time = $_POST['date_end'];
             $request = Request::model()->findByPk($request_id);
-            if ($request != null) {
+            if ($request != null && $request->status != Constant::$REQUEST_FINISH && Constant::$REQUEST_REJECTED) {
                 $request->request_end_time = strtotime($request_end_time);
                 if ($request->save()) {
                     echo header('HTTP/1.1 200 OK');

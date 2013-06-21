@@ -1,5 +1,4 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
-<script src='<?php echo Yii::app()->baseUrl; ?>/js/jquery-ui.js'></script>  
 <div class="row">
     <div class="row">
         <?php 
@@ -76,8 +75,22 @@
             </div>
             <div class="five columns">
                 <?php echo CHtml::label('End:', null); ?>
-                <?php echo CHtml::textField('end', null, array('id' => 'end', 'request_id' => $request->id,
-                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly')); ?>
+                <?php
+                    if ($request->status == Constant::$REQUEST_FINISH || $request->status == Constant::$REQUEST_REJECTED) {
+                        echo DateAndTime::returnTime($request->request_start_time);
+                    } else {
+                     
+                        if ($request->request_start_time > Time()) {
+                            echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
+                                'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime($request->request_start_time),
+                                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                        } else {
+                            echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
+                                'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
+                                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                        }
+                    }
+                ?>
             </div>
             <br />
             <br />

@@ -1,3 +1,4 @@
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
 <div class="row" id="request_<?php echo $request->id; ?>">    
     <div class="two columns">
         <?php if ($request) echo CHtml::link(CHtml::encode($request->user->username), array('profile/view', 'id' => $request->user->profile->id)); ?>
@@ -7,6 +8,7 @@
     </div>
     <div class="two columns">
         <?php
+        
             if ($request->status == 0){
                 echo DateAndTime::returnTime($request->request_start_time);
             } else {
@@ -15,7 +17,18 @@
         ?>
     </div>
     <div class="two columns">
-        <?php echo DateAndTime::returnTime($request->request_end_time); ?>
+        <?php
+        if ($request->request_start_time > Time()) {
+            echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
+                'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime($request->request_start_time),
+                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+        } else {
+            echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
+                'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
+                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+        }
+             
+        ?>
     </div>
     <?php
         if ($request->status == 1){
