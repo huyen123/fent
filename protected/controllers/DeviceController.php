@@ -23,7 +23,7 @@ class DeviceController extends Controller
             ),
             array('allow',
                 'controllers' => array('device'),
-                'actions' => array('create', 'update', 'delete', 'uploadImage', 'deleteImage'),
+                'actions' => array('create', 'update', 'delete', 'uploadImage', 'deleteImage', 'removeImageViaPost'),
                 'expression' => '$user->isAdmin'
             ),
             array('deny',
@@ -75,9 +75,11 @@ class DeviceController extends Controller
             if ($_GET['_method'] === 'delete' && $_GET['file'][0] !== '.') {                                                
                 $file = Yii::app()->getBasePath().'/../images/device/'.$_GET['id'].'/'.$_GET['file'];
                 if (is_file($file)) {
-                    unlink($file);                                                 
+                    unlink($file);
                 }                
             }
+        } else {
+            echo header('HTTP/1.1 424 Method Failure');
         }
     }
     /**
@@ -268,6 +270,20 @@ class DeviceController extends Controller
             }
         } else {
             echo header('HTTP/1.1 405 Method Not Allowed');
+        }
+    }
+    
+    public function actionRemoveImageViaPost()
+    {
+        if (isset($_POST['id']) && isset($_POST['file'])) {
+            if ($_POST['file'][0] !== '.') {                                                
+                $file = Yii::app()->getBasePath().'/../images/device/'.$_POST['id'].'/'.$_POST['file'];
+                if (is_file($file)) {
+                    unlink($file);
+                }                
+            }
+        } else {
+            echo header('HTTP/1.1 424 Method Failure');
         }
     }
 }

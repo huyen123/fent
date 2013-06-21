@@ -34,14 +34,20 @@
             <p><?php echo 'Update: '.$device->updated_at; ?></p>
             <p><?php echo 'Category: '.$device->category->createViewLink(); ?></p>
             <?php
-                if ($liked) {
-                    echo '<div class="small danger btn">';
-                    echo CHtml::button('Unlike', array('id' => 'like-button'));
+                if (Yii::app()->user->isAdmin) {
+                    echo "<div class='medium success btn'>";
+                    echo CHtml::button('Edit', array('submit' => array('device/update', 'id' => $device->id)));
                     echo '</div>';
                 } else {
-                    echo '<div class="small primary btn">';
-                    echo CHtml::button('Like', array('id' => 'like-button'));
-                    echo '</div>';
+                    if ($liked) {
+                        echo '<div class="small danger btn">';
+                        echo CHtml::button('Unlike', array('id' => 'like-button'));
+                        echo '</div>';
+                    } else {
+                        echo '<div class="small primary btn">';
+                        echo CHtml::button('Like', array('id' => 'like-button'));
+                        echo '</div>';
+                    }
                 }
             ?>
         </div>
