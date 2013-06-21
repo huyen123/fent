@@ -1,9 +1,4 @@
-<?php
-/* @var $this DeviceController */
-/* @var $model Device */
-/* @var $form CActiveForm */
-?>
-
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/device_image.js'></script>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -68,15 +63,33 @@
         </div>
         
         <div class="row">
-            <?php echo $form->labelEx($model,'image'); ?>
-            <?php echo CHtml::activeFileField($model, 'image'); ?>
-            <?php echo $form->error($model,'image'); ?>
+            All images:
         </div>
-        <?php if(!$model->isNewRecord){ ?>
+        
+        <?php if(!$model->isNewRecord && basename($model->getMainImage()) != 'no-image.jpg') { ?>
             <div class="row">
-                <div class="four columns image photo">
-                    <?php echo CHtml::image($model->getMainImage());} ?>
-                </div>
+                    <?php
+                        $count = 0;
+                        foreach ($model->getAllImages() as $image) {
+                            $filename = basename($image);
+                            echo '<div class="two columns" align="center"'."id={$count}>";
+                            echo CHtml::image($image);
+                            echo CHtml::button('Remove', array(
+                                'class' => 'remove_btn',
+                                'file_name' => $filename,
+                                'device_id' => $model->id,
+                                'div_id' => $count
+                                )
+                            );
+                            echo '</div>';
+                            $count += 1;
+                            if ($count % 6 == 0) {
+                                echo '</div>';
+                                echo '<div class="row">';
+                            }
+                            
+                        }
+                    }?>
             </div>
         
         <div class="row buttons">
