@@ -10,10 +10,12 @@
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/style.css');
             Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/form.css');
         ?>
-        <?php             
+        <?php
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/constant_define.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/request.js');
+            
             Yii::app()->clientScript->registerCoreScript('jquery');
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
