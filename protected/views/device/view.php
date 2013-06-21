@@ -75,12 +75,23 @@
     </div></div>
 
 <div class="row">
-    <div class="medium info btn">
-        <?php echo CHtml::button('Show being considered requests', array('id' => 'being_considered_requests_button')); ?>
+    <?php if (count($device->being_considered_requests) != 0){ ?>
+    <div id="showbtn">
+    <div class="medium info btn" >
+        <?php echo CHtml::button('Show being considered requests ('.count($device->being_considered_requests).')', array('id' => 'being_considered_requests_button')); ?>
     </div>
+    </div>
+    <?php }else {  ?>
+    <div id="showbtn" hidden="hidden">
+    <div class="medium info btn" >
+        <?php echo CHtml::button('Show being considered requests ('.count($device->being_considered_requests).')', array('id' => 'being_considered_requests_button')); ?>
+    </div>
+    </div>
+    <?php } ?>
 </div>
-
-<div class="row" id ="being_considered_requests" hidden="hidden">
+<?php $user = User::model()->findByPk(Yii::app()->user->id); ?>
+<div class="row" id ="being_considered_requests" current_user="<?php echo $user->username ?>" hidden="hidden"
+     count_consider="<?php echo count($device->being_considered_requests) ?>" current_profile="<?php echo $user->profile_id ?>">
 <?php
     foreach ($device->being_considered_requests as $request) {
         echo '<div class="row">';
@@ -92,6 +103,34 @@
         }
         if ($request->request_end_time != null) {
             echo ' to '.DateAndTime::returnTime($request->request_end_time);
+        }
+        echo '. Request created at '.DateAndTime::returnTime($request->created_at);
+        echo ' '.$request->createViewLink('View more');    
+        echo '</div>';
+    }
+?>
+</div>
+
+<div class="row">
+    <?php if (count($device->finished_requests) != 0){ ?>
+    <div class="medium info btn">
+        <?php echo CHtml::button('Show finished requests('.count($device->finished_requests).')', array('id' => 'finished_requests_button') ); ?>
+    </div>
+    <?php } ?>
+</div>
+
+<div class="row" id ="finished_requests" hidden="hidden" count_finish="<?php echo count($device->finished_requests) ?>">
+<?php
+    foreach ($device->finished_requests as $request) {
+        echo '<div class="row">';
+        echo '<p>';                        
+        echo $request->user->createViewLink();
+        echo ' borrowed this device';
+        if ($request->start_time != null) {
+            echo ' from '.DateAndTime::returnTime($request->start_time);
+        }
+        if ($request->end_time != null) {
+            echo ' to '.DateAndTime::returnTime($request->end_time);
         }
         echo '. Request created at '.DateAndTime::returnTime($request->created_at);
         echo ' '.$request->createViewLink('View more');    

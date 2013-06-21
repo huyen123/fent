@@ -4,11 +4,12 @@ $(function(){
         sendLikeOrUnlikeRequest(device_id);
     });
     $('#being_considered_requests_button').click(function(){
+        var count = $('#being_considered_requests').attr('count_consider');
         if ($('#being_considered_requests').is(':hidden')) {
-            $('#being_considered_requests_button').val('Hide being considered Requests');
+            $('#being_considered_requests_button').val('Hide being considered Requests (' + count + ')');
             $('#being_considered_requests').show(window.FADING_DURATION);
         } else {
-            $('#being_considered_requests_button').val('Show being considered Requests');
+            $('#being_considered_requests_button').val('Show being considered Requests (' + count + ')');
             $('#being_considered_requests').hide(window.FADING_DURATION);
         }
     });
@@ -29,6 +30,19 @@ $(function(){
             }
         }); 
     }
+});
+
+$(function(){ 
+    $('#finished_requests_button').click(function(){
+        var count = $('#finished_requests').attr('count_finish');
+        if ($('#finished_requests').is(':hidden')) {
+            $('#finished_requests_button').val('Hide finished Requests (' + count + ')');
+            $('#finished_requests').show(window.FADING_DURATION);
+        } else {
+            $('#finished_requests_button').val('Show finished Requests (' + count + ')');
+            $('#finished_requests').hide(window.FADING_DURATION);
+        }
+    });
 });
 
 function initDatePiker() {    
@@ -58,17 +72,62 @@ function sendBorrowRequest(device_id, reason, date_from, date_to) {
             date_from: date_from,
             date_to: date_to            
         }
-    }).success(function() {               
-            afterSuccess();                    
+    }).success(function(request_id) {               
+            afterSuccess(date_from, date_to, request_id); 
         }).fail(function() {            
             afterFail();
         });
 }
 
-function afterSuccess() {
+function afterSuccess(date_from, date_to, request_id) {
     $('#modal-success').addClass('active');
     $('#reason-textarea, #from, #to').val('');   
     disableForm();
+    var count = $('#being_considered_requests').attr('count_consider');
+    count = parseInt(count);
+    count = count + 1;
+    $('#being_considered_requests').attr('count_consider', count);
+    $('#being_considered_requests_button').val('Show being considered Requests (' + count + ')');
+    $('#showbtn').show(window.FADING_DURATION);
+    var html = newRequestHtml(date_from, date_to, request_id);
+    $('#being_considered_requests').append(html);
+    
+}
+
+function newRequestHtml(date_from, date_to, request_id) {
+    var profile = $('#being_considered_requests').attr('current_profile');
+    var profile_link = createUrl('profile', profile);
+    var name = $('#being_considered_requests').attr('current_user');
+    var html = '<div class="row"><a href="' + profile_link + '">' + name + '</a> has  sent a request to borrow this device';
+    if (date_from !== null) {
+        html += ' from ' + getDateFormat(date_from);
+    }
+    if (date_to !== null) {
+        html += ' to ' + getDateFormat(date_to);
+    }
+    html += '. Request created at ' + getDateFormat(new Date());
+    var request_link = createUrl('request', request_id);
+    html += '. <a href="'+ request_link + '">View more</a></div>';
+    return html;
+}
+
+function createUrl(controller, id) {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r='; 
+    url += controller + '/view&id=' + id;
+    return url;
+}
+
+function getDateFormat(date) {
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //January is 0!
+    var yyyy = date.getFullYear();
+    if(dd < 10){
+        dd = '0' + dd;
+    } 
+    if(mm < 10){
+        mm = '0' + mm;
+    } 
+    return dd + '/' + mm + '/' + yyyy;
 }
 
 function afterFail() {    

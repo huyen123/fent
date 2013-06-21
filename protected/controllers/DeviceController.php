@@ -231,7 +231,7 @@ class DeviceController extends Controller
                 $request->status = Constant::$REQUEST_BEING_CONSIDERED;
                 $result = $request->save();
                 if ($result) {
-                    echo header('HTTP/1.1 201 Created');
+                    echo $request->id;
                 } else {
                     echo header('HTTP/1.1 424 Method Failure');
                 }
