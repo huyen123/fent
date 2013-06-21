@@ -21,10 +21,12 @@
         if ($request->status == 1){
             echo '<div class="one columns">';
             $expired = DateAndTime::getIntervalDays($request->request_end_time, $timestamp);
-            if ($expired < 0) {
-                echo -1*$expired.' days';
-            } else {
-                echo $expired.' days';
+            if ($expired !== null) {
+                if ($expired < 0) {
+                    echo -1*$expired.' days';
+                } else {
+                    echo $expired.' days';
+                }
             }
             echo '</div>';
             

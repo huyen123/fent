@@ -16,17 +16,27 @@ class HomeController extends Controller
             } else {
                 $timestamp = time();
                 $criteria = new CDbCriteria;
-                $criteria->order = 'created_at DESC';
-                $criteria->condition = 'status = 0';
-                $new_requests = Request::model()->findAll($criteria);
-
-                $criteria->order = 'end_time ASC';
-                $criteria->condition = "status = 1 AND request_end_time > {$timestamp}";
-                $unexpired_requests = Request::model()->findAll($criteria);
-
-                $criteria->order = 'end_time ASC';
-                $criteria->condition = "status = 1 AND request_end_time <= {$timestamp}";
-                $expired_requests = Request::model()->findAll($criteria);
+                $criteria->order = 'id DESC';
+                $all_requests = Request::model()->findAll($criteria);
+                $new_requests = array();
+                $unexpired_requests = array();
+                $expired_requests = array();
+                
+                foreach ($all_requests as $request) {
+                    if ($request->status == 0) {
+                        array_push($new_requests, $request);
+                    } elseif ($request->status == 1) {
+                        if ($request->request_end_time === null) {
+                            array_push($unexpired_requests, $request);
+                        } else {
+                            if (DateAndTime::getIntervalDays($request->request_end_time, $timestamp) < 0) {
+                                array_push($expired_requests, $request);
+                            } else {
+                                array_push($unexpired_requests, $request);
+                            }
+                        }
+                    }
+                }
 
                 $this->render('admin_page', 
                     array('new_requests' => $new_requests, 
