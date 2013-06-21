@@ -6,10 +6,14 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
 } elseif ($request->status == Constant::$REQUEST_REJECTED) {
     $status = 'Rejected';
 } else {
-    if ($request->request_end_time < $timestamp){
-        $status = 'Expired';
-    } else {
+    if ($request->request_end_time === null) {
         $status = 'Un-expired';
+    } else {
+        if (DateAndTime::getIntervalDays($request->request_end_time, $timestamp) < 0) {
+            $status = 'Expired';
+        } else {
+            $status = 'Un-expired';
+        }
     }
 }
 ?>
