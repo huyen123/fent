@@ -1,6 +1,5 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/jquery-ui.js'></script>  
-<script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
 <div class="row">
     <div class="row">
         <?php 

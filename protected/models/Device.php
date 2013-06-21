@@ -65,10 +65,12 @@ class Device extends ActiveRecord
             'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id'),
             'accepted_request' => array(self::HAS_ONE, 'Request', 'device_id',
                 'on' => 'accepted_request.status=1'),
+            'finished_requests' => array(self::HAS_MANY, 'Request', 'device_id',
+                'on' => 'finished_requests.status=3'),
             'being_considered_requests' => array(self::HAS_MANY, 'Request', 'device_id',
                 'on' => 'being_considered_requests.status=0'),
             'borrower' => array(self::HAS_ONE, 'User', array('user_id' => 'id'), 
-                'through' => 'accepted_request')
+                'through' => 'accepted_request'),  
         );
     }
     
@@ -135,8 +137,7 @@ class Device extends ActiveRecord
             ),
         );
     }
-    
-    
+       
      protected function afterDelete()
     {
         $requests = Request::model()->findAllByAttributes(array('device_id'=>$this->id));
@@ -145,4 +146,5 @@ class Device extends ActiveRecord
         }
         return parent::afterDelete();
     }
+    
 }
