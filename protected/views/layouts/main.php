@@ -33,10 +33,10 @@
                     </div>
                 </div>
             </div> 
-                        
-             <?php if (!Yii::app()->user->isGuest) {
-                    $this->renderPartial('/layouts/_deviceNavigation'); 
-            }?>
+            <?php if (!Yii::app()->user->isGuest) {
+                $this->renderPartial('/layouts/_deviceNavigation'); 
+            }?>       
+             
             <div id="content">
                 <?php echo $content; ?>
             </div>                        

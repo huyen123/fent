@@ -3,17 +3,21 @@
 class UserController extends Controller
 {            
     public function actionSignIn()
-    {               
-        $form = new SigninForm;        
-        if (isset($_POST['SigninForm']))
-        {            
-            $form->attributes = $_POST['SigninForm'];                        
-            if ($form->validate() && $form->login()) { 
-                Yii::app()->session['category'] = Category::model()->findAll();
-                $this->redirect(Yii::app()->user->returnUrl);
-            } 
+    {   
+        if (Yii::app()->user->getId()) {
+            $this->redirect(Yii::app()->user->returnUrl);
+        } else {
+            $form = new SigninForm;        
+            if (isset($_POST['SigninForm']))
+            {            
+                $form->attributes = $_POST['SigninForm'];                        
+                if ($form->validate() && $form->login()) {
+                    Yii::app()->session['category'] = Category::model()->findAll();
+                    $this->redirect(Yii::app()->user->returnUrl);
+                } 
+            }
+            $this->render('signin', array('form' => $form));
         }
-        $this->render('signin', array('form' => $form));
     }
     
     public function actionSignUp($email, $key)
@@ -30,7 +34,9 @@ class UserController extends Controller
                     $user = new User;
                     $user->signUp($form->username, $form->password, $form->profile_id);
                     $profile->updateKey();
-                    Yii::app()->user->setFlash('sucessful', 'Congratulation. You have signed up successfully');
+                    $signinForm = new SigninForm;
+                    $signinForm->attributes = $_POST['SignUpForm'];
+                    $signinForm->login();
                     $this->redirect(Yii::app()->homeUrl);
                 }
             } 
