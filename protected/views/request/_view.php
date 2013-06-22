@@ -25,9 +25,6 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
     <div class="two columns crop">
         <?php echo CHtml::link(CHtml::encode($request->device->name), array('device/view', 'id' => $request->device->id)); ?>
     </div>
-    <div class="two columns crop">
-        <?php echo CHtml::encode($request->reason); ?>
-    </div>
     <div class="two columns">
         <?php echo DateAndTime::returnTime($request->request_start_time); ?>
     </div>
@@ -42,7 +39,14 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
     </div>
     <div class="two columns">
         <?php           
-            echo $request->createViewLink($status);
+            echo $status;
         ?>
     </div>
+    <?php 
+        echo '<div class="two columns">';
+        echo '<span class="small pretty primary btn">';
+        echo $request->createViewLink('View more');
+        echo '</span>';
+        echo '</div>';
+    ?>
 </div>
