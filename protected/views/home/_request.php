@@ -1,6 +1,6 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
 <div class="row" id="request_<?php echo $request->id; ?>">    
-    <div class="two columns">
+    <div class="two columns crop">
         <?php if ($request) echo CHtml::link(CHtml::encode($request->user->username), array('profile/view', 'id' => $request->user->profile->id)); ?>
     </div>
     <div class="two columns crop">

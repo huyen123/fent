@@ -61,6 +61,7 @@
                         echo CHtml::button('Finish', array('class' => 'finish_request_btn', 'request_id' => $request->id));
                         echo '</span>';
                         echo '</div>';
+                        echo '</div>';
                     }
                     ?>
             </div>

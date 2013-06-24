@@ -23,6 +23,8 @@ $(function(){
             var reason = $('#reason-textarea').val();   
             var date_from = $('#from').datepicker('getDate');
             var date_to = $('#to').datepicker('getDate');        
+            alert(date_from);
+            //return;
             if (reason === '') {
                 alert('Please fill in all fields !!!'); 
             } else {                              
@@ -69,8 +71,8 @@ function sendBorrowRequest(device_id, reason, date_from, date_to) {
         data: {             
             device_id: device_id,
             reason: reason,
-            date_from: date_from,
-            date_to: date_to            
+            date_from: getDateFormat(date_from, '-'),
+            date_to: getDateFormat(date_to, '-')
         }
     }).success(function(request_id) {               
             afterSuccess(date_from, date_to, request_id); 
@@ -117,7 +119,13 @@ function createUrl(controller, id) {
     return url;
 }
 
-function getDateFormat(date) {
+function getDateFormat(date, format) {
+    if (date === null) {
+        return null;    
+    }
+    if (format === undefined) {
+        format = '/';
+    }
     var dd = date.getDate();
     var mm = date.getMonth()+1; //January is 0!
     var yyyy = date.getFullYear();
@@ -127,7 +135,7 @@ function getDateFormat(date) {
     if(mm < 10){
         mm = '0' + mm;
     } 
-    return dd + '/' + mm + '/' + yyyy;
+    return '' + dd + format + mm + format + yyyy;
 }
 
 function afterFail() {    

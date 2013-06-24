@@ -83,7 +83,7 @@
         <div class="three columns">
             <div class="field">
                 <?php echo $form->labelEx($model,'date_of_birth'); ?>
-                <?php echo $form->textField($model,'date_of_birth', array('class' => 'text input', 'placeholder' => 'DD/MM/YYYY')); ?>
+                <?php echo $form->dateField($model,'date_of_birth', array('class' => 'text input', 'value' => DateAndTime::returnTime($model->date_of_birth, 'Y-m-d'))); ?>
                 <?php echo $form->error($model,'date_of_birth'); ?>
             </div>
         </div>

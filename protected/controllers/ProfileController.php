@@ -78,6 +78,9 @@ class ProfileController extends Controller
             $timestamp = time();  //get unix timestamp
             $uploadedFile = CUploadedFile::getInstance($model,'image');
             $fileName = "{$timestamp}-{$uploadedFile}";  // timestamp + file name
+            if ($_POST['Profile']['date_of_birth'] != null) {
+                $model->date_of_birth = strtotime($_POST['Profile']['date_of_birth']);
+            }
             if($model->save()){
                 if (!empty($uploadedFile)){
                     $uploadedFile->saveAs($model->createDirectoryIfNotExists().$fileName); // image will upload to rootDirectory/images/
@@ -104,6 +107,9 @@ class ProfileController extends Controller
             $model->attributes = $_POST['Profile'];
             $uploadedFile = CUploadedFile::getInstance($model,'image');
             $filename = "{$timestamp}-{$uploadedFile}";
+            if ($_POST['Profile']['date_of_birth'] != null) {
+                $model->date_of_birth = strtotime($_POST['Profile']['date_of_birth']);
+            }
             if($model->save()){
                 if (!empty($uploadedFile)){
                     $model->removeMainImage();
