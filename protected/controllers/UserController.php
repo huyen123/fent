@@ -9,6 +9,7 @@ class UserController extends Controller
         {            
             $form->attributes = $_POST['SigninForm'];                        
             if ($form->validate() && $form->login()) { 
+                Yii::app()->session['category'] = Category::model()->findAll();
                 $this->redirect(Yii::app()->user->returnUrl);
             } 
         }
