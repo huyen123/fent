@@ -21,11 +21,11 @@
         if ($request->request_start_time > Time()) {
             echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
                 'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime($request->request_start_time),
-                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly', 'style' => 'width:100%'));
         } else {
             echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
                 'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
-                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly', 'style' => 'width:100%'));
         }
              
         ?>

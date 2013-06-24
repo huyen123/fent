@@ -28,9 +28,6 @@
             Device
         </div>
         <div class="two columns">
-            Reason
-        </div>
-        <div class="two columns">
             Request start time
         </div>
         <div class="two columns">
