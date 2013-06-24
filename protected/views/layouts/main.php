@@ -14,6 +14,7 @@
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/modernizr-2.6.2.min.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/constant_define.js');
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/get_date_format.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/request.js');
             
             Yii::app()->clientScript->registerCoreScript('jquery');

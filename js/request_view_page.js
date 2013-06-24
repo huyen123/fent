@@ -26,7 +26,7 @@ function acceptRequest(request_id, value) {
                 $('#status').html('Un-expired');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
-            $('#start_time').html(getDate());
+            $('#start_time').html(getDateFormat());
             $('#button_group').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
@@ -53,20 +53,6 @@ function rejectRequest(request_id, value) {
         });
 }
 
-function getDate() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd < 10){
-        dd = '0' + dd;
-    } 
-    if(mm<10){
-        mm='0'+mm;
-    } 
-    return dd+'/'+mm+'/'+yyyy;
-}
-
 $(function(){
     $('.finish_request_btn').click(function(){
         var request_id = $(this).attr('request_id');
@@ -87,14 +73,14 @@ function finishRequest(request_id) {
                 $('#status').html('Finished');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
-            $('#end_time').html(getDate());
+            $('#end_time').html(getDateFormat());
             $('#finish_button').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
         });
 }
             
-function initDatePiker() {    
+function initDatePiker() {
     $('.date_end').each(function(){
         var time = $(this).attr('request_start_time');
         $(this).datepicker({
@@ -117,7 +103,7 @@ function editRequest(date_end, request_id) {
         type: 'POST',
         url: url,
         data: {
-            date_end: date_end,
+            date_end: getDateFormat(date_end, '-'),
             request_id: request_id
         }
     }).success(function() {
