@@ -5,6 +5,9 @@
     width:80%;
     margin:0 auto;
 }
+.devices {
+    text-align: center;
+} 
 .label-name-short {
     width: 7em;
 }

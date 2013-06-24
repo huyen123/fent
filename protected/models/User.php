@@ -135,4 +135,5 @@ class User extends ActiveRecord
         $requests = Request::model()->findAll($criteria);
         return $requests;
     }
+    
 }

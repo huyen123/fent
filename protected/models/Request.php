@@ -117,5 +117,16 @@ class Request extends ActiveRecord
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
-    }        
-}
+    } 
+    
+    public function canBeEditted()
+    {
+        if (Yii::app()->user->isAdmin) {
+            return true;
+        }
+        if ($this->user_id == Yii::app()->user->getId() && $this->status == Constant::$REQUEST_BEING_CONSIDERED) {
+            return true;
+        }
+        return false;
+    }
+} 

@@ -8,12 +8,13 @@ $this->breadcrumbs=array(
 ?>
     
 <h3>List current borrowing devices </h3>
-<div class="row">
-    <div class="two columns"> <h5>Device</h5> </div>
-    <div class="two columns"> <h5>Start time</h5> </div>
-    <div class="three columns"> <h5>Request end time</h5> </div>
-    <div class="two columns"> <h5>Time left</h5> </div>
-    <div class="two columns"> <h5>Time expired</h5> </div>
+<div class="row devices">
+    <div class="two columns"><h6>Device</h6></div>
+    <div class="two columns"><h6>Start time</h6></div>
+    <div class="two columns"><h6>Request end time</h6></div>
+    <div class="two columns"><h6>Time left</h6></div>
+    <div class="two columns" ><h6>Time expired</h6></div>
+    <div class="two columns"><h6></h6></div>
     <HR/>
 </div>
 <?php 
