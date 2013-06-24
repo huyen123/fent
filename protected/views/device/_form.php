@@ -51,6 +51,9 @@
         <div class="row">
             <div class="field">
                 <?php
+                    if (isset($category_id)) {
+                        $model->category_id = $category_id;
+                    }
                     echo $form->labelEx($model,'category_id');
                     echo '<div class="picker">';
                     $categories = Category::model()->findAll();

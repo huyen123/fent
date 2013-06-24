@@ -23,8 +23,6 @@ $(function(){
             var reason = $('#reason-textarea').val();   
             var date_from = $('#from').datepicker('getDate');
             var date_to = $('#to').datepicker('getDate');        
-            alert(date_from);
-            //return;
             if (reason === '') {
                 alert('Please fill in all fields !!!'); 
             } else {                              
