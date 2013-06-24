@@ -69,7 +69,7 @@
             <span class="textarea"><?php echo $request->reason; ?></span>
             <br />
             <br />
-            <?php echo CHtml::label('Time user request:', null); ?><br />
+            <?php echo CHtml::label('Request time:', null); ?><br />
             <div class="five columns">
                 <?php echo CHtml::label('Start:', null); ?>
                 <?php echo DateAndTime::returnTime($request->request_start_time); ?>
@@ -78,24 +78,27 @@
                 <?php echo CHtml::label('End:', null); ?>
                 <?php
                     if ($request->status == Constant::$REQUEST_FINISH || $request->status == Constant::$REQUEST_REJECTED) {
-                        echo DateAndTime::returnTime($request->request_start_time);
+                        echo DateAndTime::returnTime($request->request_end_time);
                     } else {
-                     
-                        if ($request->request_start_time > Time()) {
-                            echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
-                                'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime($request->request_start_time),
-                                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
-                        } else {
-                            echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
-                                'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
-                                'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                        if($request->canBeEditted()){
+                            if ($request->request_start_time > Time()) {
+                                echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
+                                    'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime($request->request_start_time),
+                                    'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                            } else {
+                                echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
+                                    'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
+                                    'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                            }
+                        }else {
+                            echo DateAndTime::returnTime($request->request_end_time);
                         }
                     }
                 ?>
             </div>
             <br />
             <br />
-            <?php echo CHtml::label('Time request:', null); ?><br />
+            <?php echo CHtml::label('Borrow time:', null); ?><br />
             <div class="five columns">
                 <?php echo CHtml::label('Start:', null); ?>
                 <span id="start_time"><?php echo DateAndTime::returnTime($request->start_time); ?></span>

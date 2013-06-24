@@ -3,8 +3,8 @@
         <section class="tabs">
             <ul class="tab-nav">
                 <li class="active"><a href="#">New requests</a></li>
-                <li><a href="#">Unexpired divices</a></li>
-                <li><a href="#">Expired divices</a></li>
+                <li><a href="#">Unexpired requests</a></li>
+                <li><a href="#">Expired requests</a></li>
             </ul>
             <div class="tab-content active">
                 <div class="row">
