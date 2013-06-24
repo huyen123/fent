@@ -53,7 +53,7 @@ $this->breadcrumbs = array(
             <br />
 
             <b><?php echo CHtml::encode($model->getAttributeLabel('date_of_birth')); ?>:</b>
-            <?php echo CHtml::encode($model->date_of_birth); ?>
+            <?php echo CHtml::encode(DateAndTime::returnTime($model->date_of_birth)); ?>
             <br />
             <?php 
             if (Yii::app()->user->isAdmin){
