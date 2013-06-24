@@ -9,18 +9,19 @@
         <li>
             <?php echo CHtml::link('Devices', Yii::app()->createUrl('device/index' )); ?>
             <div class="dropdown">
-                <ul>
-                    <li><?php echo CHtml::link('Mac', Yii::app()->createUrl('/category/view', array('id' => 1))); ?></li>
-                    <li><?php echo CHtml::link('Dell', Yii::app()->createUrl('/category/view', array('id' => 2))); ?></li>
-                    <li><?php echo CHtml::link('Ipad', Yii::app()->createUrl('/category/view', array('id' => 3))); ?></li>
-                    <li><?php echo CHtml::link('Other Devices', '#' ); ?></li>
+                <ul>                    
+                    <?php 
+                        foreach (Yii::app()->session['category'] as $category) {
+                            echo "<li>{$category->createViewLink()}</li>";
+                        }
+                    ?>                    
                 </ul>
             </div>
         </li>
         <li>
             <?php 
                 if (Yii::app()->user->isAdmin){
-                    echo CHtml::link('User', Yii::app()->createUrl('profile/index' )) ; 
+                    echo CHtml::link('Users', Yii::app()->createUrl('profile/index' )) ; 
                 }
             ?>
         </li>
@@ -48,4 +49,4 @@
             <?php echo CHtml::textField(null, null, array('class'=>'search input','placeholder'=>'Search')); ?>
         </li> 
     </ul>
-</div>
+</div> 
