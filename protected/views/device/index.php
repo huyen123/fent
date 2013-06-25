@@ -9,7 +9,7 @@
 <?php
     if (Yii::app()->user->isAdmin)
     {
-        echo "<div class='medium primary btn'>";
+        echo "<div class='pretty medium primary btn'>";
         echo CHtml::button('Create', array('submit' => array('device/create')));
         echo '</div>';
     }

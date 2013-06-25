@@ -97,7 +97,7 @@
         
         <div class="row buttons">
                 <?php
-                    echo "<div class='medium primary btn'>";
+                    echo "<div class='pretty medium primary btn'>";
                     echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save');
                     echo '</div>';
                 ?>
