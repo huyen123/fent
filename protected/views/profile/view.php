@@ -67,6 +67,7 @@ $this->breadcrumbs = array(
         </div>
     </div>
     <br>
+    <?php if (isset($model->user)){ ?>
     <div class="row">
     <?php if (count($model->user->being_considered_requests) != 0){ ?>
     <div class="medium info btn">
@@ -147,4 +148,5 @@ $this->breadcrumbs = array(
         }
     ?>
     </div>
+    <?php } ?>
 </div>
