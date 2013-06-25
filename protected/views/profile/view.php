@@ -1,3 +1,5 @@
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/profile.js'></script> 
+
 <?php
 /* @var $this ProfileController */
 /* @var $model Profile */
@@ -63,5 +65,86 @@ $this->breadcrumbs = array(
             }
             ?>
         </div>
+    </div>
+    <br>
+    <div class="row">
+    <?php if (count($model->user->being_considered_requests) != 0){ ?>
+    <div class="medium info btn">
+        <?php echo CHtml::button('Show being considered requests('.count($model->user->being_considered_requests).')', array('id' => 'being_considered_requests_button') ); ?>
+    </div>
+    <?php } ?>
+    </div>
+    <div class="row" id ="being_considered_requests" hidden="hidden" count_consider="<?php echo count($model->user->being_considered_requests) ?>">
+    <?php
+        foreach ($model->user->being_considered_requests as $request) {
+            echo '<div class="row">';
+            echo '<p>';                        
+            echo $model->user->username;
+            echo ' borrowed '.$request->device->createViewLink();
+            if ($request->request_start_time != null) {
+                echo ' from '.DateAndTime::returnTime($request->request_start_time);
+            }
+            if ($request->request_end_time != null) {
+                echo ' to '.DateAndTime::returnTime($request->request_end_time);
+            }
+            echo '. Request created at '.DateAndTime::returnTime($request->created_at);
+            echo ' '.$request->createViewLink('View more');    
+            echo '</div>';
+        }
+    ?>
+    </div>
+    <br>
+    <div class="row">
+    <?php if (count($model->user->accepted_requests) != 0){ ?>
+    <div class="medium info btn">
+        <?php echo CHtml::button('Show borrowing requests('.count($model->user->accepted_requests).')', array('id' => 'accepted_requests_button') ); ?>
+    </div>
+    <?php } ?>
+    </div>
+    <div class="row" id ="accepted_request" hidden="hidden" count_accept="<?php echo count($model->user->accepted_requests) ?>">
+    <?php
+        foreach ($model->user->accepted_requests as $request) {
+            echo '<div class="row">';
+            echo '<p>';                        
+            echo $model->user->username;
+            echo ' borrowed '.$request->device->createViewLink();
+            if ($request->start_time != null) {
+                echo ' from '.DateAndTime::returnTime($request->start_time);
+            }
+            if ($request->request_end_time != null) {
+                echo ' to '.DateAndTime::returnTime($request->request_end_time);
+            }
+            echo '. Request created at '.DateAndTime::returnTime($request->created_at);
+            echo ' '.$request->createViewLink('View more');    
+            echo '</div>';
+        }
+    ?>
+    </div>
+    <br>
+    <div class="row">
+    <?php if (count($model->user->finished_requests) != 0){ ?>
+    <div class="medium info btn">
+        <?php echo CHtml::button('Show finished requests('.count($model->user->finished_requests).')', array('id' => 'finished_requests_button') ); ?>
+    </div>
+    <?php } ?>
+    </div>
+    <div class="row" id ="finished_requests" hidden="hidden" count_finish="<?php echo count($model->user->finished_requests) ?>">
+    <?php
+        foreach ($model->user->finished_requests as $request) {
+            echo '<div class="row">';
+            echo '<p>';                        
+            echo $model->user->username;
+            echo ' borrowed '.$request->device->createViewLink();
+            if ($request->start_time != null) {
+                echo ' from '.DateAndTime::returnTime($request->start_time);
+            }
+            if ($request->end_time != null) {
+                echo ' to '.DateAndTime::returnTime($request->end_time);
+            }
+            echo '. Request created at '.DateAndTime::returnTime($request->created_at);
+            echo ' '.$request->createViewLink('View more');    
+            echo '</div>';
+        }
+    ?>
     </div>
 </div>

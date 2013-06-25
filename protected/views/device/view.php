@@ -106,7 +106,7 @@
     }
 ?>
 </div>
-
+<br>
 <div class="row">
     <?php if (count($device->finished_requests) != 0){ ?>
     <div class="medium info btn">
