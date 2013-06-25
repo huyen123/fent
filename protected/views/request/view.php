@@ -69,6 +69,10 @@
             <span class="textarea"><?php echo $request->reason; ?></span>
             <br />
             <br />
+            <?php echo CHtml::label('Created at:', null); ?>
+            <span class="textarea"><?php echo DateAndTime::returnTime($request->created_at); ?></span>
+            <br />
+            <br />
             <?php echo CHtml::label('Request time:', null); ?><br />
             <div class="five columns">
                 <?php echo CHtml::label('Start:', null); ?>

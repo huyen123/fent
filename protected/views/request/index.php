@@ -39,7 +39,7 @@
         <div class="two columns">
             End time borrow
         </div>
-        <div class="two columns">
+        <div class="two columns devices">
             Status
         </div>
         <HR/>

@@ -1,18 +1,24 @@
 <?php 
 if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
     $status = 'Waiting';
+    $badge = 'primary badge';
 } elseif ($request->status == Constant::$REQUEST_FINISH) {
     $status = 'Finished';
+    $badge = 'warning badge';
 } elseif ($request->status == Constant::$REQUEST_REJECTED) {
     $status = 'Rejected';
+    $badge = 'info badge';
 } else {
     if ($request->request_end_time === null) {
         $status = 'Un-expired';
+        $badge = 'success badge';
     } else {
         if (DateAndTime::getIntervalDays($request->request_end_time, $timestamp) < 0) {
             $status = 'Expired';
+            $badge = 'danger badge';
         } else {
             $status = 'Un-expired';
+            $badge = 'success badge';
         }
     }
 }
@@ -37,7 +43,7 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
     <div class="two columns">
         <?php echo DateAndTime::returnTime($request->end_time); ?>
     </div>
-    <div class="two columns">
+    <div class="two columns <?php echo $badge; ?>">
         <?php           
             echo $status;
         ?>

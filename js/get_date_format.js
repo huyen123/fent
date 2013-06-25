@@ -4,7 +4,7 @@
  */
 
 function getDateFormat(date, format) {
-    if (date === null) {
+    if (date === undefined) {
         return null;    
     }
     if (format === undefined) {
