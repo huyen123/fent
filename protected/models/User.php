@@ -63,6 +63,12 @@ class User extends ActiveRecord
         return array(
             'profile' => array(self::BELONGS_TO, 'Profile', 'profile_id'),
             'requests' => array(self::HAS_MANY, 'Request', 'user_id'),
+            'accepted_requests' => array(self::HAS_MANY, 'Request', 'user_id',
+                'on' => 'accepted_requests.status=1'),
+            'finished_requests' => array(self::HAS_MANY, 'Request', 'user_id',
+                'on' => 'finished_requests.status=3'),
+            'being_considered_requests' => array(self::HAS_MANY, 'Request', 'user_id',
+                'on' => 'being_considered_requests.status=0'),
             'favorites' => array(self::HAS_MANY, 'Favorite', 'user_id'),
             'favorite_devices' => array(self::HAS_MANY, 'Device', array('device_id' => 'id'), 'through' => 'favorites')
         );

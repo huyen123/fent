@@ -207,4 +207,5 @@ class Profile extends ActiveRecord
         $result = MailSender::sendMail($this->email, 'Reset Password', $link);
         return $result;
     }
+   
 }
