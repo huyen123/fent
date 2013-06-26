@@ -1,5 +1,8 @@
-<script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
-<div class="row" id="request_<?php echo $request->id; ?>">    
+<div class="row" id="request_<?php echo $request->id; ?>"
+     profile_id="<?php echo $request->user->profile->id; ?>"
+     device_id="<?php echo $request->device->id; ?>"
+     username="<?php echo $request->user->username; ?>"
+     device_name="<?php echo $request->device->name; ?>">    
     <div class="two columns crop">
         <?php if ($request) echo CHtml::link(CHtml::encode($request->user->username), array('profile/view', 'id' => $request->user->profile->id)); ?>
     </div>
@@ -45,7 +48,7 @@
             
             echo '<div class="two columns">';
             echo '<span class="small pretty primary btn">';
-            echo CHtml::button('View more', array('submit' => Yii::app()->createUrl('request/view', array('id' => $request->id))));
+            echo $request->createViewLink("View more");
             echo '</span>';
             echo '</div>';
             
@@ -57,7 +60,7 @@
         } else {
             echo '<div class="two columns">';
             echo '<span class="small pretty primary btn">';
-            echo CHtml::button('View more', array('submit' => Yii::app()->createUrl('request/view', array('id' => $request->id))));
+            echo $request->createViewLink("View more");
             echo '</span>';
             echo '</div>';
             
