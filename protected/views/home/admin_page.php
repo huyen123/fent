@@ -1,3 +1,4 @@
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/request_view_page.js'></script>
 <div class="row">
     <div class="twelve columns">
         <section class="tabs">
@@ -19,7 +20,7 @@
                     }
                 ?>
             </div>
-            <div class="tab-content">
+            <div class="tab-content" id="unexpired_requests">
                 <div class="row">
                     <div class="two columns"> <h4>User</h4> </div>
                     <div class="two columns"> <h4>Device</h4> </div>

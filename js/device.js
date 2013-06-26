@@ -48,7 +48,6 @@ $(function(){
 function initDatePiker() {    
     var dateToday = new Date();
     var dates = $("#from, #to").datepicker({
-        defaultDate: "+1w",
         dateFormat: 'dd/mm/yy',
         changeMonth: true,        
         minDate: dateToday,

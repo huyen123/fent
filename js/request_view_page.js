@@ -26,7 +26,7 @@ function acceptRequest(request_id, value) {
                 $('#status').html('Un-expired');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
-            $('#start_time').html(getDateFormat());
+            $('#start_time').html(getDateFormat(new Date()));
             $('#button_group').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
@@ -73,28 +73,37 @@ function finishRequest(request_id) {
                 $('#status').html('Finished');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
-            $('#end_time').html(getDateFormat());
+            $('#end_time').html(getDateFormat(new Date()));
             $('#finish_button').hide(window.FADING_DURATION);
         }).fail(function() {            
             alert('Fail !');
         });
 }
-            
-function initDatePiker() {
-    $('.date_end').each(function(){
-        var time = $(this).attr('request_start_time');
-        $(this).datepicker({
-            defaultDate: "+1w",
+
+function subDatePiker(input){
+        var time = input.attr('request_start_time');
+        input.datepicker({
             dateFormat: 'dd/mm/yy',
-            changeMonth: true,        
+            changeMonth: true,
             minDate: time,
             onSelect: function() {
-                var date_end = $(this).datepicker('getDate');
-                var request_id = $(this).attr('request_id');
+                var date_end = input.datepicker('getDate');
+                var request_id = input.attr('request_id');
                 editRequest(date_end, request_id);
             }
         });
-    });
+    }
+
+function initDatePiker(id) {
+    if (id === undefined) {
+        $('.date_end').each(function(){
+            subDatePiker($(this));
+        });
+    } else {
+        $('#date_end_' + id).each(function(){
+            subDatePiker($(this));
+        });
+    }
 }
 
 function editRequest(date_end, request_id) {
