@@ -37,6 +37,7 @@ class UserController extends Controller
                     $signinForm = new SigninForm;
                     $signinForm->attributes = $_POST['SignUpForm'];
                     $signinForm->login();
+                    Yii::app()->session['category'] = Category::model()->findAll();
                     $this->redirect(Yii::app()->homeUrl);
                 }
             } 
