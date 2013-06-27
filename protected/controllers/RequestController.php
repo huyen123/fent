@@ -28,11 +28,42 @@ class RequestController extends Controller {
     );
     }
     
-    public function actionIndex() {
+    public function actionIndex($status = null, $type_search = null, $from = null, $to = null, $no_time_given = null) {
         $criteria = new CDbCriteria();
+        $params = array();
+        $time_setted = false;
+        if ($status != null && $status != 'All') {
+            $criteria->addCondition('status=:status', 'AND');
+            $params[':status'] = $status;
+        }
+        if ($type_search == null) {
+            $no_time_given = true;
+        } else  {
+            $array_type_search = array('request_end_time', 'request_start_time', 'end_time', 'start_time');
+            if (in_array($type_search, $array_type_search)) {
+                if ($from != null) {
+                    $from_time = strtotime(str_replace('/', '-', $from));
+                    $criteria->addCondition("{$type_search}>=:from", 'AND');
+                    $params[':from'] = $from_time;
+                    $time_setted = true;
+                }
+                if ($to != null) {
+                    $to_time = strtotime(str_replace('/', '-', $to));
+                    $criteria->addCondition("{$type_search}<=:to", 'AND');
+                    $params[':to'] = $to_time;
+                    $time_setted = true;
+                }
+                if ($no_time_given && $time_setted) {
+                    $criteria->addCondition("{$type_search} IS NULL", 'OR');
+                } else {
+                    $criteria->addCondition("{$type_search} IS NOT NULL", 'AND');
+                }
+            }
+        }
+        $criteria->params = $params;                  
         $count = Request::model()->count($criteria);
         $pages = new CPagination($count);
-        $pages->pageSize=10;
+        $pages->pageSize = 10;
         $pages->applyLimit($criteria);
         if (Yii::app()->user->isAdmin){
             $requests = Request::model()->findAll($criteria);
@@ -41,9 +72,14 @@ class RequestController extends Controller {
             $user = User::model()->findByPk(Yii::app()->user->getId());
             $requests = $user->requests;
         }
-            $this->render('index',array(
-                'requests' => $requests,
-                'pages' => $pages,
+        $this->render('index',array(
+            'requests' => $requests,
+            'pages' => $pages,
+            'status' => $status,
+            'type_search' => $type_search,
+            'from' => $from,
+            'to' => $to,
+            'no_time_given' => $no_time_given,
         ));
     }
     
