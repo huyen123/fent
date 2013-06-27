@@ -15,7 +15,7 @@ $(function(){
 });
 
 function rejectRequestAtHomepage(request_id, value) {
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/rejectOrAccept';                
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/rejectOrAccept';
     $.ajax({
         type: 'POST',
         url: url,

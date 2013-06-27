@@ -46,7 +46,7 @@
         </li>
         <li><?php echo CHtml::link('Logout', array('user/signout')); ?></li>
         <li class='field'>
-            <?php echo CHtml::textField(null, null, array('class'=>'search input','placeholder'=>'Search')); ?>
+            <?php echo CHtml::textField(null, null, array('class'=>'search input','placeholder'=>'Search', 'id' => 'search')); ?>
         </li> 
     </ul>
 </div> 
