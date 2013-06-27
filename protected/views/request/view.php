@@ -22,32 +22,39 @@
         </div>
         <div class="six columns" style="word-wrap: break-word;">
             <div class="row">       
-            <?php 
-                if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
-                    $status = 'Waiting';
-                    $badge = 'primary badge';
-                } elseif ($request->status == Constant::$REQUEST_FINISH) {
-                    $status = 'Finished';
-                    $badge = 'warning badge';
-                } elseif ($request->status == Constant::$REQUEST_REJECTED) {
-                    $status = 'Rejected';
-                    $badge = 'info badge';
-                } else {
-                    $timestamp = time();
-                    if ($request->request_end_time < $timestamp){
-                        $status = 'Expired';
-                        $badge = 'danger badge';
-                    } else {
-                        $status = 'Un-expired';
-                        $badge = 'success badge';
+                <?php
+                    switch ($request->status) {
+                    case Constant::$REQUEST_BEING_CONSIDERED:
+                        $status = 'Waiting';
+                        $badge = 'primary badge';
+                        break;
+                    case Constant::$REQUEST_FINISH:
+                        $status = 'Finished';
+                        $badge = 'warning badge';
+                        break;
+                    case Constant::$REQUEST_REJECTED:
+                        $status = 'Rejected';
+                        $badge = 'info badge';
+                        break;
+                    case Constant::$REQUEST_ACCEPTED:
+                        $timestamp = time();
+                        if ($request->request_end_time < $timestamp){
+                            $status = 'Expired';
+                            $badge = 'danger badge';
+                        } else {
+                            $status = 'Un-expired';
+                            $badge = 'success badge';
+                        }
+                        break;
                     }
-                }
-            ?>
-                <?php echo CHtml::label('Status:', null); ?>
-                <div class="<?php echo $badge; ?>">
-                    <?php           
-                        echo '<span id="status">'.$status.'</span>';
-                    ?>
+                ?>
+                <div id="status">
+                    <?php echo CHtml::label('Status:', null); ?>
+                    <div class="<?php echo $badge; ?>">
+                        <?php           
+                            echo $status;
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="row">

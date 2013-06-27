@@ -23,7 +23,7 @@ function acceptRequest(request_id, value) {
         }
     }).success(function() {     
             $('#status').fadeOut(window.FADING_DURATION, function(){
-                $('#status').html('Un-expired');
+                $('#status').html('Status:<div class="success badge"> Un-expired</div>');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
             $('#start_time').html(getDateFormat(new Date()));
@@ -44,7 +44,7 @@ function rejectRequest(request_id, value) {
         }
     }).success(function() { 
             $('#status').fadeOut(window.FADING_DURATION, function(){
-                $('#status').html('Rejected');
+                $('#status').html('Status:<div class="info badge">Rejected</div>');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
             $('#button_group').hide(window.FADING_DURATION);
@@ -70,7 +70,7 @@ function finishRequest(request_id) {
         }
     }).success(function() {               
             $('#status').fadeOut(window.FADING_DURATION, function(){
-                $('#status').html('Finished');
+                $('#status').html('Status:<div class="warning badge">Finished</div>');
                 $('#status').fadeIn(window.FADING_DURATION);
             });
             $('#end_time').html(getDateFormat(new Date()));
