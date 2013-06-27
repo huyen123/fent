@@ -38,7 +38,7 @@
                         break;
                     case Constant::$REQUEST_ACCEPTED:
                         $timestamp = time();
-                        if ($request->request_end_time < $timestamp){
+                        if (DateAndTime::getIntervalDays($request->request_end_time, $timestamp) < 0){
                             $status = 'Expired';
                             $badge = 'danger badge';
                         } else {

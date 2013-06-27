@@ -113,7 +113,7 @@ $this->breadcrumbs = array(
                 echo ' from '.DateAndTime::returnTime($request->start_time);
             }
             if ($request->request_end_time != null) {
-                echo ' expected end time '.DateAndTime::returnTime($request->request_end_time);
+                echo '. Expected end time '.DateAndTime::returnTime($request->request_end_time);
             }
             echo '. Request created at '.DateAndTime::returnTime($request->created_at);
             echo ' '.$request->createViewLink(' View more');    
