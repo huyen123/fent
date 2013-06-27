@@ -11,7 +11,7 @@ $this->breadcrumbs = array(
 ?>
 
 <div class="row">
-    <h2>View Profile #<?php echo $model->id; ?></h2>
+    <h2><?php echo CHtml::encode($model->employee_code); ?></h2>
     </br>
     <div class="row">
         <div class="four columns image photo">
@@ -71,7 +71,7 @@ $this->breadcrumbs = array(
     <div class="row">
     <?php if (count($model->user->being_considered_requests) != 0){ ?>
     <div class="medium info btn">
-        <?php echo CHtml::button('Show being considered requests('.count($model->user->being_considered_requests).')', array('id' => 'being_considered_requests_button') ); ?>
+        <?php echo CHtml::button('Show being considered requests ('.count($model->user->being_considered_requests).')', array('id' => 'being_considered_requests_button') ); ?>
     </div>
     <?php } ?>
     </div>
@@ -81,15 +81,15 @@ $this->breadcrumbs = array(
             echo '<div class="row">';
             echo '<p>';                        
             echo $model->user->username;
-            echo ' borrowed '.$request->device->createViewLink();
+            echo ' want to borrow '.$request->device->createViewLink();
             if ($request->request_start_time != null) {
                 echo ' from '.DateAndTime::returnTime($request->request_start_time);
             }
             if ($request->request_end_time != null) {
-                echo ' to '.DateAndTime::returnTime($request->request_end_time);
+                echo ' to  '.DateAndTime::returnTime($request->request_end_time);
             }
             echo '. Request created at '.DateAndTime::returnTime($request->created_at);
-            echo ' '.$request->createViewLink('View more');    
+            echo ' '.$request->createViewLink(' View more');    
             echo '</div>';
         }
     ?>
@@ -98,7 +98,7 @@ $this->breadcrumbs = array(
     <div class="row">
     <?php if (count($model->user->accepted_requests) != 0){ ?>
     <div class="medium info btn">
-        <?php echo CHtml::button('Show borrowing requests('.count($model->user->accepted_requests).')', array('id' => 'accepted_requests_button') ); ?>
+        <?php echo CHtml::button('Show borrowing ('.count($model->user->accepted_requests).')', array('id' => 'accepted_requests_button') ); ?>
     </div>
     <?php } ?>
     </div>
@@ -108,15 +108,15 @@ $this->breadcrumbs = array(
             echo '<div class="row">';
             echo '<p>';                        
             echo $model->user->username;
-            echo ' borrowed '.$request->device->createViewLink();
+            echo ' is borrowing '.$request->device->createViewLink();
             if ($request->start_time != null) {
                 echo ' from '.DateAndTime::returnTime($request->start_time);
             }
             if ($request->request_end_time != null) {
-                echo ' to '.DateAndTime::returnTime($request->request_end_time);
+                echo ' expected end time '.DateAndTime::returnTime($request->request_end_time);
             }
             echo '. Request created at '.DateAndTime::returnTime($request->created_at);
-            echo ' '.$request->createViewLink('View more');    
+            echo ' '.$request->createViewLink(' View more');    
             echo '</div>';
         }
     ?>
@@ -125,7 +125,7 @@ $this->breadcrumbs = array(
     <div class="row">
     <?php if (count($model->user->finished_requests) != 0){ ?>
     <div class="medium info btn">
-        <?php echo CHtml::button('Show finished requests('.count($model->user->finished_requests).')', array('id' => 'finished_requests_button') ); ?>
+        <?php echo CHtml::button('Show borrowed ('.count($model->user->finished_requests).')', array('id' => 'finished_requests_button') ); ?>
     </div>
     <?php } ?>
     </div>
@@ -143,7 +143,7 @@ $this->breadcrumbs = array(
                 echo ' to '.DateAndTime::returnTime($request->end_time);
             }
             echo '. Request created at '.DateAndTime::returnTime($request->created_at);
-            echo ' '.$request->createViewLink('View more');    
+            echo ' '.$request->createViewLink(' View more');    
             echo '</div>';
         }
     ?>

@@ -110,7 +110,7 @@
 <div class="row">
     <?php if (count($device->finished_requests) != 0){ ?>
     <div class="medium info btn">
-        <?php echo CHtml::button('Show finished requests('.count($device->finished_requests).')', array('id' => 'finished_requests_button') ); ?>
+        <?php echo CHtml::button('Show finished requests ('.count($device->finished_requests).')', array('id' => 'finished_requests_button') ); ?>
     </div>
     <?php } ?>
 </div>

@@ -21,25 +21,35 @@
             ?>
         </div>
         <div class="six columns" style="word-wrap: break-word;">
-            <div class="row">
-            <?php echo CHtml::label('Status:', null); ?>
+            <div class="row">       
             <?php 
                 if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
                     $status = 'Waiting';
+                    $badge = 'primary badge';
                 } elseif ($request->status == Constant::$REQUEST_FINISH) {
                     $status = 'Finished';
+                    $badge = 'warning badge';
                 } elseif ($request->status == Constant::$REQUEST_REJECTED) {
                     $status = 'Rejected';
+                    $badge = 'info badge';
                 } else {
                     $timestamp = time();
                     if ($request->request_end_time < $timestamp){
                         $status = 'Expired';
+                        $badge = 'danger badge';
                     } else {
                         $status = 'Un-expired';
+                        $badge = 'success badge';
                     }
                 }
-                echo '<span id="status">'.$status.'</span>';
-                ?></div>
+            ?>
+                <?php echo CHtml::label('Status:', null); ?>
+                <div class="<?php echo $badge; ?>">
+                    <?php           
+                        echo '<span id="status">'.$status.'</span>';
+                    ?>
+                </div>
+            </div>
             <div class="row">
                 <?php if (Yii::app()->user->isAdmin && $status == 'Waiting'){
                         echo '<div class="row" id="button_group">';

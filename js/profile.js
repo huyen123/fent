@@ -17,10 +17,10 @@ $(function(){
         var $accepted_request = $('#accepted_request');
         var count = $accepted_request.attr('count_accept');
         if ($accepted_request.is(':hidden')) {
-            $('#accepted_requests_button').val('Hide accepted Requests (' + count + ')');
+            $('#accepted_requests_button').val('Hide borrowing (' + count + ')');
             $accepted_request.show(window.FADING_DURATION);
         } else {
-            $('#accepted_requests_button').val('Show accepted Requests (' + count + ')');
+            $('#accepted_requests_button').val('Show borrowing (' + count + ')');
             $accepted_request.hide(window.FADING_DURATION);
         }
     });
@@ -31,10 +31,10 @@ $(function(){
         var $finished_requests = $('#finished_requests');
         var count = $finished_requests.attr('count_finish');
         if ($finished_requests.is(':hidden')) {
-            $('#finished_requests_button').val('Hide finished Requests (' + count + ')');
+            $('#finished_requests_button').val('Hide borrowed (' + count + ')');
             $finished_requests.show(window.FADING_DURATION);
         } else {
-            $('#finished_requests_button').val('Show finished Requests (' + count + ')');
+            $('#finished_requests_button').val('Show borrowed (' + count + ')');
             $finished_requests.hide(window.FADING_DURATION);           
         }
     });
