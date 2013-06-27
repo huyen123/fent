@@ -19,7 +19,7 @@
                 } else {
                     $status = 'Unavalable';
                 }
-                echo $status;
+                echo 'Status: '.$status;
                 ?>              
             </p>
             <?php                                                 
