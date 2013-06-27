@@ -13,7 +13,15 @@
             ?>
         </div>
         <div class="four columns">
-            <p><?php echo 'Status: '.$device->status; ?></p>
+            <p>
+                <?php if ($device->status == Constant::$DEVICE_NORMAL){
+                    $status = 'Normal';
+                } else {
+                    $status = 'Unavalable';
+                }
+                echo $status;
+                ?>              
+            </p>
             <?php                                                 
                 $request = $device->accepted_request;
                 if ($request != null) {

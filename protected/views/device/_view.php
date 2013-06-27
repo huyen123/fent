@@ -20,7 +20,14 @@
         <?php echo CHtml::encode($data->serial); ?></p>
 
         <p><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:
-        <?php echo CHtml::encode($data->status); ?></p>
+        <?php 
+            if ($data->status == Constant::$DEVICE_NORMAL){
+                $status = 'Normal';
+            } else {
+                $status = 'Unavalable';
+            }
+            echo $status;
+        ?></p>
 
         <?php                                                 
             $borrower = $data->borrower;
