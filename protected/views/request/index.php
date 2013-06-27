@@ -1,24 +1,74 @@
-<script src='<?php echo Yii::app()->baseUrl; ?>/js/request_list.js'></script>  
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/request_list.js'></script> 
 
 <div class="row">
     <h2>All requests</h2>
 </div>
-<div class="row">
-  <ul class="ten columns">
-    <li class="field">
-      <div class="picker">
-        <select id="request_type_selecter">
-          <option value="All">All Requests</option>
-          <option value="Waiting">Being Considered Requests</option>
-          <option value="Un-expired">Un-expired Requests</option>
-          <option value="Expired">Expired Requests</option>
-          <option value="Finished">Finished Requests</option>
-          <option value="Rejected">Rejected Requests</option>
-        </select>
-      </div>
-    </li>
-  </ul>
-</div>
+<?php echo CHtml::beginForm(array('request/index'), 'get'); ?>
+    <div class="row">
+        <ul class="four columns">
+            <li class="field">
+                <div class="xxwide picker">
+                    <?php
+                        echo CHtml::dropDownList('status', $status, array(
+                            'All' => 'All Requests',
+                            '0' => 'Being Considered Requests',
+                            '1' => 'Un-expired Requests',
+                            '6' => 'Expired Requests',
+                            '3' => 'Finished Requests',
+                            '2' => 'Rejected Requests'
+                            ));
+                    ?>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <ul class="four columns">
+            <li class="field">
+                <div class="xxwide picker">
+                    <?php
+                        echo CHtml::dropDownList('type_search', $type_search, array(
+                            'not_setted' => 'Not setted',
+                            'request_end_time' => 'Request end time',
+                            'request_start_time' => 'Request start time',
+                            'end_time' => 'Borrow end time',
+                            'start_time' => 'Borrow start time'
+                            ));
+                    ?>
+                </div>
+            </li>
+        </ul>
+        <div class="field three columns"> 
+            <div class="field">
+            <?php echo CHtml::textField('from', null, array('id' => 'from', 'placeholder' => 'From',
+                'readonly' => 'readonly', 'date' => $from, 'class' => 'text input')); ?></div>        
+        </div>
+
+        <div class="field three columns"> 
+            <?php echo CHtml::textField('to', null, array('id' => 'to', 
+                'placeholder' => 'To', 'readonly' => 'readonly', 'date' => $to, 'class' => 'text input')); ?>        
+        </div>
+    </div>
+    <div class="row">
+        <div class="four columns">
+            <?php
+                echo CHtml::checkBox('no_time_given', $no_time_given, array('checked' => 'checked'));
+            ?>
+            <span></span> Display no time given
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium primary pretty btn two columns">
+            <?php echo CHtml::submitButton('Search', array('id' => 'search-button1'));?>
+        </div>
+        <div class="medium danger pretty btn two columns">
+            <?php echo CHtml::Button('Reset', array('id' => 'reset_button'));?>
+        </div>
+    </div>
+
+<?php echo CHtml::endForm(); ?>
+
 <section class="sixteen colgrid">
     <div class="row">
         <div class="two columns">
