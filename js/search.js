@@ -16,6 +16,6 @@ $(function() {
 
 function searchResults(key_word) {
     var url = window.location.protocol + '//' + window.location.host + window.location.pathname +
-            '?r=search/results&key_word=' + key_word;
+            '?r=search&key_word=' + key_word;
     window.location = url;
 }
