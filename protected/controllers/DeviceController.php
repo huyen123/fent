@@ -214,9 +214,9 @@ class DeviceController extends Controller
         if (!Yii::app()->request->isAjaxRequest) {
             $this->render('/site/error', array('code' => 403, 'message' => 'Forbidden'));            
             Yii::app()->end();
-        }        
+        }
         if (isset($_POST['device_id']))
-        {   
+        {
             $existed = Validator::checkRequestExistence(Yii::app()->user->getId(), $_POST['device_id']);
             if (!$existed) {                            
                 $request = new Request;
