@@ -14,6 +14,17 @@
             echo CHtml::button('Create', array('submit' => array('device/create', 'category_id' => $id)));
             echo '</div>';
         }
+        if ($display) {
+            echo "<div class='medium primary btn'>";
+            echo CHtml::link('Show all device', Yii::app()->createUrl('category/view',
+                array('id' => $id)));
+            echo '</div>';
+        } else {
+            echo "<div class='medium primary btn'>";
+            echo CHtml::link('Filter device free', Yii::app()->createUrl('category/view',
+                array('id' => $id, 'display' => 'device_free')));
+            echo '</div>';
+        }
     ?>
     <?php $this->renderPartial('/device/_list_device', array('devices' => $devices, 'columns' => $columns)); ?>
     <?php $this->widget('CLinkPager', array(

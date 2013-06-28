@@ -164,18 +164,26 @@ class DeviceController extends Controller
     /**
      * Lists all models.
      */
-    public function actionIndex()
+    public function actionIndex($display = null)
     {
         $criteria = new CDbCriteria();
+        if (isset($_GET['display'])) {
+            $display = $_GET['display'];
+            $criteria->addCondition('status=:status');
+            $criteria->addCondition('id not in (select device_id from request where status = :accepted)');
+            $criteria->params = array(':status' => Constant::$DEVICE_NORMAL, ':accepted' => Constant::$REQUEST_ACCEPTED);
+        }
         $count = Device::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->pageSize = 12;
         $pages->applyLimit($criteria);
         $devices = Device::model()->findAll($criteria);
+        
         $this->render('index', array(
             'devices' => $devices,
             'pages' => $pages,
             'columns' => 2,
+            'display' => $display
         ));
     }
 
