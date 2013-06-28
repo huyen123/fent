@@ -25,7 +25,7 @@
         ?>
     </div>
     <div class="two columns"><?php 
-        echo '<span class="small pretty primary btn">';
+        echo '<span class="small primary btn">';
         echo $request->createViewLink('View request');
         echo '</span>';
         ?>

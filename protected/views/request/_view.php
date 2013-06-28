@@ -50,7 +50,7 @@ if ($request->status == Constant::$REQUEST_BEING_CONSIDERED){
     </div>
     <?php 
         echo '<div class="two columns">';
-        echo '<span class="small pretty primary btn">';
+        echo '<span class="small primary btn">';
         echo $request->createViewLink('View more');
         echo '</span>';
         echo '</div>';

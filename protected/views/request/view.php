@@ -61,12 +61,12 @@
                 <?php if (Yii::app()->user->isAdmin && $status == 'Waiting'){
                         echo '<div class="row" id="button_group">';
                         echo '<div class="two columns">';
-                        echo '<span class="small pretty success btn">';
+                        echo '<span class="small success btn">';
                         echo CHtml::button('Accept', array('class' => 'accept_request_btn', 'request_id' => $request->id));
                         echo '</span>';
                         echo '</div>';
                         echo '<div class="two columns">';
-                        echo '<span class="small pretty danger btn">';
+                        echo '<span class="small danger btn">';
                         echo CHtml::button('Reject', array('class' => 'reject_request_btn', 'request_id' => $request->id));
                         echo '</span>';
                         echo '</div>';
@@ -74,7 +74,7 @@
                     } elseif (Yii::app()->user->isAdmin && $request->status == Constant::$REQUEST_ACCEPTED) {
                         echo '<div class="row" id="finish_button">';
                         echo '<div class="two columns">';
-                        echo '<span class="small pretty warning btn">';
+                        echo '<span class="small warning btn">';
                         echo CHtml::button('Finish', array('class' => 'finish_request_btn', 'request_id' => $request->id));
                         echo '</span>';
                         echo '</div>';

@@ -47,31 +47,31 @@
             echo '</div>';
             
             echo '<div class="two columns">';
-            echo '<span class="small pretty primary btn">';
+            echo '<span class="small primary btn">';
             echo $request->createViewLink("View more");
             echo '</span>';
             echo '</div>';
             
             echo '<div class="one columns">';
-            echo '<span class="small pretty warning btn">';
+            echo '<span class="small warning btn">';
             echo CHtml::button('Finish', array('class' => 'finish_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
         } else {
             echo '<div class="two columns">';
-            echo '<span class="small pretty primary btn">';
+            echo '<span class="small primary btn">';
             echo $request->createViewLink("View more");
             echo '</span>';
             echo '</div>';
             
             echo '<div class="one columns">';
-            echo '<span class="small pretty success btn">';
+            echo '<span class="small success btn">';
             echo CHtml::button('Accept', array('class' => 'accept_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
             
             echo '<div class="one columns">';
-            echo '<span class="small pretty danger btn">';
+            echo '<span class="small danger btn">';
             echo CHtml::button('Reject', array('class' => 'reject_request', 'request_id' => $request->id));
             echo '</span>';
             echo '</div>';
