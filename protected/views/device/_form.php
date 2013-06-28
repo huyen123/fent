@@ -66,7 +66,7 @@
             <div class="field">
                 <?php echo $form->labelEx($model,'status'); ?>
                 <?php echo '<div class="picker">'; ?>
-                <?php echo CHtml::activeDropDownList($model,'status',array(Constant::$DEVICE_NORMAL => 'Normal', Constant::$DEVICE_UNAVALABLE => 'Unavalable')); ?>
+                <?php echo CHtml::activeDropDownList($model,'status',array(Constant::$DEVICE_NORMAL => 'Avalable', Constant::$DEVICE_UNAVALABLE => 'Unavalable')); ?>
                 <?php echo '</div>'; ?>
                 <?php echo $form->error($model,'status'); ?>
             </div>

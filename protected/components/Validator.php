@@ -15,7 +15,7 @@ class Validator
     
     public static function checkDeviceAvailable($device_id) {
         $device = Device::model()->findByPk($device_id);        
-        return (!$device->accepted_request && $device->status !== Constant::$DEVICE_UNAVALABLE);
+        return (!$device->accepted_request && $device->status != Constant::$DEVICE_UNAVALABLE);
     }
 }
 ?>
