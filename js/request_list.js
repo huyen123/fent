@@ -1,10 +1,16 @@
 $(function(){
+    $('#show_search').click(function(){
+        if ($('#form_search').is(':hidden')) {
+            $('#form_search').show(window.FADING_DURATION);
+        } else {
+            $('#form_search').hide(window.FADING_DURATION);
+        }
+    });
     initDatePiker();
     if ($('#type_search').val() === 'not_setted') {
         $("#from, #to").prop('disabled', true);
         $("#no_time_given").prop('disabled', true);
     }
-    
     $('#type_search').change(function(){
         var type_search = $(this).val();
         if (type_search !== 'not_setted') {
@@ -15,14 +21,12 @@ $(function(){
             $("#no_time_given").prop('disabled', true);
         }
     });
-
     $('#reset_button').click(function(){
         $('#status').val('All');
         $('#type_search').val('not_setted');
         $('#from').val('');
         $('#to').val('');    
         $("#no_time_given").prop('checked', true);
-
     });
 });
 

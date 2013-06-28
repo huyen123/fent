@@ -22,7 +22,6 @@ class RequestController extends Controller {
     return array(
         array('allow', // allow admin user to perform 'index' actions
             'controllers' => array('request', 'rejectOrAccept'),
-            'actions' => array('index'),
             'expression' => '$user->isAdmin'
         ),
     );
@@ -31,7 +30,12 @@ class RequestController extends Controller {
     public function actionIndex($status = null, $type_search = null, $from = null, $to = null, $no_time_given = null) {
         $criteria = new CDbCriteria();
         $params = array();
-        $time_setted = false;
+        $time_set = false;
+        if (!Yii::app()->user->isAdmin){
+            $criteria->addCondition('user_id = :user_id');
+            $params[':user_id'] = Yii::app()->user->getId();
+        }
+        
         if ($status != null && $status != 'All') {
             $criteria->addCondition('status=:status', 'AND');
             $params[':status'] = $status;
@@ -45,15 +49,15 @@ class RequestController extends Controller {
                     $from_time = strtotime(str_replace('/', '-', $from));
                     $criteria->addCondition("{$type_search}>=:from", 'AND');
                     $params[':from'] = $from_time;
-                    $time_setted = true;
+                    $time_set = true;
                 }
                 if ($to != null) {
                     $to_time = strtotime(str_replace('/', '-', $to));
                     $criteria->addCondition("{$type_search}<=:to", 'AND');
                     $params[':to'] = $to_time;
-                    $time_setted = true;
+                    $time_set = true;
                 }
-                if ($no_time_given && $time_setted) {
+                if ($no_time_given && $time_set) {
                     $criteria->addCondition("{$type_search} IS NULL", 'OR');
                 } else {
                     $criteria->addCondition("{$type_search} IS NOT NULL", 'AND');
@@ -65,13 +69,8 @@ class RequestController extends Controller {
         $pages = new CPagination($count);
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        if (Yii::app()->user->isAdmin){
-            $requests = Request::model()->findAll($criteria);
-        }
-        else{
-            $user = User::model()->findByPk(Yii::app()->user->getId());
-            $requests = $user->requests;
-        }
+        $requests = Request::model()->findAll($criteria);
+        
         $this->render('index',array(
             'requests' => $requests,
             'pages' => $pages,
