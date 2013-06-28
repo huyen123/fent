@@ -45,7 +45,7 @@ $this->pageTitle=Yii::app()->name;
           </div>
           <div class="row"><?php echo CHtml::link('Forget your password ?', array('user/forgetPassword')); ?></div>
           <div style="height:40px"></div>
-          <div class="pretty medium primary btn centered three columns"><?php echo CHtml::submitButton('Sign in');?></div>
+          <div class="medium primary btn centered three columns"><?php echo CHtml::submitButton('Sign in');?></div>
       </form>
     </div>
   </div>

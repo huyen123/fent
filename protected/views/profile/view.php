@@ -59,7 +59,7 @@ $this->breadcrumbs = array(
             <br />
             <?php 
             if (Yii::app()->user->isAdmin){
-                echo '<span class="medium pretty secondary btn">';
+                echo '<span class="medium secondary btn">';
                 echo CHtml::button('Update this profile', array('submit' => array('profile/update', 'id' => $model->id)));
                 echo '</span>';
             }

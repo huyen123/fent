@@ -102,7 +102,7 @@
         </div>
     
 	<div class="row">
-            <span class="medium pretty primary btn">
+            <span class="medium primary btn">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
             </span>
 	</div>

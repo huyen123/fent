@@ -42,7 +42,7 @@
         <?php
             if (Yii::app()->user->isAdmin)
             {
-                echo "<div class='pretty small primary btn'>";
+                echo "<div class='small primary btn'>";
                 echo CHtml::button('Edit', array('submit' => array('device/update', 'id' => $data->id)));
                 echo '</div>';
             }
@@ -50,7 +50,7 @@
         <?php
             if (Yii::app()->user->isAdmin)
             {
-                echo "<div class='pretty small danger btn'>";
+                echo "<div class='small danger btn'>";
                 echo CHtml::button('Destroy', array('submit' => array('device/delete', 'id' => $data->id),
                     'confirm'=>'Are you sure you want to delete this device?'));
                 echo '</div>';
