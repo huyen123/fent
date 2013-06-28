@@ -3,30 +3,25 @@
 class SearchController extends Controller {
     
     public function actionIndex($key_word) {
-        $criteria = new CDbCriteria;
-        
-        $criteria->condition = 'serial = :keyword';
-        $criteria->params = array(':keyword' => $key_word);
-        $device = Device::model()->find($criteria);
+        $device = Device::model()->find('serial=:serial OR name=:name', 
+                array(':serial' => $key_word, ':name' => $key_word));
         if (isset($device)) {
             $this->redirect(array('device/view', 'id' => $device->id));
         }
-        
-        $criteria->alias = 'profile';
-        $criteria->join = 'LEFT OUTER JOIN user ON user.profile_id = profile.id';
-        $criteria->condition = 'employee_code = :keyword OR user.username = :keyword';
-        $criteria->params = array(':keyword' => $key_word);
-        $profile = Profile::model()->find($criteria);
+        $profile = Profile::model()->find('employee_code=:employee_code OR name = :name', 
+                array(':employee_code' => $key_word, ':name' => $key_word));
         if (isset($profile)) {
             $this->redirect(array('profile/view', 'id' => $profile->id));
         }
-        $criteria->condition = 'employee_code LIKE "%'.$key_word.'%" OR name LIKE "%'.$key_word.'%" OR user.username LIKE "%'.$key_word.'%"';
-        $profiles = Profile::model()->findAll($criteria);
         
-        $criteria->condition = 'serial LIKE "%'.$key_word.'%" OR name LIKE "%'.$key_word.'%"';
-        $devices = Device::model()->findAll($criteria);
+        $devices = Device::model()->findAll();
+        $as = new ApproximateSearch($devices, 'name', $key_word);
+        $devices_found = $as->search();
         
-        $this->render('results', array('devices' => $devices, 'profiles' => $profiles));
+        $profiles = Profile::model()->findAll();
+        $as = new ApproximateSearch($profiles, 'name', $key_word);
+        $profiles_found = $as->search();
+        $this->render('results', array('devices_found' => $devices_found, 'profiles_found' => $profiles_found));
     }
 }
 
