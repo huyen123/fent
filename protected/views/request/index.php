@@ -3,7 +3,12 @@
 <div class="row">
     <h2>All requests</h2>
 </div>
-<?php echo CHtml::beginForm(array('request/index'), 'get'); ?>
+<div class='row'>
+    <div class="medium primary btn two columns">
+        <?php echo CHtml::button('Show search', array('id' => 'show_search'))?>
+    </div>
+</div>
+<?php echo CHtml::beginForm(array('request/index'), 'get', array('id' => 'form_search', 'hidden' => 'hidden')); ?>
     <div class="row">
         <ul class="four columns">
             <li class="field">
@@ -29,7 +34,7 @@
                 <div class="xxwide picker">
                     <?php
                         echo CHtml::dropDownList('type_search', $type_search, array(
-                            'not_setted' => 'Not setted',
+                            'not_set' => 'No time field',
                             'request_end_time' => 'Request end time',
                             'request_start_time' => 'Request start time',
                             'end_time' => 'Borrow end time',
@@ -59,10 +64,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="medium primary pretty btn two columns">
+        <div class="medium primary btn two columns">
             <?php echo CHtml::submitButton('Search', array('id' => 'search-button1'));?>
         </div>
-        <div class="medium danger pretty btn two columns">
+        <div class="medium danger btn two columns">
             <?php echo CHtml::Button('Reset', array('id' => 'reset_button'));?>
         </div>
     </div>
