@@ -16,8 +16,8 @@
         <?php echo CHtml::link(CHtml::encode($data->name), array('device/view', 'id'=>$data->id)); ?></p>
         </div>        
 
-        <p><?php echo CHtml::encode($data->getAttributeLabel('serial')); ?>:
-        <?php echo CHtml::encode($data->serial); ?></p>
+        <p><?php echo CHtml::encode($data->getAttributeLabel('serial_number')); ?>:
+        <?php echo CHtml::encode($data->serial_number); ?></p>
 
         <p><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:
         <?php 

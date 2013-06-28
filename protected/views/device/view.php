@@ -29,7 +29,7 @@
                     echo '<p>Expected end time: '.$request->createViewLink(DateAndTime::returnTime($request->request_end_time)).'</p>';
                 }                
             ?>
-            <p><?php echo 'Serial: '.$device->serial; ?></p>
+            <p><?php echo 'Serial: '.$device->serial_number; ?></p>
             <p><?php echo 'Add: '.DateAndTime::returnTime($device->created_at, 'd/m/Y'); ?></p>
             <p><?php echo 'Update: '.DateAndTime::returnTime($device->updated_at, 'd/m/Y'); ?></p>
             <p><?php echo 'Category: '.$device->category->createViewLink(); ?></p>

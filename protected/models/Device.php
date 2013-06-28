@@ -7,7 +7,10 @@
  * @property integer $id
  * @property string $name
  * @property string $description
- * @property string $serial
+ * @property string $maker
+ * @property string $serial_number
+ * @property string $management_number
+ * @property string $model_number
  * @property string $status
  * @property integer $updated_at
  * @property integer $created_at
@@ -44,8 +47,7 @@ class Device extends ActiveRecord
         return array(
             array('name, serial, category_id', 'required'),
             array('updated_at, created_at, category_id', 'numerical', 'integerOnly' => true),
-            array('name, serial, status', 'length', 'max' => 45),
-            array('description', 'length', 'max' => 255),
+            array('name, maker, serial_number, management_number, model_number, status', 'length', 'max' => 45),            
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, description, serial, status, updated_at, created_at, category_id', 'safe', 'on' => 'search'),
@@ -94,7 +96,9 @@ class Device extends ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'description' => 'Description',
-            'serial' => 'Serial',
+            'serial_number' => 'Serial Number',
+            'management_number' => 'Management Number',
+            'model_number' => 'Model Number',
             'status' => 'Status',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',

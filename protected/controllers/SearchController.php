@@ -3,8 +3,8 @@
 class SearchController extends Controller {
     
     public function actionIndex($key_word) {
-        $device = Device::model()->find('serial=:serial OR name=:name', 
-                array(':serial' => $key_word, ':name' => $key_word));
+        $device = Device::model()->find('serial_number = :serial_number OR management_number = :management_number OR name = :name', 
+                array(':serial_number' => $key_word, ':management_number' => $key_word, ':name' => $key_word));
         if (isset($device)) {
             $this->redirect(array('device/view', 'id' => $device->id));
         }
