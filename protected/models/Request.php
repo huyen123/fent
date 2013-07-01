@@ -129,4 +129,21 @@ class Request extends ActiveRecord
         }
         return false;
     }
+    
+    public function sendNoticeEmail($value)
+    {
+        $content = 'Your request to borrow ';
+        $content .= CHtml::link($this->device->name, Yii::app()->createAbsoluteUrl('device/view', array('id' => $this->device_id)));
+        $content .= ' has been ';
+        if ($value == 'Reject') {
+            $subject = 'Rejected request';
+            $content .= 'rejected ';
+        } else {
+            $subject = 'Accepted request';
+            $content .= 'accepted ';
+        }
+        $content .= 'at '.DateAndTime::returnTime(time(), 'H:i - d/m/Y').'.';
+        MailSender::sendMail($this->user->profile->email, $subject, $content, $this->user->profile->name);
+    }
+
 } 

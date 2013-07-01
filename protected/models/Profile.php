@@ -192,14 +192,14 @@ class Profile extends ActiveRecord
     public function sendSignUpEmail()
     {   
         $link = $this->generateSignUpLink();
-        $result = MailSender::sendMail($this->email, 'Sign Up Link', $link);
+        $result = MailSender::sendMail($this->email, 'Sign Up Link', $link, $this->name);
         return $result;
     }
     
     public function sendResetPasswordLink()
     {
         $link = $this->generateResetPasswordLink();
-        $result = MailSender::sendMail($this->email, 'Reset Password', $link);
+        $result = MailSender::sendMail($this->email, 'Reset Password', $link, $this->name);
         return $result;
     }
     
