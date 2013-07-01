@@ -142,4 +142,12 @@ class User extends ActiveRecord
         return $requests;
     }
     
+    public function afterDelete()
+    {
+        foreach ($this->requests as $request) {
+            $request->delete();
+        }
+        return parent::afterDelete();
+    }
+    
 }

@@ -119,10 +119,19 @@ class UserController extends Controller
         $this->redirect(Yii::app()->homeUrl);
     }
     
-    public function actionFavorite(){
+    public function actionFavorite() {
         $user = User::model()->findByPk(Yii::app()->user->getId());
         $favorite_devices = $user->favorite_devices;
         $this->render('favorite', array('favorite_devices' => $favorite_devices));
+    }
+    
+    public function actionDelete($id) {
+        $profile = Profile::model()->findByPk($id);
+        if($profile === null) {
+            throw new CHttpException(404,'The requested page does not exist.');
+        }
+        $profile->deleteUser();
+        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/profile/index'));            
     }
 }
 ?>

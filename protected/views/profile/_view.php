@@ -24,21 +24,33 @@
         <?php echo CHtml::encode($data->email); ?>
         <br />
 
-        <b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-        <?php echo CHtml::encode($data->name); ?>
-        <br />
+        <?php
+                if ($data->name != null) {
+                    echo CHtml::encode($data->getAttributeLabel('name')).': ';
+                    echo CHtml::encode($data->name).'<br/>';
+                }
+            ?>
 
-        <b><?php echo CHtml::encode($data->getAttributeLabel('phone')); ?>:</b>
-        <?php echo CHtml::encode($data->phone); ?>
-        <br />
+            <?php
+                if ($data->phone != null) {
+                    echo CHtml::encode($data->getAttributeLabel('phone')).': ';
+                    echo CHtml::encode($data->phone).'<br/>';
+                }
+            ?>
     </div>
 </div>
 <div class="row">
     <?php
         if (Yii::app()->user->isAdmin){
-            echo '<span class="small primary btn">';
-            echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id)));
-            echo '</span>&nbsp';
+            if (isset($data->user->username)) {
+                echo '<span class="small primary warning btn">';
+                echo CHtml::button('Delete user', array('submit' => array('user/delete', 'id' => $data->id)));
+                echo '</span>&nbsp';
+            } else {
+                echo '<span class="small primary btn">';
+                echo CHtml::button('Send sign up email', array('submit' => array('profile/sendSignUpEmail', 'id' => $data->id)));
+                echo '</span>&nbsp';
+            }
             echo '<span class="small secondary btn">';
             echo CHtml::button('Update profile', array('submit' => array('profile/update', 'id' => $data->id)));
             echo '</span>&nbsp';

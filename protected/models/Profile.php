@@ -153,11 +153,6 @@ class Profile extends ActiveRecord
         $this->removeImageAndDirecroty();
         $user = User::model()->findByAttributes(array('profile_id'=>$this->id));
         if (isset($user)) {
-            if (isset($user->requests)) {
-                foreach ($user->requests as $request) {
-                    $request->delete();
-                }
-            }
             $user->delete();
         }
         return parent::afterDelete();
@@ -206,6 +201,12 @@ class Profile extends ActiveRecord
         $link = $this->generateResetPasswordLink();
         $result = MailSender::sendMail($this->email, 'Reset Password', $link);
         return $result;
+    }
+    
+    public function deleteUser()
+    {
+        $user = $this->user;
+        $user->delete();
     }
    
 }

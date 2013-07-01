@@ -37,8 +37,23 @@ class RequestController extends Controller {
         }
         
         if ($status != null && $status != 'All') {
-            $criteria->addCondition('status=:status', 'AND');
-            $params[':status'] = $status;
+            if ($status == Constant::$REQUEST_UNEXPIRED) {       
+                $criteria->addCondition('status=:status', 'AND');
+                $params[':status'] = Constant::$REQUEST_ACCEPTED;
+                $criteria->addCondition('request_end_time IS NULL OR request_end_time>:time', 'AND');
+                $date = new DateTime();
+                $params[':time'] = $date->getTimestamp();
+            }
+            if ($status == Constant::$REQUEST_EXPIRED) {
+                $criteria->addCondition('status=:status', 'AND');
+                $params[':status'] = Constant::$REQUEST_ACCEPTED;
+                $criteria->addCondition('request_end_time<:time AND request_end_time IS NOT NULL', 'AND');
+                $params[':time'] = time();
+            }
+            if ($status == Constant::$REQUEST_BEING_CONSIDERED || $status == Constant::$REQUEST_FINISH || $status == Constant::$REQUEST_REJECTED) {
+                $criteria->addCondition('status=:status', 'AND');
+                $params[':status'] = $status;
+            } 
         }
         if ($type_search == null) {
             $no_time_given = true;

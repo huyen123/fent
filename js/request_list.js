@@ -7,13 +7,13 @@ $(function(){
         }
     });
     initDatePiker();
-    if ($('#type_search').val() === 'not_setted') {
+    if ($('#type_search').val() === 'not_set') {
         $("#from, #to").prop('disabled', true);
         $("#no_time_given").prop('disabled', true);
     }
     $('#type_search').change(function(){
         var type_search = $(this).val();
-        if (type_search !== 'not_setted') {
+        if (type_search !== 'not_set') {
             $("#from, #to").prop('disabled', false);
             $("#no_time_given").prop('disabled', false);
         } else {
@@ -23,7 +23,7 @@ $(function(){
     });
     $('#reset_button').click(function(){
         $('#status').val('All');
-        $('#type_search').val('not_setted');
+        $('#type_search').val('not_set');
         $('#from').val('');
         $('#to').val('');    
         $("#no_time_given").prop('checked', true);
