@@ -26,7 +26,7 @@
     <body>
         <div class="container" id="page">
             <div id="header">                  
-                <div class="valign row" >
+                <div class="valign row" style="margin-left: 50px;">
                     <div class="logo">
                         <?php echo CHtml::image(Yii::app()->baseUrl.'/images/framgia.png', null, array('width' => '70')); ?>
                     </div>

@@ -32,9 +32,33 @@
 
         <div class="row">
             <div class="field">
-                <?php echo $form->labelEx($model,'serial'); ?>
-                <?php echo $form->textField($model,'serial',array('class' => 'text input', 'placeholder' => 'Serial')); ?>
-                <?php echo $form->error($model,'serial'); ?>
+                <?php echo $form->labelEx($model,'serial_number'); ?>
+                <?php echo $form->textField($model,'serial_number',array('class' => 'text input', 'placeholder' => 'Serial number')); ?>
+                <?php echo $form->error($model,'serial_number'); ?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'management_number'); ?>
+                <?php echo $form->textField($model,'management_number',array('class' => 'text input', 'placeholder' => 'Management number')); ?>
+                <?php echo $form->error($model,'management_number'); ?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'model_number'); ?>
+                <?php echo $form->textField($model,'model_number',array('class' => 'text input', 'placeholder' => 'Model number')); ?>
+                <?php echo $form->error($model,'model_number'); ?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="field">
+                <?php echo $form->labelEx($model,'maker'); ?>
+                <?php echo $form->textField($model,'maker',array('class' => 'text input', 'placeholder' => 'Maker')); ?>
+                <?php echo $form->error($model,'maker'); ?>
             </div>
         </div>
 

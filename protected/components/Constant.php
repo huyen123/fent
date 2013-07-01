@@ -11,7 +11,8 @@ class Constant
     public static $REQUEST_FINISH = 3;        
     public static $REQUEST_VALID = 4;
     public static $REQUEST_INVALID_EXISTED = 5;
-    public static $REQUEST_EXPIRED = 6;
+    public static $REQUEST_UNEXPIRED = 6;
+    public static $REQUEST_EXPIRED = 7;
     
     public static $DEVICE_NORMAL = 0;
     public static $DEVICE_UNAVALABLE = 1;

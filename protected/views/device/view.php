@@ -14,12 +14,12 @@
         </div>
         <div class="four columns">
             <p>
-                <?php if ($device->status == Constant::$DEVICE_NORMAL){
-                    $status = 'Normal';
-                } else {
-                    $status = 'Unavalable';
-                }
-                echo 'Status: '.$status;
+                <?php
+                    if ($device->status == Constant::$DEVICE_NORMAL){
+                        echo 'Status: <span class = "success badge"> Normal </span>';
+                    } else {
+                        echo 'Status: <span class = "danger badge"> Unavalable </span>';
+                    }
                 ?>              
             </p>
             <?php                                                 
@@ -29,14 +29,58 @@
                     echo '<p>Expected end time: '.$request->createViewLink(DateAndTime::returnTime($request->request_end_time)).'</p>';
                 }                
             ?>
-            <p><?php echo 'Serial: '.$device->serial_number; ?></p>
-            <p><?php echo 'Add: '.DateAndTime::returnTime($device->created_at, 'd/m/Y'); ?></p>
-            <p><?php echo 'Update: '.DateAndTime::returnTime($device->updated_at, 'd/m/Y'); ?></p>
+            <p>
+                <?php
+                    if ($device->serial_number != null) {
+                        echo 'Serial number: '.$device->serial_number;
+                    }
+                ?>
+            </p>
+            <p>
+                <?php
+                    if ($device->management_number != null) {
+                        echo 'Management number: '.$device->management_number;
+                    }
+                ?>
+            </p>
+            <p>
+                <?php
+                    if ($device->model_number != null) {
+                        echo 'Model number: '.$device->model_number;
+                    }
+                ?>
+            </p>
+            <p>
+                <?php
+                    if ($device->maker != null) {
+                        echo 'Maker number: '.$device->maker;
+                    }
+                ?>
+            </p>
+            <p>
+                <?php
+                    if ($device->created_at != null) {
+                        echo 'Add: '.DateAndTime::returnTime($device->created_at, 'd/m/Y');
+                    }
+                ?>
+            </p>
+            <p>
+                <?php
+                    if ($device->updated_at != null) {
+                        echo 'Update: '.DateAndTime::returnTime($device->updated_at, 'd/m/Y');
+                    }
+                ?>
+            </p>
             <p><?php echo 'Category: '.$device->category->createViewLink(); ?></p>
             <?php
                 if (Yii::app()->user->isAdmin) {
-                    echo "<div class='medium success btn'>";
+                    echo "<div class='small success btn'>";
                     echo CHtml::button('Edit', array('submit' => array('device/update', 'id' => $device->id)));
+                    echo '</div>';
+                    echo '&nbsp';
+                    echo "<div class='small danger btn'>";
+                    echo CHtml::button('Delete', array('submit' => array('device/delete', 'id' => $device->id),
+                        'confirm'=>'Are you sure you want to delete this device?'));
                     echo '</div>';
                 } else {
                     if ($liked) {
@@ -55,7 +99,11 @@
 </div>
 
 <div class="row">
-    <?php echo 'Description: '.$device->description; ?>
+    <?php
+        if ($device->description != null) {
+            echo 'Description: '.$device->description.'<p/>';
+        }
+    ?>
 </div>
 
 <div class="row">

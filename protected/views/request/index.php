@@ -8,6 +8,7 @@
         <?php echo CHtml::button('Show search', array('id' => 'show_search'))?>
     </div>
 </div>
+<p>
 <?php echo CHtml::beginForm(array('request/index'), 'get', array('id' => 'form_search', 'hidden' => 'hidden')); ?>
     <div class="row">
         <ul class="four columns">
@@ -16,11 +17,11 @@
                     <?php
                         echo CHtml::dropDownList('status', $status, array(
                             'All' => 'All Requests',
-                            '0' => 'Being Considered Requests',
-                            '1' => 'Un-expired Requests',
-                            '6' => 'Expired Requests',
-                            '3' => 'Finished Requests',
-                            '2' => 'Rejected Requests'
+                            Constant::$REQUEST_BEING_CONSIDERED => 'Being Considered Requests',
+                            Constant::$REQUEST_UNEXPIRED => 'Un-expired Requests',
+                            Constant::$REQUEST_EXPIRED => 'Expired Requests',
+                            Constant::$REQUEST_FINISH => 'Finished Requests',
+                            Constant::$REQUEST_REJECTED => 'Rejected Requests'
                             ));
                     ?>
                 </div>
