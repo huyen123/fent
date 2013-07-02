@@ -73,9 +73,9 @@ function newUnexpiredRequests(request_id) {
            '" placeholder="' + request_end_time + '" readonly="readonly" style="width:100%" type="text" name="' +
            request_id + '" id="' + request_id + '"></div>';
     html += '<div class="one columns">' + days_left + '</div>';
-    html += '<div class="two columns ">' + '<span class="small pretty primary btn"><a href="' +
+    html += '<div class="two columns ">' + '<span class="small primary btn"><a href="' +
             request_link + '">View more</a></span></div>';
-    html += '<div class="one columns"><span class="small pretty warning btn"><input id="finish_request_' +
+    html += '<div class="one columns"><span class="small warning btn"><input id="finish_request_' +
             request_id + '" request_id="' + request_id + '" type="button" value="Finish"></span></div>';
     html += '</div>';
     return html;
