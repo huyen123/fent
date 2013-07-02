@@ -151,4 +151,18 @@ class User extends ActiveRecord
         return parent::afterDelete();
     }
     
+    public function getAllNotifications()
+    {
+        if (!$this->is_admin){
+            $notifications = $this->notifications;
+        } else {
+            $criteria = new CDbCriteria;
+            $criteria->alias = 'Notification';
+            $criteria->join = 'INNER JOIN Request ON Request.id = Notification.request_id';
+            $criteria->condition = 'Request.status = ' . Constant::$REQUEST_BEING_CONSIDERED;
+            $notifications = Notification::model()->findAll($criteria);
+        }
+        return $notifications;
+    }
+    
 }

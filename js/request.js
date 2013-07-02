@@ -96,12 +96,6 @@ function dateDiff(start_date, end_date, format) { //calculate date diff with dat
     return days + ' days';
 }
 
-function createUrl(controller, id) {
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r='; 
-    url += controller + '/view&id=' + id;
-    return url;
-}
-
 $(function(){
     addFinishListener();
 });

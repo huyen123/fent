@@ -74,7 +74,6 @@ INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id
 INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0001', '400-2012-0001', 'CN-0DJ331-71616-9AK0HJY', 7);
 INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0002', '400-2012-0002', '10110601-412', 7);
 INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0003', '400-2012-0003', '10110601-446', 7);
-INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0004', '400-2012-0004', '110818000006732', 7);
 INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0005', '400-2012-0005', '10110601-432', 7);
 INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0006', '400-2012-0006', '10110601-611', 7);
 INSERT INTO `device` (`name`, `management_number`, `serial_number`, `category_id`) VALUES ('400-2012-0007', '400-2012-0007', '10110601-612', 7);

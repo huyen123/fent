@@ -17,7 +17,7 @@ $(function(){
 });
 
 function acceptRequest(request_id, value) {
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/rejectOrAccept';                
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/rejectOrAccept';
     $.ajax({
         type: 'POST',
         url: url,
@@ -38,7 +38,7 @@ function acceptRequest(request_id, value) {
 }
 
 function rejectRequest(request_id, value) {
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/rejectOrAccept';                
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=request/rejectOrAccept';
     $.ajax({
         type: 'POST',
         url: url,
@@ -69,7 +69,7 @@ function finishRequest(request_id) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: {             
+        data: {
             request_id: request_id,
         }
     }).success(function() {               

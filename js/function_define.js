@@ -21,3 +21,9 @@ function getDateFormat(date, format) {
     } 
     return '' + dd + format + mm + format + yyyy;
 }
+
+function createUrl(controller, id) {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r='; 
+    url += controller + '/view&id=' + id;
+    return url;
+}

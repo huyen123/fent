@@ -10,7 +10,7 @@
  * @property integer $created_at
  * @property integer $updated_at
  */
-class Notification extends CActiveRecord
+class Notification extends ActiveRecord
 {
     /**
      * Returns the static model of the specified AR class.
@@ -38,7 +38,7 @@ class Notification extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('request_id, receiver_id', 'required'),
+            array('request_id', 'required'),
             array('id, request_id, receiver_id, created_at, updated_at', 'numerical', 'integerOnly'=>true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -93,5 +93,20 @@ class Notification extends CActiveRecord
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
         ));
+    }
+    
+    public function getData()
+    {
+        if ($this->request->status == Constant::$REQUEST_BEING_CONSIDERED) {
+            $status = 'waiting';
+        } elseif ($this->request->status == Constant::$REQUEST_REJECTED) {
+            $status = 'rejected';
+        } else {
+            $status = 'accepted';
+        }
+        return array('request_id' => $this->request_id,
+            'time' => DateAndTime::returnTime($this->created_at, 'H:i d/m/Y'),
+            'status' => $status
+            );
     }
 }

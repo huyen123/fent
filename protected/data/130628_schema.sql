@@ -140,11 +140,10 @@ CREATE  TABLE IF NOT EXISTS `notification` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `updated_at` INT NULL ,
   `created_at` INT NULL ,
-  `user_id` INT(11) NOT NULL ,
+  `receiver_id` INT(11) NULL ,
   `request_id` INT NOT NULL ,
   PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-UNIQUE INDEX `request_id_UNIQUE` (`request_id` ASC) );
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

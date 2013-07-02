@@ -72,3 +72,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.delete_notification:hover {    
+    background-color: red;
+    cursor: pointer;
+    cursor: hand;
+}
