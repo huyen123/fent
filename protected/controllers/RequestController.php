@@ -122,6 +122,7 @@ class RequestController extends Controller {
                 }
                 if ($result){
                     echo header('HTTP/1.1 200 OK');
+                    $request->createNotification();
                     $request->sendNoticeEmail($value);
                 } else {
                     echo header('HTTP/1.1 424 Method Failure');

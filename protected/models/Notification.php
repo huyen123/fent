@@ -38,7 +38,7 @@ class Notification extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id, request_id, receiver_id', 'required'),
+            array('request_id, receiver_id', 'required'),
             array('id, request_id, receiver_id, created_at, updated_at', 'numerical', 'integerOnly'=>true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
