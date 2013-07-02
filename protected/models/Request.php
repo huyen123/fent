@@ -60,7 +60,8 @@ class Request extends ActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
-            'device' => array(self::BELONGS_TO, 'Device', 'device_id')
+            'device' => array(self::BELONGS_TO, 'Device', 'device_id'),
+            'notification' => array(self::HAS_ONE, 'Notification', 'request_id')
         );
     }
     
