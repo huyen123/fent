@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `notification` ;
+
 CREATE  TABLE `notification` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `request_id` INT(11) NOT NULL ,

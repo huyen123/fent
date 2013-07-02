@@ -5,7 +5,6 @@
         <ul class="row">
             <li><?php echo CHtml::link('Home', Yii::app()->homeUrl); ?></li>
             <li><?php echo CHtml::link('Introduction', '#'); ?></li>
-            <li><?php echo CHtml::link('Support', '#' ); ?></li>
             <li>
                 <?php echo CHtml::link('Devices', Yii::app()->createUrl('device/index')); ?>
                 <div class="dropdown">
@@ -51,4 +50,32 @@
             </li> 
         </ul>
     </div>
+</div>
+<div class="row">
+    <?php 
+        $user = User::model()->findByPk(Yii::app()->user->getId());
+        $notifications = $user->notifications;
+        if (isset($notifications)){
+            foreach ($notifications as $noti){
+                switch ($noti->request->status) {
+                    case Constant::$REQUEST_FINISH:
+                        $status = 'finished';
+                        break;
+                    case Constant::$REQUEST_REJECTED:
+                        $status = 'rejected';
+                        break;
+                    case Constant::$REQUEST_ACCEPTED:
+                        $status = 'accepted';
+                        break;
+                }
+                echo 'admin '.$status;
+                echo $noti->request->createViewLink(' request');
+                echo ' at time: '.DateAndTime::returnTime($noti->created_at);
+                echo ' <span class="primary badge btn">';
+                echo CHtml::button('X');
+                echo '</span>';
+                echo "<br>";
+            } 
+        }
+    ?>
 </div>
