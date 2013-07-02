@@ -23,7 +23,7 @@ class DeviceController extends Controller
             ),
             array('allow',
                 'controllers' => array('device'),
-                'actions' => array('create', 'update', 'delete', 'uploadImage', 'deleteImage', 'removeImageViaPost'),
+                'actions' => array('create', 'update', 'delete', 'uploadImage', 'deleteImage', 'removeImageViaPost', 'changeStatus'),
                 'expression' => '$user->isAdmin'
             ),
             array('deny',
@@ -281,6 +281,40 @@ class DeviceController extends Controller
             echo header('HTTP/1.1 405 Method Not Allowed');
         }
     }
+    
+    public function actionChangeStatus()
+    {   
+        if (!Yii::app()->request->isAjaxRequest) {
+            $this->render('/site/error', array('code' => 403, 'message' => 'Forbidden'));                        
+            Yii::app()->end();
+        } 
+        if (Yii::app()->user->isAdmin){
+            if (isset($_POST['device_id'])) {
+                $id = $_POST['device_id'];
+                $device = Device::model()->findByPk($id);
+                if (!$device->accepted_request){
+                    $status = $device->status;
+                    if ($status == Constant::$DEVICE_NORMAL) {
+                        $device->status = Constant::$DEVICE_UNAVALABLE;
+                        $result = $device->save();
+                    } else {
+                        $device->status = Constant::$DEVICE_NORMAL;
+                        $result = $device->save();
+                    }
+                    if ($result) {
+                        echo header('HTTP/1.1 200 OK');
+                    } else {
+                        echo header('HTTP/1.1 500 Record can not be save!');
+                    }
+                } else {
+                    echo header("HTTP/1.1 500 Device's status cannot be change when the device is being borrowed");
+                }
+            } else {
+                echo header('HTTP/1.1 500 Invalid request');
+            }
+        }
+    }
+      
     
     public function actionRemoveImageViaPost()
     {

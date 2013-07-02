@@ -22,7 +22,7 @@
         <p><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:
         <?php 
             if ($data->status == Constant::$DEVICE_NORMAL){
-                $status = 'Normal';
+                $status = 'Avalable';
             } else {
                 $status = 'Unavalable';
             }

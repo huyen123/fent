@@ -3,6 +3,10 @@ $(function(){
         var device_id = $('#reason-textarea').attr('device_id');
         sendLikeOrUnlikeRequest(device_id);
     });
+     $('#status_button').click(function(){
+        var device_id = $('#status_button').attr('device_id');
+        change(device_id);
+    });
     $('#being_considered_requests_button').click(function(){
         var count = $('#being_considered_requests').attr('count_consider');
         if ($('#being_considered_requests').is(':hidden')) {
@@ -140,6 +144,21 @@ function sendLikeOrUnlikeRequest(device_id) {
         });
 }
 
+function change(device_id) {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r=device/changeStatus';
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {             
+            device_id: device_id            
+        }
+    }).success(function() {               
+            change_btn();
+        }).fail(function(msg) {            
+            alert(msg.statusText);
+        });
+}
+
 function changeLikeButton() {
     if ($('#like-button').val() === 'Like') {
         $('#like-button').parent().removeClass('primary').addClass('danger');
@@ -147,5 +166,16 @@ function changeLikeButton() {
     } else {
         $('#like-button').parent().removeClass('danger').addClass('primary');
         $('#like-button').val('Like');
+    }
+}
+
+function change_btn() {
+    var $status_button = $('#status_button');
+    if ($status_button.val() === 'Avalable') {
+        $status_button.parent().removeClass('primary').addClass('danger');
+        $status_button.val('Unavalable');
+    } else {
+        $status_button.parent().removeClass('danger').addClass('primary');
+        $status_button.val('Avalable');
     }
 }

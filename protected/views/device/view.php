@@ -15,11 +15,24 @@
         <div class="four columns">
             <p>
                 <?php
+                if (!Yii::app()->user->isAdmin) {
                     if ($device->status == Constant::$DEVICE_NORMAL){
-                        echo 'Status: <span class = "success badge"> Normal </span>';
+                        $status = 'Avalable';
                     } else {
-                        echo 'Status: <span class = "danger badge"> Unavalable </span>';
+                        $status = 'Unavalable';
                     }
+                    echo 'Status: '.$status;
+                } else {
+                    if ($device->status) {
+                        echo '<div class="medium danger btn">';
+                        echo CHtml::button('Unavalable', array('id' => 'status_button', 'device_id' => $device->id));
+                        echo '</div>';
+                    } else {
+                        echo '<div class="medium primary btn">';
+                        echo CHtml::button('Avalable', array('id' => 'status_button', 'device_id' => $device->id));
+                        echo '</div>';
+                    }
+                } 
                 ?>              
             </p>
             <?php                                                 
