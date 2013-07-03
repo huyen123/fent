@@ -147,4 +147,11 @@ class Request extends ActiveRecord
         MailSender::sendMail($this->user->profile->email, $subject, $content, $this->user->profile->name);
     }
 
+    public function createNotification()
+    {
+        $notification = new Notification;
+        $notification->request_id = $this->id;
+        $notification->receiver_id = $this->user_id;
+        $notification->save();
+    }
 } 
