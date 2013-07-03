@@ -22,11 +22,10 @@
         <p><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:
         <?php 
             if ($data->status == Constant::$DEVICE_NORMAL){
-                $status = 'Avalable';
+                echo '<span class = "success badge"> Avalable </span>';
             } else {
-                $status = 'Unavalable';
+                echo '<span class = "danger badge"> Unavalable </span>';
             }
-            echo $status;
         ?></p>
 
         <?php                                                 
