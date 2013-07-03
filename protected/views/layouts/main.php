@@ -17,7 +17,7 @@
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/get_date_format.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/search.js');
             Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/request.js');
-            
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/notification.js');
             Yii::app()->clientScript->registerCoreScript('jquery');
         ?>
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
