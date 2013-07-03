@@ -17,11 +17,10 @@
                 <?php
                 if (!Yii::app()->user->isAdmin) {
                     if ($device->status == Constant::$DEVICE_NORMAL){
-                        $status = 'Avalable';
+                        echo 'Status: <span class = "success badge"> Avalable </span>';
                     } else {
-                        $status = 'Unavalable';
+                        echo 'Status: <span class = "danger badge"> Unavalable </span>';
                     }
-                    echo 'Status: '.$status;
                 } else {
                     if ($device->status) {
                         echo '<div class="medium danger btn">';
