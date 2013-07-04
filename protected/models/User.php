@@ -158,8 +158,8 @@ class User extends ActiveRecord
         } else {
             $criteria = new CDbCriteria;
             $criteria->alias = 'Notification';
-            $criteria->join = 'INNER JOIN Request ON Request.id = Notification.request_id';
-            $criteria->condition = 'Request.status = ' . Constant::$REQUEST_BEING_CONSIDERED;
+            $criteria->join = 'INNER JOIN request ON request.id = Notification.request_id';
+            $criteria->condition = 'request.status = ' . Constant::$REQUEST_BEING_CONSIDERED;
             $notifications = Notification::model()->findAll($criteria);
         }
         return $notifications;

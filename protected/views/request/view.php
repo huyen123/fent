@@ -111,9 +111,9 @@
                                     'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
                                     'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly', 'style' => 'width:100px;'));
                             }
-                            echo '&nbsp<span class="danger badge btn">';
-                            echo CHtml::button('x', array('id' => 'delete_date_end', 'request_id' => $request->id));
-                            echo '</span>';
+                            if ($request->request_end_time !== null) {
+                                echo '<i class="icon-cancel-circled" id="delete_date_end" request_id="'.$request->id.'"></i>';
+                            }
                         }else {
                             echo DateAndTime::returnTime($request->request_end_time);
                         }
