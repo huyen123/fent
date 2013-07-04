@@ -10,6 +10,10 @@ $(function(){
         acceptRequest(request_id, value);
     });
     initDatePiker();
+    $('#delete_date_end').click(function(){
+        var request_id = $(this).attr('request_id');
+        editRequest(null, request_id);
+    });
 });
 
 function acceptRequest(request_id, value) {

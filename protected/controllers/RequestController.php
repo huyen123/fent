@@ -193,7 +193,11 @@ class RequestController extends Controller {
             $request_end_time = $_POST['date_end'];
             $request = Request::model()->findByPk($request_id);
             if ($request != null && $request->status != Constant::$REQUEST_FINISH && Constant::$REQUEST_REJECTED) {
-                $request->request_end_time = strtotime($request_end_time);
+                if ($request_end_time == null) {
+                    $request->request_end_time = $request_end_time;
+                } else {
+                    $request->request_end_time = strtotime($request_end_time);
+                }
                 if ($request->save()) {
                     echo header('HTTP/1.1 200 OK');
                 } else {

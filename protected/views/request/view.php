@@ -95,7 +95,7 @@
                 <?php echo CHtml::label('Start:', null); ?>
                 <?php echo DateAndTime::returnTime($request->request_start_time); ?>
             </div>
-            <div class="five columns">
+            <div class="six columns">
                 <?php echo CHtml::label('End:', null); ?>
                 <?php
                     if ($request->status == Constant::$REQUEST_FINISH || $request->status == Constant::$REQUEST_REJECTED) {
@@ -105,12 +105,15 @@
                             if ($request->request_start_time > Time()) {
                                 echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
                                     'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime($request->request_start_time),
-                                    'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                                    'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly', 'style' => 'width:100px;'));
                             } else {
                                 echo CHtml::textField('end'+$request->id, null, array('request_id' => $request->id,
                                     'class' => 'date_end', 'request_start_time' => DateAndTime::returnTime(Time()),
-                                    'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly'));
+                                    'placeholder' => DateAndTime::returnTime($request->request_end_time), 'readonly' => 'readonly', 'style' => 'width:100px;'));
                             }
+                            echo '&nbsp<span class="danger badge btn">';
+                            echo CHtml::button('x', array('id' => 'delete_date_end', 'request_id' => $request->id));
+                            echo '</span>';
                         }else {
                             echo DateAndTime::returnTime($request->request_end_time);
                         }
