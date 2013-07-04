@@ -29,7 +29,7 @@ $this->pageTitle=Yii::app()->name;
           <?php echo CHtml::errorSummary($form); ?>    
           <div class="row" style="color: blue; font-size: 1.3em">
               <div class="field">
-                  <?php echo CHtml::activeTextField($form, 'username', array('class' => 'text input', 'placeholder' => 'Username')); ?>
+                  <?php echo CHtml::activeTextField($form, 'username', array('class' => 'text input', 'placeholder' => 'Username', 'autofocus' => 'autofocus')); ?>
               </div>
           </div>          
           <div class="row" style="color: blue; font-size: 1.3em">
