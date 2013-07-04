@@ -51,31 +51,34 @@
         </ul>
     </div>
 </div>
-<?php 
-    $user = User::model()->findByPk(Yii::app()->user->getId());
-    $notifications = $user->notifications;
-    if (isset($notifications)){
-        foreach ($notifications as $noti){
-            switch ($noti->request->status) {
-                case Constant::$REQUEST_FINISH:
-                    $status = 'finished';
-                    break;
-                case Constant::$REQUEST_REJECTED:
-                    $status = 'rejected';
-                    break;
-                case Constant::$REQUEST_ACCEPTED:
-                    $status = 'accepted';
-                    break;
+<div class="row" id="notification">
+    <?php 
+        $user = User::model()->findByPk(Yii::app()->user->getId());
+        $notifications = $user->getAllNotifications();
+        if (isset($notifications)){
+            foreach ($notifications as $noti){
+                switch ($noti->request->status) {
+                    case Constant::$REQUEST_REJECTED:
+                        $status = 'rejected';
+                        break;
+                    case Constant::$REQUEST_ACCEPTED:
+                        $status = 'accepted';
+                        break;
+                }
+                echo '<div class="row" id = "notification_'.$noti->id.'">';
+                if (Yii::app()->user->isAdmin) {
+                    echo 'You have new waiting';
+                } else {
+                    echo 'Admin '.$status.' your';
+                }
+                echo $noti->request->createViewLink(' request');
+                echo ' at time: '.DateAndTime::returnTime($noti->created_at, 'H:i d/m/Y');
+                echo '<i class="icon-cancel-circled delete_notification" notification_id="'.$noti->id.'"></i>';
+                echo '</div>';
             }
-            echo '<div class="row" id = "notification_'.$noti->id.'">';
-            echo 'admin '.$status;
-            echo $noti->request->createViewLink(' request');
-            echo ' at time: '.DateAndTime::returnTime($noti->created_at);
-            echo ' <span class="primary badge btn">';
-            echo CHtml::button('X',array('class' => 'delete_notification',
-                'notification_id' => $noti->id));
-            echo '</span>';
-            echo '</div>';
-        } 
-    }
-?>
+        }
+    ?>
+</div>
+<div class="row">
+    <hr />
+</div>

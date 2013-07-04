@@ -61,7 +61,7 @@ class Request extends ActiveRecord
         return array(
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
             'device' => array(self::BELONGS_TO, 'Device', 'device_id'),
-            'notification' => array(self::HAS_ONE, 'Notification', 'request_id')
+            'notifications' => array(self::HAS_MANY, 'Notification', 'request_id')
         );
     }
     
@@ -151,7 +151,11 @@ class Request extends ActiveRecord
     {
         $notification = new Notification;
         $notification->request_id = $this->id;
-        $notification->receiver_id = $this->user_id;
+        if ($this->status !== Constant::$REQUEST_BEING_CONSIDERED) {
+            $notification->receiver_id = $this->user_id;
+        } else {
+            $notification->receiver_id = null;
+        }
         $notification->save();
     }
 } 

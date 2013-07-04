@@ -114,12 +114,6 @@ function newRequestHtml(date_from, date_to, request_id) {
     return html;
 }
 
-function createUrl(controller, id) {
-    var url = window.location.protocol + '//' + window.location.host + window.location.pathname + '?r='; 
-    url += controller + '/view&id=' + id;
-    return url;
-}
-
 function afterFail() {    
     $('#modal-fail').addClass('active');    
 }

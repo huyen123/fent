@@ -237,6 +237,7 @@ class DeviceController extends Controller
                 $result = $request->save();
                 if ($result) {
                     echo $request->id;
+                    $request->createNotification();
                 } else {
                     echo header('HTTP/1.1 424 Method Failure');
                 }
