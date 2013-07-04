@@ -47,7 +47,6 @@ CREATE  TABLE IF NOT EXISTS `user` (
   UNIQUE INDEX `user_name_UNIQUE` (`username` ASC) ,
   INDEX `fk_User_Profile_idx` (`profile_id` ASC) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 
@@ -64,7 +63,7 @@ CREATE  TABLE IF NOT EXISTS `category` (
   `created_at` INT NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) )
-ENGINE = InnoDB;
+ENGINE = InnoDB
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 
@@ -88,7 +87,7 @@ CREATE  TABLE IF NOT EXISTS `device` (
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `serial_number_UNIQUE` (`serial_number` ASC) ,
   INDEX `fk_Device_Category1_idx` (`category_id` ASC) )
-ENGINE = InnoDB;
+ENGINE = InnoDB
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 
@@ -112,7 +111,7 @@ CREATE  TABLE IF NOT EXISTS `request` (
   PRIMARY KEY (`id`) ,
   INDEX `fk_User_device_User1_idx` (`user_id` ASC) ,
   INDEX `fk_User_device_Device1_idx` (`device_id` ASC) )
-ENGINE = InnoDB;
+ENGINE = InnoDB
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 
@@ -144,7 +143,8 @@ CREATE  TABLE IF NOT EXISTS `notification` (
   `user_id` INT(11) NOT NULL ,
   `request_id` INT NOT NULL ,
   PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
+ENGINE = InnoDB
+UNIQUE INDEX `request_id_UNIQUE` (`request_id` ASC) );
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

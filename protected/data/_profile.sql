@@ -1,7 +1,8 @@
 truncate `profile`;
+truncate `user`;
 
-INSERT INTO `profile` (`email`, `employee_code`, `secret_key`) VALUES ('nguyen.thi.minh.ngoc@framgia.com', 'B120011', 'fentadmin');
-INSERT INTO `profile` (`email`, `employee_code`, `name`, `position`) VALUES ('nguyen.thi.huyen@framgia.com', 'B120043', 'Nguyễn Thị Huyền', 'PG');
+INSERT INTO `profile` (`email`, `employee_code`, `name`, `position`, `secret_key`) VALUES ('nguyen.thi.minh.ngoc@framgia.com', 'B120011', 'Nguyen Thi Minh Ngoc', 'Admin', 'fentadmin');
+INSERT INTO `profile` (`email`, `employee_code`, `name`, `position`) VALUES ('nguyen.thi.huyen@framgia.com', 'B120043', 'Nguyen Thi Huyen', 'PG');
 INSERT INTO `profile` (`email`, `employee_code`, `name`, `position`) VALUES ('nguyen.van.giang@framgia.com', 'B120040', 'Nguyen Van Giang', 'PG');
 INSERT INTO `profile` (`email`, `employee_code`, `name`, `position`) VALUES ('le.van.ban@framgia.com', 'B120041', 'Le Van Ban', 'PG');
 INSERT INTO `profile` (`email`, `employee_code`, `name`, `position`) VALUES ('pham.tri.thai@framgia.com', 'B120042', 'Pham Tri Thai', 'PG');
