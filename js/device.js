@@ -172,10 +172,10 @@ function changeLikeButton() {
 function change_btn() {
     var $status_button = $('#status_button');
     if ($status_button.val() === 'Avalable') {
-        $status_button.parent().removeClass('primary').addClass('danger');
+        $status_button.parent().removeClass('success badge').addClass('danger badge');
         $status_button.val('Unavalable');
     } else {
-        $status_button.parent().removeClass('danger').addClass('primary');
+        $status_button.parent().removeClass('danger badge').addClass('success badge');
         $status_button.val('Avalable');
     }
 }

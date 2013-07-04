@@ -23,11 +23,11 @@
                     }
                 } else {
                     if ($device->status) {
-                        echo '<div class="medium danger btn">';
+                        echo '<div class="danger badge btn">';
                         echo CHtml::button('Unavalable', array('id' => 'status_button', 'device_id' => $device->id));
                         echo '</div>';
                     } else {
-                        echo '<div class="medium primary btn">';
+                        echo '<div class="success badge btn">';
                         echo CHtml::button('Avalable', array('id' => 'status_button', 'device_id' => $device->id));
                         echo '</div>';
                     }
