@@ -4,7 +4,7 @@ class CategoryController extends Controller
 {
     public function actionView($id, $display = null)
     {
-        $category = Category::model()->findByPk($id);
+        $category = $this->loadModel($id);
         $criteria = new CDbCriteria();
         $params = array();
         if (isset($_GET['display'])) {
@@ -24,6 +24,15 @@ class CategoryController extends Controller
         $devices = Device::model()->findAll($criteria);
         $this->render('index', array('category' => $category, 'devices' => $devices,
             'id' => $id, 'pages' => $pages, 'columns' => 2, 'display' => $display));
+    }
+    
+    public function loadModel($id)
+    {
+        $model = Category::model()->findByPk($id);
+        if($model === null) {
+            throw new CHttpException(404, 'The requested page does not exist.');
+        }
+        return $model;
     }
 }
 ?>

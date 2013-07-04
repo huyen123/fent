@@ -41,7 +41,7 @@ class DeviceController extends Controller
         $existed = Validator::checkRequestExistence(Yii::app()->user->getId(), $id);
         $liked = Favorite::model()->exists('user_id=:user_id AND device_id=:device_id', 
                 array(':user_id' => Yii::app()->user->getId(), ':device_id' => $id));
-        $device = Device::model()->findByPk($id);
+        $device = $this->loadModel($id);
         Yii::import( "xupload.models.XUploadForm" );
         $imageModel = new XUploadForm;
         $this->render('view', array(
