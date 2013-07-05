@@ -30,7 +30,9 @@
                 </div>
                 <?php
                     foreach($unexpired_requests as $request){
-                        $this->renderPartial('_request', array('request' => $request, 'timestamp' => $timestamp));
+                        if ($request->request_end_time != null) {
+                            $this->renderPartial('_request', array('request' => $request, 'timestamp' => $timestamp));
+                        }
                     }
                 ?>
             </div>
